@@ -1,0 +1,145 @@
+<head>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<h2>Sign in(Log in)/Sign up Form</h2>
+<div class="site-top-icons">
+	<ul>
+		<a href="index.html"><span class="icon">Go Home</span></a>
+	</ul>
+</div>
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="#">
+			<h1>Create Account</h1>
+			<div class="social-container">
+				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			</div>
+			<span>or use your email for registration</span> 
+			<input type="text" placeholder="Name" id="signupusername"/>
+			<input type="email" placeholder="Email" id="signEmail"/>
+			<input type="password" placeholder="Password" id="signpassword"/>
+			<input type="password" placeholder="PasswordVarify" id="signpassword2"/>
+			<input type="text" placeholder="NickName" id="signnickname"/>
+			<input type="text" placeholder="PhoneNumber" id="signphonenumber"/>
+			<button id="SingUpButton" onclick="SignUp()">Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="#">
+			<h1>Sign in</h1>
+			<!--모양에 들어가는것들 -->
+			<div class="social-container">
+				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			</div>
+			<span>or use your account</span>
+			<input type="text" placeholder="username" id="signinusername"/>
+			<input type="password" placeholder="Password"id="signinpassword" />
+			<a href="#">Forgot your password?</a>
+			<button onclick="SignIn()">Sign In</button>
+		</form>
+	</div> 
+	 
+	<!-- <input type="email" placeholder="Email" id="findemail"/>  
+	<button onclick="FinByUserIdWithEmail()">아이디 찾기</button>  
+
+	<input type="email" placeholder="Email" id="getfindemail"/>  
+	<button onclick="getFinByUserIdWithEmail()">아이디 찾기</button>   -->
+</div> 
+ 
+<script>  
+// function getFinByUserIdWithEmail(){ 
+// 		var settings = {
+// 			"url": "http://localhost:8080/api/findbyusername?email="+$('#getfindemail').val(),
+// 			"method": "GET",
+// 			"timeout": 0,
+// 		};
+
+// 		$.ajax(settings).done(function (response) {
+// 		console.log(response);
+// 		let getusername = response['username']
+// 		alert(getusername)
+//         }).fail(function (response){
+//             console.log(response.status);
+//             if(response.status === 404){
+//                 alert("이메일이 존재하지 않습니다."); 
+//             }else{
+//                 alert("서버에 문제가 발생하였습니다."); 
+//             }
+//         }); 
+// 	}
+
+
+	function SignUp(){
+		var settings = {
+			"url": "http://localhost:8080/api/signup",
+			"method": "POST",
+			"timeout": 0,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"data": JSON.stringify({
+				"username": $('#signupusername').val(),
+				"password": $('#signpassword').val(),
+				"password2": $('#signpassword2').val(),
+				"nickName": $('#signnickname').val(),
+				"email": $('#signEmail').val(),
+				"phoneNumber": $('#signphonenumber').val()
+			}),
+		};
+		
+		$.ajax(settings).done(function (response) {
+			console.log(response); 
+		});
+	}
+	
+	function SignIn(){
+		var settings = {
+			"url": "http://localhost:8080/api/login",
+			"method": "POST",
+			"timeout": 0,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"data": JSON.stringify({
+				"username": $('#signinusername').val(),
+				"password": $('#signinpassword').val()
+			}),
+			};
+
+			$.ajax(settings).done(function (response, status, xhr) {
+			console.log(response); 
+			console.log(xhr.getResponseHeader('Authorization'))
+			localStorage.setItem('accessToken', xhr.getResponseHeader('Authorization'))
+			window.location ="index.html";
+			}).fail(function (response){
+				console.log(response.status);
+				if(response.status === 403){
+					alert("아이디와 비밀번호를 확인하여 주세요");
+				}else{
+					alert("서버에 문제가 발생하였습니다.");
+				}
+			});
+	}
+	function Logout(){
+		var settings = {
+			"url": "http://localhost:8080/api/logout",
+			"method": "DELETE",
+			"timeout": 0,
+			"headers": {
+				"Authorization": ""
+			},
+		};
+
+		$.ajax(settings).done(function (response) {
+			console.log(response);
+			alert("로그아웃되었습니다.");
+		});
+	}
+
+</script>

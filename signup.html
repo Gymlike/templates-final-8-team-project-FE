@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Untree.co" />
+    <link rel="shortcut icon" href="favicon.png" />
+
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap5" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="fonts/icomoon/style.css" />
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" />
+
+    <link rel="stylesheet" href="css/tiny-slider.css" />
+    <link rel="stylesheet" href="css/aos.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>
+      운동시설 사이트
+    </title>
+  </head>
+  <body>
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+          <span class="icofont-close js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <nav class="site-nav">
+      <div>
+        <ul>
+          <a style="color:white" href="login.html">로그인</a>
+          <a style="color:white" href="signup.html">회원가입</a>
+        </ul>
+      </div>
+      <div class="container">
+        <div class="menu-bg-wrap">
+          <div class="site-navigation">
+            <a href="index.html" class="logo m-0 float-start">메인으로</a>
+
+            <ul
+              class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
+            >
+              <li class="active"><a href="index.html">운동시설등록</a></li>
+              <li class="has-children">
+                <a href="properties.html">게시판</a>
+                <ul class="dropdown">
+                  <li><a href="#">자유게시판</a></li>
+                  <li><a href="#">오운완게시판</a></li>
+                  <li><a href="#">오먹게시판</a></li>
+                </ul>
+              </li>
+              <li class="has-children">
+                <a href="services.html">이벤트게시판</a>
+                <ul class="dropdown">
+                  <li><a href="#">유저이벤트</a></li>
+                  <li><a href="#">헬스장이벤트</a></li>
+                  <li><a href="#">사이트이벤트</a></li>
+                </ul>
+              </li>
+              <li class="has-children">
+                <a href="about.html">고객센터</a>
+                  <ul class="dropdown">
+                    <li><a href="#">공지사항</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">1:1문의</a></li>
+                  </ul>
+              </li>
+              <li><a href="contact.html">운동시설</a></li>
+            </ul>
+
+            <a
+              href="#"
+              class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+              data-toggle="collapse"
+              data-target="#main-navbar"
+            >
+              <span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+
+    <div
+      class="hero page-inner overlay signup-image"
+      style="background-image: url('images/hero_bg_1.jpg')"
+    >
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-lg-9 text-center mt-5">
+            <h1 class="heading" data-aos="fade-up">회원가입</h1> 
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/tiny-slider.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/counter.js"></script>
+    <script src="js/custom.js"></script>
+    <div class="sign-up-container ">  
+        <div class="tab-content">
+          <div id="signup">   
+            <form action="/" method="post">
+            
+                <input type="text" class="sign-button-input" placeholder="Name" id="signupusername"/>
+
+                <input type="email" class="sign-button-input" placeholder="Email" id="signEmail"/>
+
+                <input type="password" class="sign-button-input" placeholder="Password" id="signpassword"/>
+
+                <input type="password" class="sign-button-input" placeholder="PasswordVarify" id="signpassword2"/>
+
+                <input type="text" class="sign-button-input" placeholder="NickName" id="signnickname"/>
+
+                <input type="text" class="sign-button-input" placeholder="PhoneNumber" id="signphonenumber"/>
+            
+            <button class="sign-button" onclick="SignUp()">Sign up</button>
+            </form> 
+          </div> 
+        </div><!-- tab-content --> 
+  </div> <!-- /form -->
+  </body>
+</html>
+<style> 
+.sign-up-container {
+    margin-top: 10px;
+    margin-bottom: 20px;
+	background-color: rgb(71, 114, 7);
+	border-radius: 10px;
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+	position: relative; 
+	width: 700px; 
+} 
+
+.sign-up-container {
+	left: 0;
+	width: 48%; 
+	opacity: 0; 
+	z-index: 1; 
+}
+
+.sign-up-container {
+	transform: translateX(50%);
+	opacity: 1;
+	z-index: 5;
+	animation: show 0.6s;
+}
+
+@keyframes show {
+	0%,
+	49.99% {
+		opacity: 0;
+		z-index: 1;
+	}
+
+	50%,
+	100% {
+		opacity: 1;
+		z-index: 5;
+	}
+}
+
+.sign-button {
+	border-radius: 20px;
+	border: 1px solid #ff4b2b;
+	background-color: #ff4b2b;
+	color: #ffffff;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+	align-items: center;
+	margin: 20px;
+} 
+
+.sign-button-input {
+	align-items: center; 
+	background-color: #eee;
+	border: none;
+	padding: 12px;
+	margin: 8px 10px;
+    width: 96%;
+	max-width: 96%;
+}
+  
+
+</style>
+
+<script>  
+
+function SignUp(){
+		var settings = {
+			"url": "http://localhost:8080/api/signup",
+			"method": "POST",
+			"timeout": 0,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"data": JSON.stringify({
+				"username": $('#signupusername').val(),
+				"password": $('#signpassword').val(),
+				"password2": $('#signpassword2').val(),
+				"nickName": $('#signnickname').val(),
+				"email": $('#signEmail').val(),
+				"phoneNumber": $('#signphonenumber').val()
+			}),
+		};
+		
+		$.ajax(settings).done(function (response) {
+			console.log(response); 
+		});
+	}
+</script>
