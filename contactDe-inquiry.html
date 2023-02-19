@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Untree.co" />
+    <link rel="shortcut icon" href="favicon.png" />
+
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap5" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="fonts/icomoon/style.css" />
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" />
+
+    <link rel="stylesheet" href="css/tiny-slider.css" />
+    <link rel="stylesheet" href="css/aos.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>
+        운동시설 사이트
+    </title>
+</head>
+
+<body>
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <nav class="site-nav">
+        <div>
+            <ul>
+                <a style="color:white" href="login.html">로그인</a>
+                <a style="color:white" href="signup.html">회원가입</a>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="menu-bg-wrap">
+                <div class="site-navigation">
+                    <a href="index.html" class="logo m-0 float-start">메인으로</a>
+
+                    <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
+                        <li class="active">
+                            <a href="index.html">운동시설등록</a>
+                        </li>
+                        <li class="has-children">
+                            <a href="properties.html">게시판</a>
+                            <ul class="dropdown">
+                                <li>
+                                    <a href="#">자유게시판</a>
+                                </li>
+                                <li>
+                                    <a href="#">오운완게시판</a>
+                                </li>
+                                <li>
+                                    <a href="#">오먹게시판</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="services.html">이벤트게시판</a>
+                            <ul class="dropdown">
+                                <li>
+                                    <a href="#">유저이벤트</a>
+                                </li>
+                                <li>
+                                    <a href="#">헬스장이벤트</a>
+                                </li>
+                                <li>
+                                    <a href="#">사이트이벤트</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="about.html">고객센터</a>
+                            <ul class="dropdown">
+                                <li>
+                                    <a href="contactPageIndex-notice">공지사항</a>
+                                </li>
+                                <li>
+                                    <a href="contactPageIndex-faq.html">FAQ</a>
+                                </li>
+                                <li>
+                                    <a href="contactPageIndex-inquiry.html" onclick="showInquiry">1:1문의</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="contact.html">운동시설</a>
+                        </li>
+                    </ul>
+
+                    <a href="#"
+                        class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+                        data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero page-inner overlay" style="background-image: url('images/hero_bg_1.jpg')">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-9 text-center mt-5">
+                    <h1 class="heading" data-aos="fade-up">1 : 1 문의</h1>
+
+                    <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
+                        <ol class="breadcrumb text-center justify-content-center">
+                            <li class="breadcrumb-item">
+                                <a href="index.html">메인</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="contactPageIndex-notice.html">
+                                    공지사항
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="contactPageIndex-faq.html">
+                                    FAQ
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="contactPageIndex-inquiry.html" onclick="showInquiry()">
+                                    1:1 문의
+                                </a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <div class="row mb-5 align-items-center">
+                <div class="col-lg-6 text-center mx-auto"></div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="property-slider-wrap">
+                            <div class="property-slider"></div>
+
+                            <!-- 게시글 테이블 -->
+                            <div id="t-inquiry">
+
+                            </div>
+
+                            <div class="site-footer">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="widget">
+                                                <h3>Contact</h3>
+                                                <address>43 Raymouth Rd. Baltemoer, London 3910</address>
+                                                <ul class="list-unstyled links">
+                                                    <li>
+                                                        <a href="tel://11234567890">+1(123)-456-7890</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="tel://11234567890">+1(123)-456-7890</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="mailto:info@mydomain.com">info@mydomain.com</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.widget -->
+                                        </div>
+                                        <!-- /.col-lg-4 -->
+                                        <div class="col-lg-4">
+                                            <div class="widget">
+                                                <h3>Sources</h3>
+                                                <ul class="list-unstyled float-start links">
+                                                    <li>
+                                                        <a href="#">About us</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Services</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Vision</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Mission</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Terms</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Privacy</a>
+                                                    </li>
+                                                </ul>
+                                                <ul class="list-unstyled float-start links">
+                                                    <li>
+                                                        <a href="#">Partners</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Business</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Careers</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Blog</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">FAQ</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Creative</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.widget -->
+                                        </div>
+                                        <!-- /.col-lg-4 -->
+                                        <div class="col-lg-4">
+                                            <div class="widget">
+                                                <h3>Links</h3>
+                                                <ul class="list-unstyled links">
+                                                    <li>
+                                                        <a href="#">Our Vision</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">About us</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Contact us</a>
+                                                    </li>
+                                                </ul>
+
+                                                <ul class="list-unstyled social">
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="icon-instagram"></span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="icon-twitter"></span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="icon-facebook"></span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="icon-linkedin"></span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="icon-pinterest"></span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="icon-dribbble"></span></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.widget -->
+                                        </div>
+                                        <!-- /.col-lg-4 -->
+                                    </div>
+                                    <!-- /.row -->
+
+                                    <div class="row mt-5">
+                                        <div class="col-12 text-center">
+                                            <!-- **========== NOTE: Please don't remove this copyright link unless you buy
+                                                the license here https://untree.co/license/ **========== -->
+
+                                            <p>
+                                                Copyright &copy;
+                                                <script>
+                                                    document.write(new Date().getFullYear());
+                                                </script>
+                                                . All Rights Reserved. &mdash; Designed with love by
+                                                <a href="https://untree.co">Untree.co</a>
+                                                <!-- License information: https://untree.co/license/ -->
+                                            </p>
+                                            <div>
+                                                Distributed by
+                                                <a href="https://themewagon.com/" target="_blank">themewagon</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.container -->
+                            </div>
+                            <!-- /.site-footer -->
+
+                            <!-- Preloader -->
+                            <div id="overlayer"></div>
+                            <div class="loader">
+                                <div class="spinner-border" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+
+                            <script src="js/bootstrap.bundle.min.js"></script>
+                            <script src="js/tiny-slider.js"></script>
+                            <script src="js/aos.js"></script>
+                            <script src="js/navbar.js"></script>
+                            <script src="js/counter.js"></script>
+                            <script src="js/custom.js"></script>
+
+                            <script>
+                                //-------- 로드실행---------------------------------------- 
+                                $(document).ready(function () {
+                                    var param = document
+                                        .location
+                                        .href
+                                        .split("?");
+                                    console.log(param[1])
+
+                                    var settings = {
+                                        "url": "http://localhost:8080/api/contact/inquiries/" + param[1],
+                                        "method": "GET",
+                                        "timeout": 0
+                                    };
+                                    //----------------------------------agax --------------------------- 필요변수 여기에 선언
+                                    $
+                                        .ajax(settings)
+                                        .done(function (response) {
+                                            console.log(response);
+                                            let inquiryId = response['id']
+                                            let title = response['title']
+                                            let content = response['content']
+                                            let createdDate = response['createdDate']
+                                            let username = response['username']
+                                            let nickName = response['nickName']
+
+
+
+                                            //------------------------------ 게시글 보여주기 -----------------------------------
+                                            let temp_html = `<div class="container" id= inquiryBox>
+                                                                <table class="table table-hover" width="1000" id="textBox">
+                                                                    <tr>
+                                                                        <td>제목 </td>
+                                                                        <td colspan="4" align="left">${title}</td>
+                                                                        </tr>
+                                                                    <tr align="center">
+                                                                        <td>작성일</td>
+                                                                        <td>${createdDate}</td>
+                                                                        <td>작성자</td>
+                                                                        <td>${nickName}</td>
+                                                                    </tr>
+                                                                    <tr height="300">
+                                                                        <td colspan="5" align="left">${content}</td>
+                                                                    </tr>
+                                                                </table>
+                                                                    <button type="button" class="btn btn-outline-secondary border">
+                                                                        <a href="contactPageIndex-inquiry.html">목록보기</a>
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-outline-secondary border" id="b-edit">
+                                                                        <a href="contactEdit-inquiry.html?${inquiryId}">수정</a>
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-outline-secondary border" name ='b-delete'>
+                                                                        <a href="contactPageIndex-inquiry.html">삭제</a>
+                                                                    </button>
+                                                                    <section class="mb-5">
+                                                                        <div class="card bg-light">
+                                                                            <div class="card-body"  id = "commentShow">
+                                                                                <!-- Comment form-->
+                                                                                <form class="mb-4"><textarea id ="t-commentSave"class="form-control" rows="3" placeholder="댓글을 남겨주세요"></textarea> 
+                                                                                    <button type="button" name='b-commentSave'>댓글등록</button></form>
+                                                                            
+                                                                            </div>
+                                                                        </div>
+                                                                     </section>
+                                                             </div>`
+
+                                            $('#t-inquiry').append(temp_html)
+
+                                            showComment(response['comments'], 0)
+
+        
+ 
+
+                                // ----------------------------------[해당버튼 클릭시 댓글쓰기]-----------------------------------------------------
+
+                                $('#t-inquiry').on("click", "button[name='b-commentSave']", function () {
+                                    var param = document.location.href.split("?");
+                                    var settings = {
+                                        "url": "http://localhost:8080/api/comments/inquiry/" + param[1],
+                                        "method": "POST",
+                                        "timeout": 0,
+                                        "headers": {
+                                            "Authorization": localStorage.getItem('accessToken'),
+                                            "Content-Type": "application/json"
+                                        },
+                                        "data": JSON.stringify({
+                                            "comments": $('#t-commentSave').val(),
+
+                                        }),
+                                    };
+                                    $.ajax(settings).done(function (response) {
+                                        console.log(response);
+                                        alert(response)
+                                        window.location.reload()
+                                    });
+                                })
+                                //------------------------------------------------------------------------------------------
+
+                                // -----[해당 버튼 클릭시 댓글삭제]-----------
+
+                                $('#t-inquiry').on("click", "button[name='delComment']", function(){
+                                    var id_by_name = $(this).attr('id')
+                                    console.log(id_by_name)
+                                    var commentId = id_by_name.split("_")[1]
+                                    console.log(commentId)
+                                    var settings = {
+                                    "url": "http://localhost:8080/api/comments/"+commentId+"/inquiry",
+                                    "method": "DELETE",
+                                    "timeout": 0,
+                                    "headers": {
+                                        "Authorization": localStorage.getItem('accessToken')
+                                    },
+                                };
+
+                                $.ajax(settings).done(function (response) {
+                                    console.log(response);
+                                    alert(response)
+                                    window.location.reload();
+
+                                }).fail(function(response){
+                                    console.log(response.responseJSON);
+                                    if(response.responseJSON.statusCode === 403){
+                                        alert(response.responseJSON.message)
+                                    }
+                                });
+                                })
+                                // -----[해당 버튼 클릭시 답글 수정 창 나옴]-------------------
+
+                                $('#t-inquiry').on("click", "button[name='editComment']", function(){
+                                var id_by_name = $(this).attr('id')
+                                var commentId =id_by_name.split("_")[1]
+                                $("#toggleEdit_"+commentId).toggle();
+                                })
+                                // ---------------------------------------------------------
+
+                                // -----[해당 버튼 클릭시 댓글수정 요청]----------------------
+                                $('#t-inquiry').on("click", "button[name='saveEdit']", function(){    
+                                    var id_by_name = $(this).attr('id')
+                                    var commentId = id_by_name.split("_")[1]
+                                    var settings = {
+                                "url": "http://localhost:8080/api/comments/"+commentId+"/inquiry",
+                                "method": "PUT",
+                                "timeout": 0,
+                                "headers": {
+                                "Authorization": localStorage.getItem('accessToken'),
+                                "Content-Type": "application/json"
+                                },
+                                "data": JSON.stringify({
+                                "comments": $('#editCommentContent_'+commentId).val()
+                                }),
+                                };
+
+                                $.ajax(settings).done(function (response) {
+                                console.log(response);
+                                alert(response)
+                                window.location.reload();
+                                }).fail(function(response){
+                                console.log(response.responseJSON);
+                                if(response.responseJSON.statusCode === 403){
+                                alert(response.responseJSON.message)
+                                window.location.reload();
+                                }
+                                if(response.responseJSON.statusCode === 404){
+                                    alert("다른 유저의 댓글은 수정할 수 없습니다.")
+                                    window.location.reload();
+                                }
+                                });
+                                })
+                                // ---------------------------------------------------------
+                                // -----[해당 버튼 클릭시 답글적는창 나옴]-------------------
+
+
+                                $('#t-inquiry').on("click", "button[name='creatRe']", function(){
+                                      var id_by_name = $(this).attr('id')
+                                      console.log(id_by_name)
+                                      var commentId =id_by_name.split("_")[1]
+                                      console.log("★"+commentId)                                    
+                                      $("#toggleRe_"+commentId).toggle();
+
+                                })
+                                // ---------------------------------------------------------
+
+                                // -----[해당 버튼 클릭시 답글DB로 보냄]-------------------todo : 답글보여지는 위치에서 에러남 
+                                $('#t-inquiry').on("click", "button[name='saveRe']", function(){
+                                    var param = document.location.href.split("?");
+                                    console.log(param[1])
+
+                                    var id_by_name = $(this).attr('id')
+                                    console.log(id_by_name)
+                                    var commentId = id_by_name.split("_")[1]
+                                    console.log("☆"+commentId)
+                                    var settings = {
+                                  "url": "http://localhost:8080/api/comments/inquiry/"+param[1],
+                                  "method": "POST",
+                                  "timeout": 0,
+                                  "headers": {
+                                    "Authorization": localStorage.getItem('accessToken'),
+                                    "Content-Type": "application/json"
+                                  },
+                                  "data": JSON.stringify({
+                                    "comments": $('#replyCommentContent_'+commentId).val(),
+                                    "parentId": commentId
+                                  }),
+                                };
+
+                                $.ajax(settings).done(function (response) {
+                                  console.log(response);
+                                  alert(response)
+                                  window.location.reload();
+                                }).fail(function(response){
+                                   console.log(response.responseJSON);
+                                   if(response.responseJSON.statusCode === 403){
+                                    alert(response.responseJSON.message)
+                                   }
+                                });
+                               })
+
+                                // ---------------------------------------------------------
+                                //-------------------------------게시글 삭제(해당유저)--------------------------------------------
+                                $('textBox').on("click", "button[name='b-delete']", function () {
+                                    var param = document.location.href.split("?");
+                                    console.log(param[1])
+
+                                    var settings = {
+                                        "url": "http://localhost:8080/api/users/contact/inquiries/" + param[1],
+                                        "method": "DELETE",
+                                        "timeout": 0,
+                                        "headers": {
+                                            "Authorization": localStorage.getItem("accessToken")
+                                        }
+                                    };
+
+                                    $
+                                        .ajax(settings)
+                                        .done(function (response) {
+                                            console.log(response);
+                                            alert("삭제 완료");
+                                        });
+                                })
+                                //-------------------------------게시글 삭제(관리자)--------------------------------------------
+                                $('#textBox').on("click", "button[name='b-delete']", function () {
+                                    var param = document.location.href.split("?");
+                                    console.log(param[1])
+
+                                    var settings = {
+                                        "url": "http://localhost:8080/api/managers/contact/inquiries/" + param[1],
+                                        "method": "DELETE",
+                                        "timeout": 0,
+                                        "headers": {
+                                            "Authorization": localStorage.getItem("accessToken")
+                                        }
+                                    };
+
+                                    $
+                                        .ajax(settings)
+                                        .done(function (response) {
+                                            console.log(response);
+                                            let inquiryId = response['id']
+                                            alert("삭제 완료");
+                                        });
+                                })
+   
+                             //------------------------ 댓글 보여주기 ------------------------
+
+                                                function showComment(commentList, depth) {
+                                                    if (commentList.length === 0) {
+                                                        return;
+                                                    }
+
+                                                    for (let index = 0; index < commentList.length; index++) {
+                                                        const singleComment = commentList[index];
+                                                        const depth = singleComment['depth']
+
+
+                                                        let temp_html = makeCommentHtml(singleComment,depth)
+                                                        $('#commentShow').append(temp_html)
+                                                        showComment(singleComment['children'], depth);
+                                                    }
+
+                                                }
+                                                function makeCommentHtml(singleComment,depth) {
+                                                    var space = ""
+                                                    
+                                                    for (let i = 0; i < depth; i++) {
+                                                            space = space + "&nbsp&nbsp&nbsp "
+                                                        }
+                                                    var nickName = singleComment['nickName']
+                                                    return `<div class="d-flex">                       
+                                                                        <div class="ms-3">
+                                                                            <div class="fw-bold">${space}ㄴ작성자:${singleComment['nickName']}</div>
+                                                                            <div class="text-black-50">${space}${singleComment['comments']}</div> 
+                                                                            <p class="text-black-50">${space}${singleComment['createdDate']}
+                                                                                <button name="creatRe" id="reply_${singleComment['id']}" >답글</button>
+                                                                                <button name="editComment" id ="edit_${singleComment['id']}">수정</button>
+                                                                                <button name="delComment" id ="comment_${singleComment['id']}">삭제</button>
+                                                                                
+                                                                                    
+                                                                                <span style="display: none ;" id="toggleEdit_${singleComment['id']}">
+                                                                                <textarea id="editCommentContent_${singleComment['id']}"></textarea> 
+                                                                                <button name="saveEdit" id="commentEdit_${singleComment['id']}">댓글수정</button>
+                                                                                    </span>
+
+                                                                                <span style="display: none ;" id="toggleRe_${singleComment['id']}">
+                                                                                <textarea id="replyCommentContent_${singleComment['id']}"></textarea> 
+                                                                                <button name="saveRe" id="commentSave_${singleComment['id']}">답글작성</button>
+                                                                                    </span>
+                                                                                    <div class="d-flex mt-4">
+                                                                                    <div class="ms-3" id='commentReply_${singleComment['id']}'>
+                                                                                                            
+                                                                                    </div>
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>`
+                                                }
+                                // ----------------------------------댓글보여주기 끝--------------------------------------------
+                                         });
+                                // ----------------------------------ajax get 끝--------------------------------------------
+                                });
+
+                                // ----------------------------------로드시 실행되는부분 끝-------------------------------------------
+                            </script>
+
+
+
+</body>
+
+</html>
