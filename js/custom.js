@@ -142,7 +142,7 @@ function getUserMe() {
 		console.log(response);
 		console.log(status)
 		if (status === 403) {
-			window.location = "/login.html"
+			window.location.href
 		}
 		console.log(response.nickName);
 		$('#loginUser').empty();
@@ -168,7 +168,7 @@ function getOwnerMe() {
 		console.log(response);
 		console.log(status)
 		if (status === 403) {
-			window.location = "/login.html"
+			window.location.href
 		}
 		console.log(response.nickName);
 		$('#loginUser').show();
@@ -194,7 +194,7 @@ function getManagerMe() {
 		console.log(response);
 		console.log(status)
 		if (status === 403) {
-			window.location = "/login.html"
+			window.location.href
 		}
 		console.log(response.nickName);
 		$('#loginUser').show();

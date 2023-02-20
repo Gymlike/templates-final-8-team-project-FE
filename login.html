@@ -1,8 +1,8 @@
 <head>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/jquery-ui.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
 
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <p class="tip">Click on button in image container</p>
@@ -124,7 +124,7 @@ $.ajax(settings).done(function (response, status, xhr) {
   console.log(xhr.getResponseHeader('Authorization'))
   localStorage.setItem('accessToken', xhr.getResponseHeader('Authorization'))
   alert("로그인 완료")
-    window.location = 'index.html'
+    history.back()
 }).fail(function(response) {
     console.log(response.responseJSON);
     if(response.responseJSON.statusCode === 400) {
