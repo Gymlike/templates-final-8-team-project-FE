@@ -320,11 +320,8 @@
                             <script>
                                 //-------- 로드실행---------------------------------------- 
                                 $(document).ready(function () {
-                                    var param = document
-                                        .location
-                                        .href
-                                        .split("?");
-                                    console.log(param[1])
+                                    var param = document.location.href.split("?");
+                                    console.log("해당 게시글 번호 : "+ param[1])
 
                                     var settings = {
                                         "url": "http://localhost:8080/api/contact/inquiries/" + param[1],
@@ -365,7 +362,7 @@
                                                                     <button type="button" class="btn btn-outline-secondary border">
                                                                         <a href="contactPageIndex-inquiry.html">목록보기</a>
                                                                     </button>
-                                                                    <button type="button" class="btn btn-outline-secondary border" id="b-edit">
+                                                                    <button type="button" class="btn btn-outline-secondary border" name ='b-edit'>
                                                                         <a href="contactEdit-inquiry.html?${inquiryId}">수정</a>
                                                                     </button>
                                                                     <button type="button" class="btn btn-outline-secondary border" name ='b-delete'>
@@ -386,7 +383,71 @@
                                             $('#t-inquiry').append(temp_html)
 
                                             showComment(response['comments'], 0)
+                                        //------------------------ 댓글 보여주기 ------------------------
 
+                                            function showComment(commentList, depth) {
+                                                            if (commentList.length === 0) {
+                                                                return; //탈출조건 
+                                                            }
+
+                                                            for (let index = 0; index < commentList.length; index++) {
+                                                                const singleComment = commentList[index];
+                                                                const depth = singleComment['depth']
+
+                                                                let temp_html = makeCommentHtml(singleComment,depth)
+                                                                $('#commentShow').append(temp_html)
+                                                                showComment(singleComment['children'], depth);
+                                                            }
+
+                                                        }
+                                            function makeCommentHtml(singleComment,depth) {
+                                                var space = ""
+                                                var point = ""
+                                                if(depth>=2){
+                                                    point ="ㄴ "
+                                                }
+                                                for (let i = 1; i < depth; i++) {
+                                                        space = space + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"
+                                                    }
+                                                var nickName = singleComment['nickName']
+                                                return `<div class="d-flex">                       
+                                                                    <div class="ms-3">
+                                                                        <div class="fw-bold">${space}${point}작성자:${singleComment['nickName']}</div>
+                                                                        <div class="text-black-50">${space}${singleComment['comments']}</div> 
+                                                                        <p class="text-black-50">${space}${singleComment['createdDate']}
+                                                                            <button name="creatRe" id="reply_${singleComment['id']}" >답글</button>
+                                                                            <button name="editComment" id ="edit_${singleComment['id']}">수정</button>
+                                                                            <button name="delComment" id ="comment_${singleComment['id']}">삭제</button>
+                                                                            
+                                                                                
+                                                                            <span style="display: none ;" id="toggleEdit_${singleComment['id']}">
+                                                                            <textarea id="editCommentContent_${singleComment['id']}"></textarea> 
+                                                                            <button name="saveEdit" id="commentEdit_${singleComment['id']}">댓글수정</button>
+                                                                                </span>
+
+                                                                            <span style="display: none ;" id="toggleRe_${singleComment['id']}">
+                                                                            <textarea id="replyCommentContent_${singleComment['id']}"></textarea> 
+                                                                            <button name="saveRe" id="commentSave_${singleComment['id']}">답글작성</button>
+                                                                                </span>
+                                                                                <div class="d-flex mt-4">
+                                                                                <div class="ms-3" id='commentReply_${singleComment['id']}'>
+                                                                                                        
+                                                                                </div>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>`
+                                                }
+                                // ----------------------------------댓글보여주기 끝--------------------------------------------
+                                         }).fail(function (response) {   //실패시 실행 
+                                        console.log(response.responseJSON);
+                                        if (response.responseJSON.statusCode === 404) {
+                                            alert(response.responseJSON.message)
+                                        }
+                                        });
+                                // ----------------------------------ajax get 끝--------------------------------------------
+                                });
+
+                                // ----------------------------------로드시 실행되는부분 끝-------------------------------------------
         
  
 
@@ -411,9 +472,41 @@
                                         console.log(response);
                                         alert(response)
                                         window.location.reload()
+                                    }).fail(function(response){
+                                    console.log(response.responseJSON);
+                                    if(response.responseJSON.statusCode === 403){
+                                    alert(response.responseJSON.message)
+                                    }
+                                    if(response.responseJSON.statusCode === 404){
+                                        alert(response.responseJSON.message)
+                                    }
                                     });
                                 })
                                 //------------------------------------------------------------------------------------------
+
+
+
+                                // //-------[★게시글수정/ 해당 버튼 클릭시 기존데이터 불러와서 수정창에 붙이기 ]-----------
+                                // $('#t-inquiry').on("click", "button[name = 'd-edit']",function(){
+                                //     var param = document.location.href.split("?"); //현재 위치 유알엘 가져 와서 , 수정할 페이지 값 받아오는 방법 
+                                //     console.log("====수정페이지 : "+param[1])
+
+                                //     var settings = {
+                                //     "url": "localhost:8080/api/contact/inquiries"+ param[1],
+                                //     "method": "GET",
+                                //     "timeout": 0,
+                                //     "headers": {
+                                //         "Authorization": localStorage.getItem('accessToken')
+                                //     },
+                                //     };
+
+                                //     $.ajax(settings).done(function (response) {
+                                //     console.log("가져온 데이터:"+response);
+                                //     });
+
+    
+                                // })
+                                // //------------------------------------------------------------------------------------------
 
                                 // -----[해당 버튼 클릭시 댓글삭제]-----------
 
@@ -439,204 +532,170 @@
                                 }).fail(function(response){
                                     console.log(response.responseJSON);
                                     if(response.responseJSON.statusCode === 403){
+                                    alert(response.responseJSON.message)
+                                    }
+                                    if(response.responseJSON.statusCode === 404){
                                         alert(response.responseJSON.message)
                                     }
-                                });
+                                    });
                                 })
-                                // -----[해당 버튼 클릭시 답글 수정 창 나옴]-------------------
+                                    // -----[해당 버튼 클릭시 답글 수정 창 나옴]-------------------
 
-                                $('#t-inquiry').on("click", "button[name='editComment']", function(){
-                                var id_by_name = $(this).attr('id')
-                                var commentId =id_by_name.split("_")[1]
-                                $("#toggleEdit_"+commentId).toggle();
-                                })
-                                // ---------------------------------------------------------
-
-                                // -----[해당 버튼 클릭시 댓글수정 요청]----------------------
-                                $('#t-inquiry').on("click", "button[name='saveEdit']", function(){    
+                                    $('#t-inquiry').on("click", "button[name='editComment']", function(){
                                     var id_by_name = $(this).attr('id')
-                                    var commentId = id_by_name.split("_")[1]
-                                    var settings = {
-                                "url": "http://localhost:8080/api/comments/"+commentId+"/inquiry",
-                                "method": "PUT",
-                                "timeout": 0,
-                                "headers": {
-                                "Authorization": localStorage.getItem('accessToken'),
-                                "Content-Type": "application/json"
-                                },
-                                "data": JSON.stringify({
-                                "comments": $('#editCommentContent_'+commentId).val()
-                                }),
-                                };
+                                    var commentId =id_by_name.split("_")[1]
+                                    $("#toggleEdit_"+commentId).toggle();
+                                    })
+                                    // ---------------------------------------------------------
 
-                                $.ajax(settings).done(function (response) {
-                                console.log(response);
-                                alert(response)
-                                window.location.reload();
-                                }).fail(function(response){
-                                console.log(response.responseJSON);
-                                if(response.responseJSON.statusCode === 403){
-                                alert(response.responseJSON.message)
-                                window.location.reload();
-                                }
-                                if(response.responseJSON.statusCode === 404){
-                                    alert("다른 유저의 댓글은 수정할 수 없습니다.")
-                                    window.location.reload();
-                                }
-                                });
-                                })
-                                // ---------------------------------------------------------
-                                // -----[해당 버튼 클릭시 답글적는창 나옴]-------------------
-
-
-                                $('#t-inquiry').on("click", "button[name='creatRe']", function(){
-                                      var id_by_name = $(this).attr('id')
-                                      console.log(id_by_name)
-                                      var commentId =id_by_name.split("_")[1]
-                                      console.log("★"+commentId)                                    
-                                      $("#toggleRe_"+commentId).toggle();
-
-                                })
-                                // ---------------------------------------------------------
-
-                                // -----[해당 버튼 클릭시 답글DB로 보냄]-------------------todo : 답글보여지는 위치에서 에러남 
-                                $('#t-inquiry').on("click", "button[name='saveRe']", function(){
-                                    var param = document.location.href.split("?");
-                                    console.log(param[1])
-
-                                    var id_by_name = $(this).attr('id')
-                                    console.log(id_by_name)
-                                    var commentId = id_by_name.split("_")[1]
-                                    console.log("☆"+commentId)
-                                    var settings = {
-                                  "url": "http://localhost:8080/api/comments/inquiry/"+param[1],
-                                  "method": "POST",
-                                  "timeout": 0,
-                                  "headers": {
+                                    // -----[해당 버튼 클릭시 댓글수정 요청]----------------------
+                                    $('#t-inquiry').on("click", "button[name='saveEdit']", function(){    
+                                        var id_by_name = $(this).attr('id')
+                                        var commentId = id_by_name.split("_")[1]
+                                        var settings = {
+                                    "url": "http://localhost:8080/api/comments/"+commentId+"/inquiry",
+                                    "method": "PUT",
+                                    "timeout": 0,
+                                    "headers": {
                                     "Authorization": localStorage.getItem('accessToken'),
                                     "Content-Type": "application/json"
-                                  },
-                                  "data": JSON.stringify({
-                                    "comments": $('#replyCommentContent_'+commentId).val(),
-                                    "parentId": commentId
-                                  }),
-                                };
+                                    },
+                                    "data": JSON.stringify({
+                                    "comments": $('#editCommentContent_'+commentId).val()
+                                    }),
+                                    };
 
-                                $.ajax(settings).done(function (response) {
-                                  console.log(response);
-                                  alert(response)
-                                  window.location.reload();
-                                }).fail(function(response){
-                                   console.log(response.responseJSON);
-                                   if(response.responseJSON.statusCode === 403){
+                                    $.ajax(settings).done(function (response) {
+                                    console.log(response);
+                                    alert(response)
+                                    window.location.reload();
+                                    }).fail(function(response){
+                                    console.log(response.responseJSON);
+                                    if(response.responseJSON.statusCode === 403){
                                     alert(response.responseJSON.message)
-                                   }
-                                });
-                               })
+                                    }
+                                    if(response.responseJSON.statusCode === 404){
+                                        alert("다른 유저의 댓글은 수정할 수 없습니다.")
+                                    }
+                                    });
+                                    })
+                                    
+                                    // ---------------------------------------------------------
+                                    // -----[해당 버튼 클릭시 답글적는창 나옴]-------------------
 
-                                // ---------------------------------------------------------
-                                //-------------------------------게시글 삭제(해당유저)--------------------------------------------
-                                $('textBox').on("click", "button[name='b-delete']", function () {
-                                    var param = document.location.href.split("?");
-                                    console.log(param[1])
 
-                                    var settings = {
-                                        "url": "http://localhost:8080/api/users/contact/inquiries/" + param[1],
-                                        "method": "DELETE",
-                                        "timeout": 0,
-                                        "headers": {
-                                            "Authorization": localStorage.getItem("accessToken")
-                                        }
+                                    $('#t-inquiry').on("click", "button[name='creatRe']", function(){
+                                        var id_by_name = $(this).attr('id')
+                                        console.log(id_by_name)
+                                        var commentId =id_by_name.split("_")[1]
+                                        console.log("★"+commentId)                                    
+                                        $("#toggleRe_"+commentId).toggle();
+
+                                    })
+                                    // ---------------------------------------------------------
+
+                                    // -----[해당 버튼 클릭시 답글DB로 보냄]-------------------todo : 답글보여지는 위치에서 에러남 
+                                    $('#t-inquiry').on("click", "button[name='saveRe']", function(){
+                                        var param = document.location.href.split("?");
+                                        console.log(param[1])
+
+                                        var id_by_name = $(this).attr('id')
+                                        console.log(id_by_name)
+                                        var commentId = id_by_name.split("_")[1]
+                                        console.log("☆"+commentId)
+                                        var settings = {
+                                            "url": "http://localhost:8080/api/comments/inquiry/"+param[1],
+                                            "method": "POST",
+                                            "timeout": 0,
+                                            "headers": {
+                                                "Authorization": localStorage.getItem('accessToken'),
+                                                "Content-Type": "application/json"
+                                            },
+                                            "data": JSON.stringify({
+                                                "comments": $('#replyCommentContent_'+commentId).val(),
+                                                "parentId": commentId
+                                    }),
                                     };
 
-                                    $
-                                        .ajax(settings)
-                                        .done(function (response) {
-                                            console.log(response);
-                                            alert("삭제 완료");
-                                        });
+                                    $.ajax(settings).done(function (response) {
+                                    console.log(response);
+                                    alert(response)
+                                    window.location.reload();
+                                    }).fail(function(response){
+                                    console.log(response.responseJSON);
+                                    if(response.responseJSON.statusCode === 403){
+                                    alert(response.responseJSON.message)
+                                    window.location.reload();
+                                    }
+                                    if(response.responseJSON.statusCode === 404){
+                                        alert(response.responseJSON.message)
+                                        window.location.reload();
+                                    }
+                                    });
                                 })
-                                //-------------------------------게시글 삭제(관리자)--------------------------------------------
-                                $('#textBox').on("click", "button[name='b-delete']", function () {
-                                    var param = document.location.href.split("?");
-                                    console.log(param[1])
 
-                                    var settings = {
-                                        "url": "http://localhost:8080/api/managers/contact/inquiries/" + param[1],
-                                        "method": "DELETE",
-                                        "timeout": 0,
-                                        "headers": {
-                                            "Authorization": localStorage.getItem("accessToken")
-                                        }
-                                    };
+                                    // ---------------------------------------------------------
+                                    //-------------------------------게시글 삭제(해당유저)--------------------------------------------
+                                    $('textBox').on("click", "button[name='b-delete']", function () {
+                                        var param = document.location.href.split("?");
+                                        console.log(param[1])
 
-                                    $
-                                        .ajax(settings)
-                                        .done(function (response) {
-                                            console.log(response);
-                                            let inquiryId = response['id']
-                                            alert("삭제 완료");
-                                        });
-                                })
+                                        var settings = {
+                                            "url": "http://localhost:8080/api/users/contact/inquiries/" + param[1],
+                                            "method": "DELETE",
+                                            "timeout": 0,
+                                            "headers": {
+                                                "Authorization": localStorage.getItem("accessToken")
+                                            }
+                                        };
+
+                                        $
+                                            .ajax(settings)
+                                            .done(function (response) {
+                                                console.log(response);
+                                                alert("삭제 완료");
+                                            }).fail(function(response){
+                                            console.log(response.responseJSON);
+                                            if(response.responseJSON.statusCode === 403){
+                                            alert(response.responseJSON.message)
+                                            }
+                                            if(response.responseJSON.statusCode === 404){
+                                                alert(response.responseJSON.message)
+                                            }
+                                            });
+                                    })
+                                    //-------------------------------게시글 삭제(관리자)--------------------------------------------
+                                    $('#textBox').on("click", "button[name='b-delete']", function () {
+                                        var param = document.location.href.split("?");
+                                        console.log(param[1])
+
+                                        var settings = {
+                                            "url": "http://localhost:8080/api/managers/contact/inquiries/" + param[1],
+                                            "method": "DELETE",
+                                            "timeout": 0,
+                                            "headers": {
+                                                "Authorization": localStorage.getItem("accessToken")
+                                            }
+                                        };
+
+                                        $
+                                            .ajax(settings)
+                                            .done(function (response) {
+                                                console.log(response);
+                                                let inquiryId = response['id']
+                                                alert("삭제 완료");
+                                            }).fail(function(response){
+                                            console.log(response.responseJSON);
+                                            if(response.responseJSON.statusCode === 403){
+                                            alert(response.responseJSON.message)
+                                            }
+                                            if(response.responseJSON.statusCode === 404){
+                                                alert(response.responseJSON.message)
+                                            }
+                                            });
+                                    })
    
-                             //------------------------ 댓글 보여주기 ------------------------
 
-                                                function showComment(commentList, depth) {
-                                                    if (commentList.length === 0) {
-                                                        return;
-                                                    }
-
-                                                    for (let index = 0; index < commentList.length; index++) {
-                                                        const singleComment = commentList[index];
-                                                        const depth = singleComment['depth']
-
-
-                                                        let temp_html = makeCommentHtml(singleComment,depth)
-                                                        $('#commentShow').append(temp_html)
-                                                        showComment(singleComment['children'], depth);
-                                                    }
-
-                                                }
-                                                function makeCommentHtml(singleComment,depth) {
-                                                    var space = ""
-                                                    
-                                                    for (let i = 0; i < depth; i++) {
-                                                            space = space + "&nbsp&nbsp&nbsp "
-                                                        }
-                                                    var nickName = singleComment['nickName']
-                                                    return `<div class="d-flex">                       
-                                                                        <div class="ms-3">
-                                                                            <div class="fw-bold">${space}ㄴ작성자:${singleComment['nickName']}</div>
-                                                                            <div class="text-black-50">${space}${singleComment['comments']}</div> 
-                                                                            <p class="text-black-50">${space}${singleComment['createdDate']}
-                                                                                <button name="creatRe" id="reply_${singleComment['id']}" >답글</button>
-                                                                                <button name="editComment" id ="edit_${singleComment['id']}">수정</button>
-                                                                                <button name="delComment" id ="comment_${singleComment['id']}">삭제</button>
-                                                                                
-                                                                                    
-                                                                                <span style="display: none ;" id="toggleEdit_${singleComment['id']}">
-                                                                                <textarea id="editCommentContent_${singleComment['id']}"></textarea> 
-                                                                                <button name="saveEdit" id="commentEdit_${singleComment['id']}">댓글수정</button>
-                                                                                    </span>
-
-                                                                                <span style="display: none ;" id="toggleRe_${singleComment['id']}">
-                                                                                <textarea id="replyCommentContent_${singleComment['id']}"></textarea> 
-                                                                                <button name="saveRe" id="commentSave_${singleComment['id']}">답글작성</button>
-                                                                                    </span>
-                                                                                    <div class="d-flex mt-4">
-                                                                                    <div class="ms-3" id='commentReply_${singleComment['id']}'>
-                                                                                                            
-                                                                                    </div>
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>`
-                                                }
-                                // ----------------------------------댓글보여주기 끝--------------------------------------------
-                                         });
-                                // ----------------------------------ajax get 끝--------------------------------------------
-                                });
-
-                                // ----------------------------------로드시 실행되는부분 끝-------------------------------------------
                             </script>
 
 
