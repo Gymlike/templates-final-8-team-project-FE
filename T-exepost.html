@@ -104,7 +104,7 @@
                   class="breadcrumb-item active text-white-50"
                   aria-current="page"
                 >
-                  오.운.완
+                  오.운.완 
                 </li>
               </ol>
             </nav>
@@ -126,7 +126,7 @@
                       <textarea name="content" id="ucontent" placeholder="내용" required></textarea>
                   </div>
 
-                    <input type="file" id="t_exeFile"  name="SelectFile" accept="image/*">
+                    <input type="file" id="t_exeFile"  name="SelectFile" accept="image/*" multiple>
 
 
                   <div class="bt_se">
@@ -158,6 +158,10 @@
 function t_exePost(){ 
   var form = new FormData();
 form.append("file", $("#t_exeFile")[0].files[0]);
+form.append("file", $("#t_exeFile")[0].files[1]);
+
+console.log( $("#t_exeFile")[0].files[0])
+console.log( $("#t_exeFile")[0].files[1])
 
 const dtoTitle = $('#utitle').val();
 const dtoContent = $('#ucontent').val();
@@ -185,7 +189,7 @@ var settings = {
 $.ajax(settings).done(function (response) {
   console.log(response);
   alert(response);
-  window.location='/T_exe.html'
+ window.location='/T_exe.html'
 });
 }
 

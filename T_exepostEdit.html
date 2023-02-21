@@ -307,8 +307,6 @@ const blob = new Blob([json], { type: "application/json" });
 
 form.append("creatTExerciseBordRequestDTO", blob);
 
-
-
 var settings = {
   "url": "http://localhost:8080/t-exercise/"+para[1],
   "method": "PATCH",
