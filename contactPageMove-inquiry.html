@@ -168,17 +168,9 @@
 
                         <!-- 검색기능 -->
                         <div class="input-group mb-3">
-                            <input
-                                type="text"
-                                class="form-control"
-                                placeholder="제목 및 내용 "
-                                aria-label="Recipient's username"
-                                aria-describedby="button-addon2"
-                                id="keyword-in-Input">
-                            <button
-                                class="btn btn-outline-secondary"
-                                type="button"
-                                onclick="inquirySearch()">검색</button>
+                            <input type="text" class="form-control" placeholder="제목 및 내용 " aria-label="Recipient's username" aria-describedby="button-addon2"
+                                id="keywordInput">
+                            <button class="btn btn-outline-secondary" type="button" onclick="inquirySearch()">검색</button>
                         </div>
                     </div>
                     <div class="row">
@@ -189,7 +181,7 @@
                                 <!-- 게시글 목록 -->
                                 <div class="container">
                                     <button type="button" class="btn btn-outline-secondary border">
-                                        <a href="contactWrite.html">글쓰기</a>
+                                        <a href="contactWriteInquiry.html">글쓰기</a>
                                     </button>
                                     <table class="table table-hover table-striped " style="border:1px solid;">
                                         <thead>
@@ -197,7 +189,6 @@
                                                 <th>번호</th>
                                                 <th>제목</th>
                                                 <th>작성일</th>
-                                                <!-- <th>조회수</th> -->
                                             </tr>
                                         </thead>
                                         <tbody id="inquiryList"></tbody>
@@ -222,7 +213,7 @@
                     $(document).ready(function () {
                         showInquiry();
                     });
-                    // 전체조회
+                    //-------------------- 전체조회 --------------------------------
                     function showInquiry() {
                         var para = document
                             .location
@@ -256,6 +247,7 @@
         
                                     $('#inquiryList').append(temp_html)
                                 }
+                                //----------  페이징 처리 -----------------------
                                 let page = response.page
                                 let totalCount = response.totalCount
                                 let countPage = response.countPage
@@ -270,11 +262,8 @@
                                        }
 
 
-                                var param = document
-                                    .location
-                                    .href
-                                    .split("=");
-                                console.log(param[1])
+                                var param = document.location.href.split("?");
+                                console.log("현재페이지 : "+param[1])
                                 //이전페이지
                                 if (page > 1) {
                                     let temp_html = `<a href="contactPageMove-inquiry.html?${page - 1}">pre</a>`
@@ -293,51 +282,99 @@
                                     $('#inquiryPaging').append(temp_html);
                                 }
 
-                            })                            .fail(function (response) {
-                                console.log(response.responseJSON);
-                                if (response.responseJSON.statusCode === 403) {
-                                    alert(response.responseJSON.message)
-                                }
                             });
                     }
         
-                    // 검색창조회
-                    function inquirySearch() {
-                        var settings = {
-                            "url": "http://localhost:8080/api/contact/inquiries/keywords?keyword="+ $(
-                                '#keyword-in-Input'
-                            ).val(),
-                            "method": "GET",
-                            "timeout": 0
-                        };
-        
-                        $
-                            .ajax(settings)
-                            .done(function (response) {
-                                $('#inquiryList').empty()
-                                console.log(response);
-                                let rows = response.data;
-                                for (let i = 0; i < rows.length; i++) {
-                                    let number = rows[i]['id']
-                                    let title = rows[i]['title']
-                                    let createdDate = rows[i]['createdDate']
-        
-                                    let temp_html = ` <tr>
-                                   <td>${number}</td>
-                                   <td>${title}</td>
-                                   <th>${createdDate}</th> 
-                                 </tr>`
-        
-                                    $('#inquiryList').append(temp_html)
-                                }
-                                alert("조회 성공");
-                            }).fail(function (response) {
-                                console.log(response.responseJSON);
-                                if (response.responseJSON.statusCode === 403) {
-                                    alert(response.responseJSON.message)
-                                }
-                            });
+             //------------------------------- 검색창조회 -------------------------------------------------
+             $(document).ready(function() {
+                var keywords = localStorage.getItem('searching')//로컬스토리지에서 가져오기 
+                    console.log("keyword : "+keywords)
+
+                    if(keywords===null){
+                        keywords = ""
                     }
+                    var para = document.location.href.split("?");
+                    console.log("검색창조회시 url에서 pathvariable값 : "+para[1]) //현재페이지 url에서 pathvariable값 가져오기 
+                    var settings = { 
+                    "url": "http://localhost:8080/api/contact/inquiries/search?keyword="+keywords+"&page="+para[1],
+                    "method": "GET",
+                    "timeout": 0
+                    };
+
+                    $.ajax(settings)
+                    .done(function (response) {
+                        $('#inquiryList').empty()
+                        $('#inquiryPaging').empty()
+                        
+                        console.log("검색리스트"+response.data);
+                        let rows = response.data;
+                        
+                        for (let i = 0; i < rows.length; i++) {
+                            let inquiryId = rows[i]['id']
+                            let number = inquiryId
+                            let title = rows[i]['title']
+                            let createdDate = rows[i]['createdDate']
+
+
+                            let temp_html = ` <tr>
+                                <td>${number}</td>
+                                <td><a href ="contactDe-inquiry.html?${inquiryId}">${title}</td>
+                                <th>${createdDate}</th> 
+                                </tr>`
+                                
+
+                            $('#inquiryList').append(temp_html)
+                        }   
+ 
+                      //----------  페이징 처리 -----------------------
+                      let page = response.page
+                                let totalCount = response.totalCount
+                                let countPage = response.countPage
+                                let startPage = ((page - 1) / 10) * 10 + 1;
+                                let endPage = startPage + countPage - 1;
+                                let totalPage = response.totalPage;
+                                if(totalPage < page){
+                                        page = totalPage;
+                                       }
+                                       if(endPage>totalPage){
+                                        endPage = totalPage
+                                       }
+
+
+                                var param = document.location.href.split("?");
+                                console.log("현재페이지 : "+param[1])
+                                //이전페이지
+                                if (page > 1) {
+                                    let temp_html = `<a href="contactPageMove-inquiry.html?${page - 1}">pre</a>`
+                                    $('#inquiryPaging').append(temp_html);
+                                }
+                                //한 화면에 보여지는 페이지 수만큼 반복 하여 번호로 나타냄
+                                for (let i = startPage; i<=endPage; i++) {
+                                    let number = i
+                                    let temp_html = `<a href="contactPageMove-inquiry.html?${number}">${number}</a>`
+                                    $('#inquiryPaging').append(temp_html);
+                                }
+                                //다음페이지 page
+                                if (page < totalPage) {
+                                    let temp_html = `<a href="contactPageMove-inquiry.html?${page + 1}">next</a>`
+
+                                    $('#inquiryPaging').append(temp_html);
+                                }
+                    });
+                })
+                        
+                //------------------------페이지 처리 끝 -----------------------
+                //-----------검색창 끝 --------------------------------------
+                //------------현 페이지 검색 버튼 클릭시 검색함수 -----------------
+                function inquirySearch(){ 
+                var keywords = $('#keywordInput').val();
+                $('#inquiryList').empty()
+                $('#inquiryPaging').empty()
+                localStorage.setItem('searching',keywords) //로컬스토리지에 키워드 저장 
+                console.log(keywords)
+                window.location = './contactPageMove-inquiry.html?1'
+                }
+                //--------------------------------------------------------------
                 </script>
                 <div class="site-footer">
                     <div class="container">

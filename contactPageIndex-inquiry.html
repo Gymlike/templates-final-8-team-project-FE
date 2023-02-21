@@ -160,8 +160,8 @@
                     <!-- 검색기능 -->
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="제목 및 내용 " aria-label="Recipient's username"
-                            aria-describedby="button-addon2" id="keyword-in-Input">
-                        <button class="btn btn-outline-secondary" type="button" onclick="noticeSearch()">검색</button>
+                            aria-describedby="button-addon2" id="keywordInput">
+                        <button class="btn btn-outline-secondary" type="button" onclick="inquirySearch()">검색</button>
                     </div>
                 </div>
                 <div class="row">
@@ -183,7 +183,9 @@
                                             <!-- <th>조회수</th> -->
                                         </tr>
                                     </thead>
-                                    <tbody id="inquiryList"></tbody>
+                                    <tbody id="inquiryList">
+
+                                    </tbody>
 
                                 </table>
                             </div>
@@ -252,51 +254,25 @@
 
                                 $('#inquiryPaging').append(temp_html);
                             }
-                        }).fail(function (response) {
-                            console.log(response.responseJSON);
-                            if (response.responseJSON.statusCode === 403) {
-                                alert(response.responseJSON.message)
-                            }
+                        }).fail(function(response){
+                        console.log(response.responseJSON);
+                        if(response.responseJSON.statusCode === 403){
+                        alert(response.responseJSON.message)
+                        }
+                        if(response.responseJSON.statusCode === 404){
+                            alert(response.responseJSON.message)
+                        }
                         });
 
                 }
 
-                // 검색창조회
-                function inquirySearch() {
-                    var settings = {
-                        "url": "http://localhost:8080/api/contact/inquiries/keywords?keyword=" + $(
-                            '#keyword-in-Input'
-                        ).val(),
-                        "method": "GET",
-                        "timeout": 0
-                    };
-
-                    $
-                        .ajax(settings)
-                        .done(function (response) {
-                            $('#inquiryList').empty()
-                            console.log(response);
-                            let rows = response.data;
-                            for (let i = 0; i < rows.length; i++) {
-                                let number = rows[i][id]
-                                let title = rows[i]['title']
-                                let createdDate = rows[i]['createdDate']
-
-                                let temp_html = ` <tr>
-                                   <td>${number}</td>
-                                   <td>${question}</td>
-                                   <th>${createdDate}</th> 
-                                 </tr>`
-
-                                $('#inquiryList').append(temp_html)
-                            }
-                            alert("조회 성공");
-                        }).fail(function (response) {
-                            console.log(response.responseJSON);
-                            if (response.responseJSON.statusCode === 403) {
-                                alert(response.responseJSON.message)
-                            }
-                        });
+                //------------------ 검색창조회 -------------------------------
+                
+                function inquirySearch(){ 
+                var keywords = $('#keywordInput').val();
+                localStorage.setItem('searching',keywords) //로컬스토리지에 키워드 저장 
+                console.log(keywords)
+                window.location = './contactPageMove-inquiry.html?1'
                 }
             </script>
             <div class="site-footer">
