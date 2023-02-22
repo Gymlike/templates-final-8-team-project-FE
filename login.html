@@ -20,6 +20,7 @@
     <p class="forgot-pass">비밀번호 찾기</p>
     <button type="button" class="submit" onclick="logIn()">로그인</button>
     <button class="fb-btn" id="login-kakao-btn" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=adacc39e0738d79ed04fd79995f809d3&redirect_uri=http://localhost:8080/api/user/kakao/callback&response_type=code'">카카오로 로그인하기</button>
+    <!-- <button class="fb-btn" id="login-kakao-btn" onclick="KakaologIn()">카카오로 로그인하기</button> -->
     <button type="button" class="owner-login" onclick="location.href='ownerlogin.html'">사업자회원 로그인</button>
   </div>
   <div class="sub-cont">
@@ -112,6 +113,37 @@ function logIn() {
   "timeout": 0,
   "headers": {
     "Content-Type": "application/json"
+  },
+  "data": JSON.stringify({
+    "username": $('#logInID').val(),
+    "password": $('#logInpassword').val()
+  }),
+};
+
+$.ajax(settings).done(function (response, status, xhr) {
+  console.log(response);
+  console.log(xhr.getResponseHeader('Authorization'))
+  localStorage.setItem('accessToken', xhr.getResponseHeader('Authorization'))
+  alert("로그인 완료")
+    history.back()
+}).fail(function(response) {
+    console.log(response.responseJSON);
+    if(response.responseJSON.statusCode === 400) {
+        alert("ID와 비밀번호를 확인하여주세요.")
+    } else {
+        alert("ID와 비밀번호를 확인하여주세요.");
+    }
+});
+}
+
+// 로그인
+function KakaologIn() {
+    var settings = {
+  "url": "https://kauth.kakao.com/oauth/authorize?client_id=adacc39e0738d79ed04fd79995f809d3&redirect_uri=http://localhost:8080/api/user/kakao/callback&response_type=code",
+  "method": "GET",
+  "timeout": 0,
+  "headers": {
+    "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
   },
   "data": JSON.stringify({
     "username": $('#logInID').val(),

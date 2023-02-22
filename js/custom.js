@@ -15,6 +15,9 @@ jQuery(document).ready(function($) {
 	getManagerMe();
 	"use strict";
 
+	getKakaoMe();
+	"use strict";
+
 	var preloader = function() {
 
 		var loader = document.querySelector('.loader');
@@ -180,12 +183,13 @@ function getOwnerMe() {
 	  });
 }
 
-function getManagerMe() {
+function getKakaoMe() {
 	var settings = {
-		"url": "http://localhost:8080/api/profile/manager",
+		"url": "https://kapi.kakao.com/v2/user/me",
 		"method": "GET",
 		"timeout": 0,
 		"headers": {
+		  "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
 		  "Authorization": localStorage.getItem('accessToken')
 		},
 	  };
@@ -205,7 +209,6 @@ function getManagerMe() {
 		$('#MainSignUp').hide();
 	  });
 }
-
 
 //유저 로그아웃
 function logout() {
