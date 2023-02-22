@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <title>Edit Profile</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>프로필 수정하기</h1>
+    <form action="updateProfile" method="post">
+      <div class="form-group">
+        <label for="profileImage">Profile Image:</label>
+        <input type="file" id="profileImage" name="profileImage">
+      </div>
+      <div class="form-group">
+        <label for="nickname">Nickname:</label>
+        <input type="text" id="modifyNickname" />
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">email:</label>
+        <input type="text" id="modifyEmail" />
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">PhoneNumber:</label>
+        <input type="text" id="modifyNumber" />
+      </div>
+      <div class="form-group">
+        <label for="storeName">storename:</label>
+        <input type="text" id="modifystorename" />
+      </div>
+      <div class="form-group">
+        <label for="storeNumber">storenumber:</label>
+        <input type="text" id="modifystorenumber" />
+      </div>
+      <div class="form-group">
+        <label for="password">password:</label>
+        <input type="text" id="modifypassword" />
+      </div>
+      <div class="form-group">
+        <label for="ownerNumber">ownernumber:</label>
+        <input type="text" id="modifyOwnerNumber" />
+      </div>
+      <!-- <input type="submit" value="저장하기"> -->
+      <button type="button" calss="submit" onclick="Modify()">저장하기</button>
+    </form>
+  </div>
+</body>
+</html>
+<script>
+  function Modify() {
+    var settings = {
+  "url": "http://localhost:8080/api/owners",
+  "method": "POST",
+  "timeout": 0,
+  "headers": {
+    "Authorization": localStorage.getItem('accessToken'),
+    "Content-Type": "application/json"
+  },
+  "data": JSON.stringify({
+    "nickname": $('#modifyNickname').val(),
+    "email": $('#modifyEmail').val(),
+    "phoneNumber": $('#modifyNumber').val(),
+    "storename": $('#modifystorename').val(),
+    "storenumber": $('#modifystorenumber').val(),
+    "password": $('#modifypassword').val(),
+    "ownerNumber": $('#modifyOwnerNumber').val()
+  }),
+};
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+  alert("수정완료")
+  window.location.href = "./ownermypage.html";
+}).fail(function(response){
+  console.log(response.responseJSON);
+  if(response.status === 400){
+    alert("모두 작성해주세요");
+  }
+});
+  }
+</script>
+<style>
+    .container {
+  width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 50px;
+}
+
+.form-group {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+input[type="text"], input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input[type="submit"] {
+  width: 150px;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+</style>

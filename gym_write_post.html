@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Untree.co" />
+    <link rel="shortcut icon" href="favicon.png" />
+
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap5" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="fonts/icomoon/style.css" />
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" />
+
+    <link rel="stylesheet" href="css/tiny-slider.css" />
+    <link rel="stylesheet" href="css/aos.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>
+      운동시설 사이트
+    </title>
+  </head>
+  <body>
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+          <span class="icofont-close js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <nav class="site-nav">
+      <div>
+        <ul>
+          <a style="color:white" href="login3.html">로그인</a>
+          <a style="color:white" href="signup.html">회원가입</a>
+        </ul>
+      </div>
+      <div class="container">
+        <div class="menu-bg-wrap">
+          <div class="site-navigation">
+            <a href="index.html" class="logo m-0 float-start">메인으로</a>
+
+            <ul
+              class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
+            >
+              <li class="active"><a href="index.html">운동시설등록</a></li>
+              <li class="has-children">
+                <a href="properties.html">게시판</a>
+                <ul class="dropdown">
+                  <li><a href="#">자유게시판</a></li>
+                  <li><a href="#">오운완게시판</a></li>
+                  <li><a href="#">오먹게시판</a></li>
+                </ul>
+              </li>
+              <li class="has-children">
+                <a href="services.html">이벤트게시판</a>
+                <ul class="dropdown">
+                  <li><a href="#">유저이벤트</a></li>
+                  <li><a href="#">헬스장이벤트</a></li>
+                  <li><a href="#">사이트이벤트</a></li>
+                </ul>
+              </li>
+              <li class="has-children">
+                <a href="about.html">고객센터</a>
+                  <ul class="dropdown">
+                    <li><a href="#">공지사항</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">1:1문의</a></li>
+                  </ul>
+              </li>
+              <li><a href="contact.html">운동시설</a></li>
+            </ul>
+
+            <a
+              href="#"
+              class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+              data-toggle="collapse"
+              data-target="#main-navbar"
+            >
+              <span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+
+    <div
+      class="hero page-inner overlay"
+      style="background-image: url('images/hero_bg_1.jpg')"
+    >
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-lg-9 text-center mt-5">
+            <h1 class="heading" data-aos="fade-up">Properties</h1>
+
+            <nav
+              aria-label="breadcrumb"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <ol class="breadcrumb text-center justify-content-center">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li
+                  class="breadcrumb-item active text-white-50"
+                  aria-current="page"
+                >
+                  Properties
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div id="board_write">
+        <h4>운동시설 등록을 해주세요</h4>
+            <div id="write_area">
+                  <div id="gym_in_owernumber">
+                    <p>사업자 번호가 다를시 추가입력</p>
+                      <textarea name="ownerNumber" id="uownerNumber" rows="1" cols="55" placeholder="사업자번호" maxlength="100" required></textarea>
+                  </div>
+                    <div id="gym_in_title">
+                      <p>제목</p>
+                        <textarea name="title" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100" required></textarea>
+                    </div>
+   
+                    <div id="gym_in_gymName">
+                      <p>시설이름</p>
+                        <textarea name="gymName" id="ugymName" placeholder="시설이름" required></textarea>
+                    </div> 
+   
+                    <div id="gym_in_content">
+                      <p>시설소개</p>
+                        <textarea name="content" id="ucontent" placeholder="시설 소개글" required></textarea>
+                    </div> 
+                    <div id="gym_in_price">
+                      <p>가격</p>
+                      <input text="text" id="gym_price_month_1" placeholder="1">개월
+                      <input text="text" id="gym_price_1" placeholder="30000">원
+                      <br>
+                      <input text="text" id="gym_price_month_2" placeholder="2">개월
+                      <input text="text" id="gym_price_2" placeholder="59000">원
+                      <br>
+                      <input text="text" id="gym_price_month_3" placeholder="6">개월
+                      <input text="text" id="gym_price_3" placeholder="160000">원
+                      <br>
+                      <input text="text" id="gym_price_month_4" placeholder="12">개월
+                      <input text="text" id="gym_price_4" placeholder="250000">원
+                    </div>
+                    <div id="gym_in_region">
+                      <p>주소</p> 
+                      <input type="text" id="sample3_postcode" placeholder="우편번호">
+                      <input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br>
+                      <input type="text" style="width: 350px; max-width: 80%;" id="sample3_address" placeholder="주소"><br>
+                      <input type="text" id="sample3_detailAddress" placeholder="상세주소">
+                      <input type="text" id="sample3_extraAddress" placeholder="참고항목">
+                      <div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative; max-width: 90%;">
+                      <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
+                      </div>
+                    </div> 
+
+ 
+                    <div id="gym_in_image">
+                      <p>메인 사진</p> 
+                    <input type="file" id="gym_File"  name="GymSelectFile" accept="image/*">
+
+                    </div>
+
+                    <div class="bt_se">
+                      <br>
+                        <button type="submit" onclick="gym_Write_Post()" >글 작성</button>
+                    </div>
+              
+            </div>
+        </div>
+   
+      <!-- /.site-footer -->
+  
+      <!-- Preloader -->
+      <div id="overlayer"></div>
+      <div class="loader">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/tiny-slider.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/counter.js"></script>
+    <script src="js/custom.js"></script>
+    
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  </body> 
+  <script>
+      // 우편번호 찾기 찾기 화면을 넣을 element 
+  function gym_Write_Post(){ 
+      var form = new FormData();  
+      // let imagefile = $('#gym_File')[0].files[0] 
+
+      // form.append("file", imagefile); 
+      form.append("file", $("#gym_File")[0].files[0]);
+
+      const dtoownerNumber = $('#uownerNumber').val();  
+      const dtoContent = $('#ucontent').val();  
+      const dtoTitle = $('#utitle').val();      
+      const dtoregion = $('#sample3_address').val();    
+      const dtogymName = $('#ugymName').val(); 
+      const price = $('#gym_price_month_1').val() +"_"+
+      $('#gym_price_1').val() +"_"+
+      $('#gym_price_month_2').val() +"_"+
+      $('#gym_price_2').val() +"_"+
+      $('#gym_price_month_3').val() +"_"+
+      $('#gym_price_3').val() +"_"+
+      $('#gym_price_month_4').val() +"_"+
+      $('#gym_price_4').val(); 
+ 
+      const json = JSON.stringify({
+        "title":dtoTitle, 
+        "contents":dtoContent, 
+        "ownerNumber":dtoownerNumber, 
+        "gymName":dtogymName, 
+        "region":dtoregion,
+        "price":price
+      }); 
+
+      const gym_write = new Blob([json], { type: "application/json" }); 
+      form.append("CreatePostGymRequestDto", gym_write);
+
+      var settings = {
+        "url": "http://localhost:8080/api/gym/owner/write_post",
+        "method": "POST",
+        "timeout": 0,
+          "processData": false,
+          "mimeType": "multipart/form-data",
+          "headers":{
+              "Authorization":localStorage.getItem('accessToken')
+          },
+          "contentType": false,
+          "data": form
+      };
+
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        alert(response);
+        window.location='/index.html'
+      }).fail(function (response){
+				console.log(response.status);
+				if(response.status === 403){
+					alert("가격은 숫자만 입력가능합니다.");
+				}else if(response.status === 401){
+					alert("로그인을해야 입력이 가능합니다.");
+				}else if(response.status === 404){
+					alert("로그인을해야 입력이 가능합니다.");
+				}else{
+					alert("서버에 문제가 발생하였습니다.");
+				}
+
+    });
+  }
+    
+
+  </script>
+  <script>
+  var element_wrap = document.getElementById('wrap');
+
+  
+  function foldDaumPostcode() {
+      // iframe을 넣은 element를 안보이게 한다.
+      element_wrap.style.display = 'none';
+  }
+
+  function sample3_execDaumPostcode() {
+      // 현재 scroll 위치를 저장해놓는다.
+      var currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+      new daum.Postcode({
+          oncomplete: function(data) {
+              // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+              // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+              // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+              var addr = ''; // 주소 변수
+              var extraAddr = ''; // 참고항목 변수
+
+              //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+              if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                  addr = data.roadAddress;
+              } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                  addr = data.jibunAddress;
+              }
+
+              // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+              if(data.userSelectedType === 'R'){
+                  // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                  // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                  if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                      extraAddr += data.bname;
+                  }
+                  // 건물명이 있고, 공동주택일 경우 추가한다.
+                  if(data.buildingName !== '' && data.apartment === 'Y'){
+                      extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                  }
+                  // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                  if(extraAddr !== ''){
+                      extraAddr = ' (' + extraAddr + ')';
+                  }
+                  // 조합된 참고항목을 해당 필드에 넣는다.
+                  document.getElementById("sample3_extraAddress").value = extraAddr;
+              
+              } else {
+                  document.getElementById("sample3_extraAddress").value = '';
+              }
+
+              // 우편번호와 주소 정보를 해당 필드에 넣는다.
+              document.getElementById('sample3_postcode').value = data.zonecode;
+              document.getElementById("sample3_address").value = addr;
+              // 커서를 상세주소 필드로 이동한다.
+              document.getElementById("sample3_detailAddress").focus();
+
+              // iframe을 넣은 element를 안보이게 한다.
+              // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
+              element_wrap.style.display = 'none';
+
+              // 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
+              document.body.scrollTop = currentScroll;
+          },
+          // 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
+          onresize : function(size) {
+              element_wrap.style.height = size.height+'px';
+          },
+          width : '100%',
+          height : '100%'
+      }).embed(element_wrap);
+
+      // iframe을 넣은 element를 보이게 한다.
+      element_wrap.style.display = 'block';
+  }
+  </script>
+</html>

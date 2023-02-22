@@ -1,162 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="author" content="Untree.co" />
-    <link rel="shortcut icon" href="favicon.png" />
+<head>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
 
-    <meta name="description" content="" />
-    <meta name="keywords" content="bootstrap, bootstrap5" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="stylesheet" href="fonts/icomoon/style.css" />
-    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" />
-
-    <link rel="stylesheet" href="css/tiny-slider.css" />
-    <link rel="stylesheet" href="css/aos.css" />
     <link rel="stylesheet" href="css/style.css" />
+</head>
 
-    <title>
-      운동시설 사이트
-    </title>
-  </head>
-  <body>
-    <div class="site-mobile-menu site-navbar-target">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close">
-          <span class="icofont-close js-menu-toggle"></span>
-        </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
-    </div>
-
-    <nav class="site-nav">
-      <div>
-        <ul>
-          <a style="color:white" href="login.html">로그인</a>
-          <a style="color:white" href="signup.html" class = "claseNa" id = "singup_lon">회원가입</a>
-          <a style="color:white" href="login.html" class="mypage" id="mypag" onclick="hide_order_login()">마이페이지</a>
-          <div style="color:white" href="login.html" class="logout" id="logout" >로그아웃</div>
-          <input 
-          type='button' 
-          value='이 버튼을 클릭하세요' 
-          id='btn2'
-          onclick='toggleBtn1()'/>
-        </ul>
-      </div>
-      <div class="container">
-        <div class="menu-bg-wrap">
-          <div class="site-navigation">
-            <a href="index.html" class="logo m-0 float-start">메인으로</a>
-
-            <ul
-              class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
-            >
-              <li class="active"><a href="index.html">운동시설등록</a></li>
-              <li class="has-children">
-                <a href="properties.html">게시판</a>
-                <ul class="dropdown">
-                  <li><a href="#">자유게시판</a></li>
-                  <li><a href="#">오운완게시판</a></li>
-                  <li><a href="#">오먹게시판</a></li>
-                </ul>
-              </li>
-              <li class="has-children">
-                <a href="services.html">이벤트게시판</a>
-                <ul class="dropdown">
-                  <li><a href="#">유저이벤트</a></li>
-                  <li><a href="#">헬스장이벤트</a></li>
-                  <li><a href="#">사이트이벤트</a></li>
-                </ul>
-              </li>
-              <li class="has-children">
-                <a href="about.html">고객센터</a>
-                  <ul class="dropdown">
-                    <li><a href="#">공지사항</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">1:1문의</a></li>
-                  </ul>
-              </li>
-              <li><a href="contact.html">운동시설</a></li>
-            </ul>
-
-            <a
-              href="#"
-              class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
-              data-toggle="collapse"
-              data-target="#main-navbar"
-            >
-              <span></span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
- 
-
-    <div
-      class="hero page-inner overlay"
-      style="background-image: url('images/hero_bg_1.jpg')"
-    >
-      <div class="container">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-lg-9 text-center mt-5">
-            <h1 class="heading" data-aos="fade-up">Properties</h1>
-
-            <nav
-              aria-label="breadcrumb"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <ol class="breadcrumb text-center justify-content-center">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li
-                  class="breadcrumb-item active text-white-50"
-                  aria-current="page"
-                >
-                  Properties
-                </li>
-              </ol>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </div>
-    <a style="color:black" href="FIndByIdAndPw.html">아이디찾기</a>
-    <style>
-       
-    </style>
-    <script>
-      
-	
-      $(document).ready(function () {
-        show_order_login()
-        // btn1 숨기기 (display: none)
-      }); 
-      function toggleBtn1() {  
-        const logout = document.getElementById('logout');    
-        // btn` 보이기 (display: block)
-        if(logout.style.display !== 'none') {
-          logout.style.display = 'none';
-        }
-        else {
-          logout.style.display = 'block';
-        }      
-      }
-    </script>
+<p class="tip">Click on button in image container</p>
+<div class="cont">
+  <div class="form sign-in">
+    <h2>로그인</h2>
+    <label>
+      <span>ID</span>
+      <input type="text" id="logInID"/>
+    </label>
+    <label>
+      <span>비밀번호</span>
+      <input type="password" id="logInpassword" />
+    </label>
+    <p class="forgot-pass">비밀번호 찾기</p>
+    <button type="button" class="submit" onclick="logIn()">로그인</button>
     <button class="fb-btn" id="login-kakao-btn" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=adacc39e0738d79ed04fd79995f809d3&redirect_uri=http://localhost:8080/api/user/kakao/callback&response_type=code'">카카오로 로그인하기</button>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/tiny-slider.js"></script>
-    <script src="js/aos.js"></script>
-    <script src="js/navbar.js"></script>
-    <script src="js/counter.js"></script>
-    <script src="js/custom.js"></script>
-  </body>
-</html>
+    <!-- <button class="fb-btn" id="login-kakao-btn" onclick="KakaologIn()">카카오로 로그인하기</button> -->
+    <button type="button" class="owner-login" onclick="location.href='ownerlogin.html'">사업자회원 로그인</button>
+  </div>
+  <div class="sub-cont">
+    <div class="img">
+      <div class="img__text m--up">
+        <h2>제목</h2>
+        <p>내용</p>
+      </div>
+      <div class="img__text m--in">
+        <h2>제목</h2>
+        <p>내용</p>
+      </div>
+      <div class="img__btn">
+        <span class="m--up">회원가입</span>
+        <span class="m--in">로그인</span>
+      </div>
+    </div>
+    <div class="form sign-up">
+      <h2>회원가입</h2>
+      <label>
+        <span>ID</span>
+        <input type="text" id="username"/>
+      </label>
+      <label>
+        <span>비밀번호</span>
+        <input type="password" id="password"/>
+      </label>
+      <label>
+        <span>비밀번호 확인 </span>
+        <input type="password" id="password2"/>
+      </label>
+      <label>
+        <span>닉네임</span>
+        <input type="text" id="nickName"/>
+      </label>
+      <label>
+        <span>핸드폰번호</span>
+        <input type="text" id="phoneNumber"/>
+      </label>
+      <label>
+        <span>이메일</span>
+        <input type="email" id="email"/>
+      </label>
+      <button type="button" class="submit" onclick="signUp()">가입하기</button>
+      <button type="button" class="fb-btn">카카오톡으로 가입하기 </button>
+      <button type="button" class="owner-signup" onclick="location.href='ownerlogin.html'">사업자회원 가입하기 </button>
+    </div>
+  </div>
+</div>
+
+<script>
+document.querySelector('.img__btn').addEventListener('click', function() {
+    document.querySelector('.cont').classList.toggle('s--signup');
+});
+
+
+
+// 회원가입
+function signUp() {
+    var settings = {
+  "url": "http://localhost:8080/api/user/signup",
+  "method": "POST",
+  "timeout": 0,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": JSON.stringify({
+    "username": $('#username').val(),
+    "password": $('#password').val(),
+    "password2": $('#password2').val(),
+    "nickName": $('#nickName').val(),
+    "phoneNumber": $('#phoneNumber').val(),
+    "email": $('#email').val()
+  }),
+};
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+  alert("회원가입 완료")
+  document.querySelector('.cont').classList.toggle('s--signup');
+});
+}
+
+
+// 로그인
+function logIn() {
+    var settings = {
+  "url": "http://localhost:8080/api/user/login",
+  "method": "POST",
+  "timeout": 0,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": JSON.stringify({
+    "username": $('#logInID').val(),
+    "password": $('#logInpassword').val()
+  }),
+};
+
+$.ajax(settings).done(function (response, status, xhr) {
+  console.log(response);
+  console.log(xhr.getResponseHeader('Authorization'))
+  localStorage.setItem('accessToken', xhr.getResponseHeader('Authorization'))
+  alert("로그인 완료")
+    history.back()
+}).fail(function(response) {
+    console.log(response.responseJSON);
+    if(response.responseJSON.statusCode === 400) {
+        alert("ID와 비밀번호를 확인하여주세요.")
+    } else {
+        alert("ID와 비밀번호를 확인하여주세요.");
+    }
+});
+}
+
+// 로그인
+function KakaologIn() {
+    var settings = {
+  "url": "https://kauth.kakao.com/oauth/authorize?client_id=adacc39e0738d79ed04fd79995f809d3&redirect_uri=http://localhost:8080/api/user/kakao/callback&response_type=code",
+  "method": "GET",
+  "timeout": 0,
+  "headers": {
+    "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+  },
+  "data": JSON.stringify({
+    "username": $('#logInID').val(),
+    "password": $('#logInpassword').val()
+  }),
+};
+
+$.ajax(settings).done(function (response, status, xhr) {
+  console.log(response);
+  console.log(xhr.getResponseHeader('Authorization'))
+  localStorage.setItem('accessToken', xhr.getResponseHeader('Authorization'))
+  alert("로그인 완료")
+    history.back()
+}).fail(function(response) {
+    console.log(response.responseJSON);
+    if(response.responseJSON.statusCode === 400) {
+        alert("ID와 비밀번호를 확인하여주세요.")
+    } else {
+        alert("ID와 비밀번호를 확인하여주세요.");
+    }
+});
+}
+
+</script>

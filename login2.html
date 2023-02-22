@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="css/style.css" />
   
       <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    
+     
     <title>
       Property &mdash; Free Bootstrap 5 Website Template by Untree.co
     </title>
@@ -104,7 +104,7 @@
                   class="breadcrumb-item active text-white-50"
                   aria-current="page"
                 >
-                  오.운.완 
+                  오.운.완
                 </li>
               </ol>
             </nav>
@@ -114,23 +114,19 @@
     </div>
 
     <div id="board_write">
-      <h4>오늘의 운동을 기록하는 공간 입니다</h4>
+      <h4>로그인 연습임</h4>
           <div id="write_area">
             
                   <div id="in_title">
-                      <textarea name="title" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100" required></textarea>
+                      <textarea name="title" id="loginId" rows="1" cols="55" placeholder="아이디" maxlength="100" required></textarea>
                   </div>
 
                   <div class="wi_line"></div>
                   <div id="in_content">
-                      <textarea name="content" id="ucontent" placeholder="내용" required></textarea>
-                  </div>
-
-                    <input type="file" id="t_exeFile"  name="SelectFile" accept="image/*" multiple>
-
-
-                  <div class="bt_se">
-                      <button type="submit" onclick="t_exePost()" >글 작성</button>
+                      <input type="password" name="content" id="loginPassword" placeholder="비밀번호" required>
+                    
+                  
+                      <button type="submit" onclick="login()" >로그인버릴것</button>
                   </div>
             
           </div>
@@ -155,43 +151,30 @@
   </body>
 
   <script>
-function t_exePost(){ 
-  var form = new FormData();
-form.append("file", $("#t_exeFile")[0].files[0]);
-form.append("file", $("#t_exeFile")[0].files[1]);
-
-console.log( $("#t_exeFile")[0].files[0])
-console.log( $("#t_exeFile")[0].files[1])
-
-const dtoTitle = $('#utitle').val();
-const dtoContent = $('#ucontent').val();
-
-const json = JSON.stringify({"title": dtoTitle ,"content": dtoContent});
-
-const blob = new Blob([json], { type: "application/json" });
-
-
-form.append("BordRequestDTO", blob);
-
-var settings = {
-  "url": "http://localhost:8080/t-exercise",
+function login(){ 
+  var settings = {
+  "url": "http://localhost:8080/api/user/login",
   "method": "POST",
   "timeout": 0,
-  "processData": false,
-  "mimeType": "multipart/form-data",
-  "headers":{
-      "Authorization":localStorage.getItem('accessToken')
+  "headers": {
+    "Content-Type": "application/json"
   },
-  "contentType": false,
-  "data": form
+  "data": JSON.stringify({
+    "username": $('#loginId').val(),
+    "password": $('#loginPassword').val()
+  }),
 };
 
-$.ajax(settings).done(function (response) {
+$.ajax(settings).done(function (response, status, xhr) {
   console.log(response);
-  alert(response);
- window.location='/T_exe.html'
+  console.log(xhr.getResponseHeader)
+  localStorage.setItem('accessToken',xhr.getResponseHeader('Authorization'))
+  alert("임시로그인성공")
+  
+  window.location='/index.html'
+}).fail(function(response){
+  console.log(response)
 });
 }
-
   </script>
 </html>

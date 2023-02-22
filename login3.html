@@ -53,6 +53,9 @@
 </div> 
  
 <script>  
+$(function(){
+  
+});
 // function getFinByUserIdWithEmail(){ 
 // 		var settings = {
 // 			"url": "http://localhost:8080/api/findbyusername?email="+$('#getfindemail').val(),
@@ -100,7 +103,7 @@
 	
 	function SignIn(){
 		var settings = {
-			"url": "http://localhost:8080/api/login",
+			"url": "http://localhost:8080/api/user/login",
 			"method": "POST",
 			"timeout": 0,
 			"headers": {
