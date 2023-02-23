@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Untree.co" />
+    <link rel="shortcut icon" href="favicon.png" />
+
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap5" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7b74dc0c556886b85431732b36435069&libraries=services"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+     
+    <link rel="stylesheet" href="fonts/icomoon/style.css" />
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" />
+
+    <link rel="stylesheet" href="css/tiny-slider.css" />
+    <link rel="stylesheet" href="css/aos.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>
+      운동시설 사이트
+    </title>
+  </head>
+  <body>
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+          <span class="icofont-close js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <nav class="site-nav">
+      <div>
+        <ul>
+          <a style="color:white" href="login3.html">로그인</a>
+          <a style="color:white" href="signup.html">회원가입</a>
+        </ul>
+      </div>
+      <div class="container">
+        <div class="menu-bg-wrap">
+          <div class="site-navigation">
+            <a href="index.html" class="logo m-0 float-start">메인으로</a>
+
+            <ul
+              class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
+            >
+              <li class="active"><a href="index.html">운동시설등록</a></li>
+              <li class="has-children">
+                <a href="properties.html">게시판</a>
+                <ul class="dropdown">
+                  <li><a href="#">자유게시판</a></li>
+                  <li><a href="#">오운완게시판</a></li>
+                  <li><a href="#">오먹게시판</a></li>
+                </ul>
+              </li>
+              <li class="has-children">
+                <a href="services.html">이벤트게시판</a>
+                <ul class="dropdown">
+                  <li><a href="#">유저이벤트</a></li>
+                  <li><a href="#">헬스장이벤트</a></li>
+                  <li><a href="#">사이트이벤트</a></li>
+                </ul>
+              </li>
+              <li class="has-children">
+                <a href="about.html">고객센터</a>
+                  <ul class="dropdown">
+                    <li><a href="#">공지사항</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">1:1문의</a></li>
+                  </ul>
+              </li>
+              <li><a href="contact.html">운동시설</a></li>
+            </ul>
+
+            <a
+              href="#"
+              class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+              data-toggle="collapse"
+              data-target="#main-navbar"
+            > 
+              <span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+
+    <div
+      class="hero page-inner overlay"
+      style="background-image: url('images/hero_bg_1.jpg')"
+    >
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-lg-9 text-center mt-5">
+            <h1 class="heading" data-aos="fade-up">Properties</h1>
+
+            <nav
+              aria-label="breadcrumb"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <ol class="breadcrumb text-center justify-content-center">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li
+                  class="breadcrumb-item active text-white-50"
+                  aria-current="page"
+                >
+                  Properties
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">  
+        <div class="container" id="gym_show_post_box">
+        </div>
+        <h2>위치</h2>
+        <div id="map" style="width:80%;height:250px; left:10%"></div>
+       
+        <h2>시설 이용 후기</h2>
+        <div class="card-body"  id = "gymReview">
+          <!-- Comment form-->
+          
+        </div>
+        <div id="gym_review_write">
+          <form class="mb-4">
+            <div class="wrap">
+              <h1>이용 후기 작성하기</h1>
+              <form name="reviewform" class="reviewform" method="post" action="/save">  
+                  <div class="star-rating space-x-4 mx-auto" id="review_ratings">
+                    <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
+                    <label for="5-stars" class="star pr-4">★</label>
+                    <input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
+                    <label for="4-stars" class="star">★</label>
+                    <input type="radio" id="3-stars" name="rating" value="3" v-model="ratings"/>
+                    <label for="3-stars" class="star">★</label>
+                    <input type="radio" id="2-stars" name="rating" value="2" v-model="ratings"/>
+                    <label for="2-stars" class="star">★</label>
+                    <input type="radio" id="1-star" name="rating" value="1" v-model="ratings" />
+                    <label for="1-star" class="star">★</label>
+                  </div>
+                  <textarea id ="ReviewEnroll" class="form-control" rows="3" placeholder="별점과 리뷰를 남겨주세요."></textarea> 
+                  <button type="button" name='enrollReview'>후기등록</button>
+                  
+              </form>
+          </form>
+      </div>
+    </div>
+
+
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/tiny-slider.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/counter.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  </body>  
+  <script>
+    $(document).ready(function () { 
+        getSelectGymPost()
+    })
+    
+    function getSelectGymPost(){ 
+      var para = document.location.href.split("?");
+          console.log(para[1])
+        var settings = {
+          "url": "http://localhost:8080/api/gym/"+para[1],
+          "method": "GET",
+          "timeout": 0, 
+        }; 
+
+        $.ajax(settings).done(function (response) { 
+          console.log(response);
+          let gymReponse = response 
+          let id = gymReponse['id']
+          let title = gymReponse['title']
+          let content = gymReponse['content']
+          let gymName = gymReponse['gymName']
+          let location = gymReponse['location']
+          let time = gymReponse['createdDate'] 
+          let price = gymReponse['price']
+          let image = gymReponse['image']
+          var price1 = price.split("_");
+          let temp_html = `<div class="card">
+                              <img src="${image}" class="card-img-top">
+                              <p class="save-date">작성시간 ${time}</p>
+                              <div class="card-body">
+                                  <h5 class="card-title">${title}</h5>
+                                  <p class="card-text">${content}</p>
+                                  <p class="card-gymName">${gymName}</p>
+                                  <p class="card-location">${location}</p>
+                                  <p class="card-price">${price1[0]}개월, ${price1[1]}원</p>
+                                  <p class="card-price">${price1[2]}개월, ${price1[3]}원</p>
+                                  <p class="card-price">${price1[4]}개월, ${price1[5]}원</p>
+                                  <p class="card-price">${price1[6]}개월, ${price1[7]}원</p>
+                                  <p style="margin-top:-12px"> 
+                              </div> 
+                          </div>`
+          $('#gym_show_post_box').append(temp_html) 
+
+// ----------------------------------[리뷰 불러오기]-----------------------------------------------------
+
+let ReviewList =response['postReview']
+
+for(let i=0;i<ReviewList.length;i++){ 
+      var ReviewComment = ReviewList[i]['comment']
+      var rating = ReviewList[i]['rating']
+      // var createdDate =ReviewList[i]['creatDate']
+      var ReviewId = ReviewList[i]['id'] 
+      
+      var gym_Review =""
+      switch (rating){
+        case 1:
+
+var gym_Review =
+  `<div class="d-flex">  
+      <div class="fw-bold">★☆☆☆☆</div>  
+          <div class="text-black-50">${ReviewComment}</div>  
+          <button name="editReview" id ="editReview_${ReviewId}">수정</button>
+          <button name="delReview" id ="delReview_${ReviewId}">삭제</button>
+          
+          
+          <span style="display: none;" id="toggleReviewEdit_${ReviewId}">
+            <textarea id="editReviewContent_${ReviewId}"></textarea> 
+            <button name="saveReview" id="editReviewComment_${ReviewId}">댓글수정</button>
+          </span>
+  </div>`
+
+          break;
+
+        case 2:
+
+var gym_Review =
+  `<div class="d-flex">  
+      <div class="fw-bold">★★☆☆☆</div>  
+          <div class="text-black-50">${ReviewComment}</div>  
+          <button name="editReview" id ="editReview_${ReviewId}">수정</button>
+          <button name="delReview" id ="delReview_${ReviewId}">삭제</button>
+          
+          
+          <span style="display: none;" id="toggleReviewEdit_${ReviewId}">
+            <textarea id="editReviewContent_${ReviewId}"></textarea> 
+            <button name="saveReview" id="editReviewComment_${ReviewId}">댓글수정</button>
+          </span>
+  </div>`
+
+          break;
+
+        case 3:
+
+  var gym_Review =
+    `<div class="d-flex">  
+        <div class="fw-bold">★★★☆☆</div>  
+            <div class="text-black-50">${ReviewComment}</div>  
+            <button name="editReview" id ="editReview_${ReviewId}">수정</button>
+            <button name="delReview" id ="delReview_${ReviewId}">삭제</button>
+            
+            
+            <span style="display: none;" id="toggleReviewEdit_${ReviewId}">
+              <textarea id="editReviewContent_${ReviewId}"></textarea> 
+              <button name="saveReview" id="editReviewComment_${ReviewId}">댓글수정</button>
+            </span>
+    </div>`
+
+          break;
+
+        case 4:
+
+        var gym_Review =
+          `<div class="d-flex">  
+              <div class="fw-bold">★★★★☆</div>  
+                  <div class="text-black-50">${ReviewComment}</div>  
+                  <button name="editReview" id ="editReview_${ReviewId}">수정</button>
+                  <button name="delReview" id ="delReview_${ReviewId}">삭제</button>
+                  
+                  
+                  <span style="display: none;" id="toggleReviewEdit_${ReviewId}">
+                    <textarea id="editReviewContent_${ReviewId}"></textarea> 
+                    <button name="saveReview" id="editReviewComment_${ReviewId}">댓글수정</button>
+                  </span>
+          </div>`
+          break; 
+        default: 
+          var gym_Review =
+            `<div class="d-flex">  
+                <div class="fw-bold">★★★★★</div>  
+                    <div class="text-black-50">${ReviewComment}</div>  
+                    <button name="editReview" id ="editReview_${ReviewId}">수정</button>
+                    <button name="delReview" id ="delReview_${ReviewId}">삭제</button>
+                    
+                    
+                    <span style="display: none;" id="toggleReviewEdit_${ReviewId}">
+                      <textarea id="editReviewContent_${ReviewId}"></textarea> 
+                      <button name="saveReview" id="editReviewComment_${ReviewId}">댓글수정</button>
+                    </span>
+            </div>` 
+      }
+      
+        
+        $('#gymReview').append(gym_Review) 
+  } 
+
+
+// ----------------------------------[지도생성]-----------------------------------------------------
+
+ 
+           // 지도를 생성합니다    
+      var map = new kakao.maps.Map(mapContainer, mapOption); 
+      
+      // 주소-좌표 변환 객체를 생성합니다
+      var geocoder = new kakao.maps.services.Geocoder();
+      
+      // 주소로 좌표를 검색합니다
+      geocoder.addressSearch(location, function(result, status) {
+      
+          // 정상적으로 검색이 완료됐으면 
+           if (status === kakao.maps.services.Status.OK) {
+      
+              var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+      
+              // 결과값으로 받은 위치를 마커로 표시합니다
+              var marker = new kakao.maps.Marker({
+                  map: map,
+                  position: coords
+              });
+      
+              // 인포윈도우로 장소에 대한 설명을 표시합니다
+              var infowindow = new kakao.maps.InfoWindow({
+                  content: `<div style="width:150px;text-align:center;padding:6px 0;">${gymName}</div>`
+              });
+              infowindow.open(map, marker);
+      
+              // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+              map.setCenter(coords);
+          } 
+      });     
+    }); 
+
+
+
+// ----------------------------------[함수 끝]-----------------------------------------------------
+}
+  
+
+// ----------------------------------[해당버튼 클릭시 리뷰쓰기]-----------------------------------------------------
+
+
+$('#gym_review_write').on("click", "button[name='enrollReview']", function(){
+  var para = document.location.href.split("?");
+      console.log(para[1])
+  var review_star = document.getElementsByName('rating');
+  console.log(review_star);
+  var review_star_value = 5
+  for(var i =0; i< review_star.length; i++){
+    if(review_star[i].checked){
+      review_star_value = review_star[i].value;
+      break;
+    }
+  }
+  var settings = {
+  "url": "http://localhost:8080/api/gymreview/"+para[1]+"/write",
+  "method": "POST",
+  "timeout": 0,
+  "headers": {
+    "Authorization":localStorage.getItem('accessToken'),
+    "Content-Type": "application/json"
+  },
+ 
+  "data": JSON.stringify({
+    "comment": $('#ReviewEnroll').val(),
+    "rating": review_star_value
+  }),
+};
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+  alert(response)
+  window.location.reload()
+}).fail(function (response){
+    console.log(response.status);
+    if(response.status === 403){
+          alert("로그인을해야 입력이 가능합니다.");
+				}else if(response.status === 401){
+					alert("로그인을해야 입력이 가능합니다.");
+				}else if(response.status === 404){
+					alert("로그인을해야 입력이 가능합니다.");
+				}else{
+					alert("서버에 문제가 발생하였습니다.");
+				}
+  });
+})
+// ------------------------------------------------------------------------------------------------
+ 
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+mapOption = {
+    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+    level: 2 // 지도의 확대 레벨
+};  
+
+
+
+
+// -----[해당 버튼 클릭시 리뷰삭제]-----------
+
+$('#gymReview').on("click", "button[name='delReview']", function(){
+  var para = document.location.href.split("?"); 
+      var id_by_name = $(this).attr('id')
+
+      console.log("reviewd"+id_by_name)
+      var commentId = id_by_name.split("_")[1]
+      console.log(commentId)
+      var settings = {
+        // para[1]+"/deletereview/"+commentId
+  "url": "http://localhost:8080/api/gymreview/"+commentId+"/deletereview",
+  "method": "DELETE",
+  "timeout": 0,
+  "headers": {
+    "Authorization": localStorage.getItem('accessToken')
+  },
+};
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+  alert(response)
+   window.location.reload();
+
+}).fail(function(response){
+   console.log(response.responseJSON);
+   if(response.responseJSON.statusCode === 403){
+    alert(response.responseJSON.message)
+   }
+});
+})
+// ------------------------------------------------
+
+
+
+// -----[해당 버튼 클릭시 리뷰수정 창 나옴]-------------------
+
+$('#gymReview').on("click", "button[name='editReview']", function(){
+
+var id_by_name = $(this).attr('id')
+console.log(id_by_name)
+var commentId =id_by_name.split("_")[1]
+console.log(commentId)
+
+$("#toggleReviewEdit_"+commentId).toggle();
+
+})
+// ---------------------------------------------------------
+
+
+
+// -----[해당 버튼 클릭시 리뷰수정 요청]----------------------
+$('#gymReview').on("click", "button[name='saveReview']", function(){
+  
+
+  var id_by_name = $(this).attr('id')
+
+  var commentId = id_by_name.split("_")[1]
+  console.log(commentId)
+  var settings = {
+  "url": "http://localhost:8080/api/gymreview/"+commentId +"/putreview",
+  "method": "PUT",
+  "timeout": 0,
+  "headers": {
+  "Authorization": localStorage.getItem('accessToken'),
+  "Content-Type": "application/json"
+  },
+  "data": JSON.stringify({
+  "comment": $('#editReviewContent_'+commentId).val()
+  }),
+  };
+
+  $.ajax(settings).done(function (response) {
+  console.log(response);
+  alert(response)
+  window.location.reload();
+  }).fail(function(response){
+  console.log(response.responseJSON);
+  if(response.responseJSON.statusCode === 403){
+    alert(response.responseJSON.message)
+    window.location.reload();
+  }
+  if(response.responseJSON.statusCode === 404){
+    alert("다른 유저의 댓글은 수정할 수 없습니다.")
+    window.location.reload();
+  }
+  });
+})
+
+// ---------------------------------------------------------
+</script>
+<style>
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  justify-content: space-around;
+  padding: 0 0.2em;
+  text-align: center;
+  width: 5em;
+}
+ 
+.star-rating input {
+  display: none;
+}
+ 
+.star-rating label {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2.3px;
+  -webkit-text-stroke-color: #2b2a29;
+  cursor: pointer;
+}
+ 
+.star-rating :checked ~ label {
+  -webkit-text-fill-color: gold;
+}
+ 
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  -webkit-text-fill-color: #fff58c;
+}
+</style>
+</html>
