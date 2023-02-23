@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>link
 <html lang="en">
   <head> 
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -152,7 +152,7 @@
 
 function getFinByUserIdWithEmail(){ 
 		var settings = {
-			"url": "http://localhost:8080/api/find/username?email="+$('#getfindemail').val(),
+			"url": "http://localhost:8080/api/user/find/username?email="+$('#getfindemail').val(),
 			"method": "GET",
 			"timeout": 0,
 		};
@@ -175,7 +175,7 @@ function getFinByUserIdWithEmail(){
 	}
 
   function getFinByPasswordWithEmailandUsernmae(){var settings = {
-			"url": "http://localhost:8080/api/find/password",
+			"url": "http://localhost:8080/api/user/find/password",
 			"method": "POST",
 			"timeout": 0, 
 			"headers": {

@@ -23,8 +23,8 @@
         <input type="text" id="modifyEmail" />
       </div>
       <div class="form-group">
-        <label for="phoneNumber">Phone Number:</label>
-        <input type="text" id="modifyNumber" />
+        <label for="phoneNumber">Password를 입력해 주세요</label>
+        <input type="password" id="password" />
       </div>
       <!-- <input type="submit" value="저장하기"> -->
       <button type="button" calss="submit" onclick="Modify()">저장하기</button>
@@ -36,7 +36,7 @@
   function Modify() {
     var settings = {
   "url": "http://localhost:8080/api/profile",
-  "method": "POST",
+  "method": "Patch",
   "timeout": 0,
   "headers": {
      "Authorization": localStorage.getItem('accessToken'),
@@ -45,7 +45,7 @@
   "data": JSON.stringify({
     "nickname": $('#modifyNickname').val(),
     "image": $('#modifyEmail').val(),
-    "phoneNumber": $('#modifyNumber').val()
+    "password": $('#password').val()
   }),
 };
 
