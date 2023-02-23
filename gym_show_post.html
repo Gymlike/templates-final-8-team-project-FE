@@ -42,41 +42,41 @@
     <nav class="site-nav">
       <div>
         <ul>
-          <a style="color:white" href="login3.html">로그인</a>
+          <a style="color:white" href="login.html">로그인</a>
           <a style="color:white" href="signup.html">회원가입</a>
         </ul>
       </div>
       <div class="container">
         <div class="menu-bg-wrap">
           <div class="site-navigation">
-            <a href="index.html" class="logo m-0 float-start">메인으로</a>
+            <a href="home.html" class="logo m-0 float-start">메인으로</a>
 
             <ul
               class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
             >
-              <li class="active"><a href="index.html">운동시설등록</a></li>
-              <li class="has-children">
-                <a href="properties.html">게시판</a>
-                <ul class="dropdown">
-                  <li><a href="#">자유게시판</a></li>
-                  <li><a href="#">오운완게시판</a></li>
-                  <li><a href="#">오먹게시판</a></li>
-                </ul>
-              </li>
-              <li class="has-children">
-                <a href="services.html">이벤트게시판</a>
-                <ul class="dropdown">
-                  <li><a href="#">유저이벤트</a></li>
-                  <li><a href="#">헬스장이벤트</a></li>
-                  <li><a href="#">사이트이벤트</a></li>
-                </ul>
-              </li>
-              <li class="has-children">
-                <a href="about.html">고객센터</a>
-                  <ul class="dropdown">
-                    <li><a href="#">공지사항</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">1:1문의</a></li>
+            <li class="active"><a href="gym_write_post.html">운동시설등록</a></li> 
+            <li class="has-children"> 
+              <a href="T_exe.html">게시판</a> 
+              <ul class="dropdown"> 
+                <li><a href="">자유게시판</a></li> 
+                <li><a href="T_exe.html">오운완게시판</a></li> 
+                <li><a href="">오먹게시판</a></li> 
+              </ul> 
+            </li> 
+            <li class="has-children"> 
+              <a href="services.html">이벤트게시판</a> 
+              <ul class="dropdown"> 
+                <li><a href="#">유저이벤트</a></li>   
+                <li><a href="#">헬스장이벤트</a></li> 
+                <li><a href="#">사이트이벤트</a></li> 
+              </ul> 
+            </li> 
+            <li class="has-children"> 
+              <a href="contactIndex.html">고객센터</a> 
+                <ul class="dropdown"> 
+                  <li><a href="#">공지사항</a></li> 
+                  <li><a href="#">FAQ</a></li> 
+                  <li><a href="contactPageIndex-inquiry.html">1:1문의</a></li> 
                   </ul>
               </li>
               <li><a href="contact.html">운동시설</a></li>
@@ -155,8 +155,7 @@
                   </div>
                   <textarea id ="ReviewEnroll" class="form-control" rows="3" placeholder="별점과 리뷰를 남겨주세요."></textarea> 
                   <button type="button" name='enrollReview'>후기등록</button>
-                  
-              </form>
+                  </form>
           </form>
       </div>
     </div>
@@ -169,104 +168,71 @@
     <script src="js/navbar.js"></script>
     <script src="js/counter.js"></script>
     <script src="js/custom.js"></script>
+    <script src="js/gym-detail-show.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    
   </body>  
   <script>
     $(document).ready(function () { 
         getSelectGymPost()
     })
-    
+ 
+   
     function getSelectGymPost(){ 
-      var para = document.location.href.split("?");
-          console.log(para[1])
-        var settings = {
-          "url": "http://localhost:8080/api/gym/"+para[1],
-          "method": "GET",
-          "timeout": 0, 
-        }; 
-
-        $.ajax(settings).done(function (response) { 
-          console.log(response);
-          let gymReponse = response 
-          let id = gymReponse['id']
-          let title = gymReponse['title']
-          let content = gymReponse['content']
-          let gymName = gymReponse['gymName']
-          let location = gymReponse['location']
-          let time = gymReponse['createdDate'] 
-          let price = gymReponse['price']
-          let image = gymReponse['image']
-          var price1 = price.split("_");
-          let temp_html = `<div class="card">
-                              <img src="${image}" class="card-img-top">
-                              <p class="save-date">작성시간 ${time}</p>
-                              <div class="card-body">
-                                  <h5 class="card-title">${title}</h5>
-                                  <p class="card-text">${content}</p>
-                                  <p class="card-gymName">${gymName}</p>
-                                  <p class="card-location">${location}</p>
-                                  <p class="card-price">${price1[0]}개월, ${price1[1]}원</p>
-                                  <p class="card-price">${price1[2]}개월, ${price1[3]}원</p>
-                                  <p class="card-price">${price1[4]}개월, ${price1[5]}원</p>
-                                  <p class="card-price">${price1[6]}개월, ${price1[7]}원</p>
-                                  <p style="margin-top:-12px"> 
-                              </div> 
-                          </div>`
-          $('#gym_show_post_box').append(temp_html) 
-
-// ----------------------------------[리뷰 불러오기]-----------------------------------------------------
-
-let ReviewList =response['postReview']
-
-for(let i=0;i<ReviewList.length;i++){ 
-      var ReviewComment = ReviewList[i]['comment']
-      var rating = ReviewList[i]['rating']
-      // var createdDate =ReviewList[i]['creatDate']
-      var ReviewId = ReviewList[i]['id'] 
-      
-      var gym_Review =""
-      switch (rating){
-        case 1:
-
-var gym_Review =
-  `<div class="d-flex">  
-      <div class="fw-bold">★☆☆☆☆</div>  
-          <div class="text-black-50">${ReviewComment}</div>  
-          <button name="editReview" id ="editReview_${ReviewId}">수정</button>
-          <button name="delReview" id ="delReview_${ReviewId}">삭제</button>
-          
-          
-          <span style="display: none;" id="toggleReviewEdit_${ReviewId}">
-            <textarea id="editReviewContent_${ReviewId}"></textarea> 
-            <button name="saveReview" id="editReviewComment_${ReviewId}">댓글수정</button>
-          </span>
-  </div>`
-
-          break;
-
-        case 2:
-
-var gym_Review =
-  `<div class="d-flex">  
-      <div class="fw-bold">★★☆☆☆</div>  
-          <div class="text-black-50">${ReviewComment}</div>  
-          <button name="editReview" id ="editReview_${ReviewId}">수정</button>
-          <button name="delReview" id ="delReview_${ReviewId}">삭제</button>
-          
-          
-          <span style="display: none;" id="toggleReviewEdit_${ReviewId}">
-            <textarea id="editReviewContent_${ReviewId}"></textarea> 
-            <button name="saveReview" id="editReviewComment_${ReviewId}">댓글수정</button>
-          </span>
-  </div>`
-
-          break;
-
-        case 3:
-
+        var para = document.location.href.split("?");
+            console.log(para[1])
+          var settings = {
+            "url": "http://localhost:8080/api/gym/"+para[1],
+            "method": "GET",
+            "timeout": 0, 
+          }; 
+  
+          $.ajax(settings).done(function (response) { 
+            console.log(response);
+            let gymReponse = response 
+            let id = gymReponse['id']
+            let title = gymReponse['title']
+            let content = gymReponse['content']
+            let gymName = gymReponse['gymName']
+            let location = gymReponse['location']
+            let time = gymReponse['createdDate'] 
+            let price = gymReponse['price']
+            let image = gymReponse['image']
+            var price1 = price.split("_");
+            let temp_html = `<div class="card">
+                                <img src="${image}" class="card-img-top">
+                                <p class="save-date">작성시간 ${time}</p>
+                                <div class="card-body">
+                                    <h5 class="card-title">${title}</h5>
+                                    <p class="card-text">${content}</p>
+                                    <p class="card-gymName">${gymName}</p>
+                                    <p class="card-location">${location}</p>
+                                    <p class="card-price">${price1[0]}개월, ${price1[1]}원</p>
+                                    <p class="card-price">${price1[2]}개월, ${price1[3]}원</p>
+                                    <p class="card-price">${price1[4]}개월, ${price1[5]}원</p>
+                                    <p class="card-price">${price1[6]}개월, ${price1[7]}원</p>
+                                    <p style="margin-top:-12px"> 
+                                </div> 
+                            </div>`
+            $('#gym_show_post_box').append(temp_html) 
+  
+  // ----------------------------------[리뷰 불러오기]-----------------------------------------------------
+  
+  let ReviewList =response['postReview']
+  
+  for(let i=0;i<ReviewList.length;i++){ 
+        var ReviewComment = ReviewList[i]['comment']
+        var rating = ReviewList[i]['rating']
+        // var createdDate =ReviewList[i]['creatDate']
+        var ReviewId = ReviewList[i]['id'] 
+        
+        var gym_Review =""
+        switch (rating){
+          case 1:
+  
   var gym_Review =
     `<div class="d-flex">  
-        <div class="fw-bold">★★★☆☆</div>  
+        <div class="fw-bold">★☆☆☆☆</div>  
             <div class="text-black-50">${ReviewComment}</div>  
             <button name="editReview" id ="editReview_${ReviewId}">수정</button>
             <button name="delReview" id ="delReview_${ReviewId}">삭제</button>
@@ -277,29 +243,50 @@ var gym_Review =
               <button name="saveReview" id="editReviewComment_${ReviewId}">댓글수정</button>
             </span>
     </div>`
-
-          break;
-
-        case 4:
-
-        var gym_Review =
-          `<div class="d-flex">  
-              <div class="fw-bold">★★★★☆</div>  
-                  <div class="text-black-50">${ReviewComment}</div>  
-                  <button name="editReview" id ="editReview_${ReviewId}">수정</button>
-                  <button name="delReview" id ="delReview_${ReviewId}">삭제</button>
-                  
-                  
-                  <span style="display: none;" id="toggleReviewEdit_${ReviewId}">
-                    <textarea id="editReviewContent_${ReviewId}"></textarea> 
-                    <button name="saveReview" id="editReviewComment_${ReviewId}">댓글수정</button>
-                  </span>
-          </div>`
-          break; 
-        default: 
+  
+            break;
+  
+          case 2:
+  
+  var gym_Review =
+    `<div class="d-flex">  
+        <div class="fw-bold">★★☆☆☆</div>  
+            <div class="text-black-50">${ReviewComment}</div>  
+            <button name="editReview" id ="editReview_${ReviewId}">수정</button>
+            <button name="delReview" id ="delReview_${ReviewId}">삭제</button>
+            
+            
+            <span style="display: none;" id="toggleReviewEdit_${ReviewId}">
+              <textarea id="editReviewContent_${ReviewId}"></textarea> 
+              <button name="saveReview" id="editReviewComment_${ReviewId}">댓글수정</button>
+            </span>
+    </div>`
+  
+            break;
+  
+          case 3:
+  
+    var gym_Review =
+      `<div class="d-flex">  
+          <div class="fw-bold">★★★☆☆</div>  
+              <div class="text-black-50">${ReviewComment}</div>  
+              <button name="editReview" id ="editReview_${ReviewId}">수정</button>
+              <button name="delReview" id ="delReview_${ReviewId}">삭제</button>
+              
+              
+              <span style="display: none;" id="toggleReviewEdit_${ReviewId}">
+                <textarea id="editReviewContent_${ReviewId}"></textarea> 
+                <button name="saveReview" id="editReviewComment_${ReviewId}">댓글수정</button>
+              </span>
+      </div>`
+  
+            break;
+  
+          case 4:
+  
           var gym_Review =
             `<div class="d-flex">  
-                <div class="fw-bold">★★★★★</div>  
+                <div class="fw-bold">★★★★☆</div>  
                     <div class="text-black-50">${ReviewComment}</div>  
                     <button name="editReview" id ="editReview_${ReviewId}">수정</button>
                     <button name="delReview" id ="delReview_${ReviewId}">삭제</button>
@@ -309,53 +296,74 @@ var gym_Review =
                       <textarea id="editReviewContent_${ReviewId}"></textarea> 
                       <button name="saveReview" id="editReviewComment_${ReviewId}">댓글수정</button>
                     </span>
-            </div>` 
-      }
-      
+            </div>`
+            break; 
+          default: 
+            var gym_Review =
+              `<div class="d-flex">  
+                  <div class="fw-bold">★★★★★</div>  
+                      <div class="text-black-50">${ReviewComment}</div>  
+                      <button name="editReview" id ="editReview_${ReviewId}">수정</button>
+                      <button name="delReview" id ="delReview_${ReviewId}">삭제</button>
+                      
+                      
+                      <span style="display: none;" id="toggleReviewEdit_${ReviewId}">
+                        <textarea id="editReviewContent_${ReviewId}"></textarea> 
+                        <button name="saveReview" id="editReviewComment_${ReviewId}">댓글수정</button>
+                      </span>
+              </div>` 
+        }
         
-        $('#gymReview').append(gym_Review) 
-  } 
-
-
+          
+          $('#gymReview').append(gym_Review) 
+    } 
+  
 // ----------------------------------[지도생성]-----------------------------------------------------
 
  
            // 지도를 생성합니다    
-      var map = new kakao.maps.Map(mapContainer, mapOption); 
+           var map = new kakao.maps.Map(mapContainer, mapOption); 
       
-      // 주소-좌표 변환 객체를 생성합니다
-      var geocoder = new kakao.maps.services.Geocoder();
-      
-      // 주소로 좌표를 검색합니다
-      geocoder.addressSearch(location, function(result, status) {
-      
-          // 정상적으로 검색이 완료됐으면 
-           if (status === kakao.maps.services.Status.OK) {
-      
-              var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-      
-              // 결과값으로 받은 위치를 마커로 표시합니다
-              var marker = new kakao.maps.Marker({
-                  map: map,
-                  position: coords
-              });
-      
-              // 인포윈도우로 장소에 대한 설명을 표시합니다
-              var infowindow = new kakao.maps.InfoWindow({
-                  content: `<div style="width:150px;text-align:center;padding:6px 0;">${gymName}</div>`
-              });
-              infowindow.open(map, marker);
-      
-              // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-              map.setCenter(coords);
-          } 
-      });     
-    }); 
+           // 주소-좌표 변환 객체를 생성합니다
+           var geocoder = new kakao.maps.services.Geocoder();
+           
+           // 주소로 좌표를 검색합니다
+           geocoder.addressSearch(location, function(result, status) {
+           
+               // 정상적으로 검색이 완료됐으면 
+                if (status === kakao.maps.services.Status.OK) {
+           
+                   var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+           
+                   // 결과값으로 받은 위치를 마커로 표시합니다
+                   var marker = new kakao.maps.Marker({
+                       map: map,
+                       position: coords
+                   });
+           
+                   // 인포윈도우로 장소에 대한 설명을 표시합니다
+                   var infowindow = new kakao.maps.InfoWindow({
+                       content: `<div style="width:150px;text-align:center;padding:6px 0;">${gymName}</div>`
+                   });
+                   infowindow.open(map, marker);
+           
+                   // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                   map.setCenter(coords);
+               } 
+           });     
+         }); 
+     
+     
+     
+     // ----------------------------------[함수 끝]-----------------------------------------------------
+     }
 
-
-
-// ----------------------------------[함수 끝]-----------------------------------------------------
-}
+     
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+mapOption = {
+    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+    level: 2 // 지도의 확대 레벨
+};  
   
 
 // ----------------------------------[해당버튼 클릭시 리뷰쓰기]-----------------------------------------------------
@@ -400,6 +408,8 @@ $.ajax(settings).done(function (response) {
 					alert("로그인을해야 입력이 가능합니다.");
 				}else if(response.status === 404){
 					alert("로그인을해야 입력이 가능합니다.");
+				}else if(response.status === 400){
+					alert("로그인을해야 입력이 가능합니다.");
 				}else{
 					alert("서버에 문제가 발생하였습니다.");
 				}
@@ -407,11 +417,6 @@ $.ajax(settings).done(function (response) {
 })
 // ------------------------------------------------------------------------------------------------
  
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-mapOption = {
-    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-    level: 2 // 지도의 확대 레벨
-};  
 
 
 
