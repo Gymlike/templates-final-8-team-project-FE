@@ -136,35 +136,17 @@ $.ajax(settings).done(function (response, status, xhr) {
 });
 }
 
-// 로그인
-function KakaologIn() {
-    var settings = {
-  "url": "https://kauth.kakao.com/oauth/authorize?client_id=adacc39e0738d79ed04fd79995f809d3&redirect_uri=http://localhost:8080/api/user/kakao/callback&response_type=code",
-  "method": "GET",
-  "timeout": 0,
-  "headers": {
-    "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
-  },
-  "data": JSON.stringify({
-    "username": $('#logInID').val(),
-    "password": $('#logInpassword').val()
-  }),
-};
+// function KakaologIn() {
+//   location.href="https://kauth.kakao.com/oauth/authorize?client_id=adacc39e0738d79ed04fd79995f809d3&redirect_uri=http://localhost:8080/api/user/kakao/callback&response_type=code"
+ 
+//   const urlParams = new URL(location.href).searchParams;
 
-$.ajax(settings).done(function (response, status, xhr) {
-  console.log(response);
-  console.log(xhr.getResponseHeader('Authorization'))
-  localStorage.setItem('accessToken', xhr.getResponseHeader('Authorization'))
-  alert("로그인 완료")
-    history.back()
-}).fail(function(response) {
-    console.log(response.responseJSON);
-    if(response.responseJSON.statusCode === 400) {
-        alert("ID와 비밀번호를 확인하여주세요.")
-    } else {
-        alert("ID와 비밀번호를 확인하여주세요.");
-    }
-});
-}
+//   const token = urlParams.get('token');
 
+//   console.log(token);
+
+//   localStorage.setItem(token)
+  
+//   window.location = 'index.html'
+// }
 </script>

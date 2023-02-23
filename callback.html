@@ -1,0 +1,13 @@
+<head>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+</head>
+<h1>콜백</h1>
+<script>
+window.onload=function() {
+	let token = new URL(window.location.href).searchParams.get("token");
+    console.log(token)
+    localStorage.setItem('accessToken', token)
+    window.location = 'index.html'
+}
+</script>

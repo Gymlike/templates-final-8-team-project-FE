@@ -148,18 +148,19 @@ function getUserMe() {
 			window.location.href
 		}
 		console.log(response.nickName);
-		$('#loginUser').empty();
+		$('#loginUser').show();
 		$('#loginUser').append(response.nickName + "님 환영합니다.");
 		$('#mypage').show();
 		$('#MainLogout').show();
 		$('#MainLogin').hide();
 		$('#MainSignUp').hide();
+		$('#adminpage').hide();
 	  });
 }
 
 function getOwnerMe() {
 	var settings = {
-		"url": "http://localhost:8080/api/profile/owner",
+		"url": "http://localhost:8080/api/owners",
 		"method": "GET",
 		"timeout": 0,
 		"headers": {
@@ -180,16 +181,43 @@ function getOwnerMe() {
 		$('#MainLogout').show();
 		$('#MainLogin').hide();
 		$('#MainSignUp').hide();
+		$('#adminpage').hide();
+	  });
+}
+
+function getManagerMe() {
+	var settings = {
+		"url": "http://localhost:8080/api/profile/manager",
+		"method": "GET",
+		"timeout": 0,
+		"headers": {
+		  "Authorization": localStorage.getItem('accessToken')
+		},
+	  };
+	  
+	  $.ajax(settings).done(function (response, status, xhr) {
+		console.log(response);
+		console.log(status)
+		if (status === 403) {
+			window.location.href
+		}
+		console.log(response.nickName);
+		$('#loginUser').show();
+		$('#loginUser').append(response.nickName + "님 환영합니다.");
+		$('#mypage').show();
+		$('#MainLogout').show();
+		$('#MainLogin').hide();
+		$('#MainSignUp').hide();
+		$('#adminpage').show();
 	  });
 }
 
 function getKakaoMe() {
 	var settings = {
-		"url": "https://kapi.kakao.com/v2/user/me",
+		"url": "http://localhost:8080/api/profile/kakao",
 		"method": "GET",
 		"timeout": 0,
 		"headers": {
-		  "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
 		  "Authorization": localStorage.getItem('accessToken')
 		},
 	  };
@@ -207,8 +235,10 @@ function getKakaoMe() {
 		$('#MainLogout').show();
 		$('#MainLogin').hide();
 		$('#MainSignUp').hide();
+		$('#adminpage').hide();
 	  });
 }
+
 
 //유저 로그아웃
 function logout() {
