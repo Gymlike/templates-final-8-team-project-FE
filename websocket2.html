@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Untree.co" />
+    <link rel="shortcut icon" href="favicon.png" />
+
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap5" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="fonts/icomoon/style.css" />
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" />
+
+    <link rel="stylesheet" href="css/tiny-slider.css" />
+    <link rel="stylesheet" href="css/aos.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  
+      <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    
+    <title>
+      Property &mdash; Free Bootstrap 5 Website Template by Untree.co
+    </title>
+    <link rel="stylesheet" type="text/css" href="css/custom.css"> 
+</head>
+<bodv> 
+<div class="chat-widget" id="chatWidget">
+  
+</div>
+</bodv>
+</html>
+
+<script>
+const { Component } = React,
+      { render } = ReactDOM,
+      root = document.querySelector('#chatWidget');
+
+
+var friends = [
+  {
+    uuId:1,
+    name:'Cersie'
+  },{
+    uuId:2,
+    name:'Jamie'
+  },{
+    uuId:3,
+    name:'Tyrion'
+  },{
+    uuId:4,
+    name:'Aria'
+  },{
+    uuId:5,
+    name:'Peter'
+  },{
+    uuId:6,
+    name:'Shrihari'
+  },{
+    uuId:7,
+    name:'John'
+  }
+]
+function addToLocalStorage(uuId,message){
+  var oldData = localStorage.getItem(uuId+'');
+  if(oldData){
+    var parsedData = JSON.parse(oldData);
+    parsedData.push(message);
+    localStorage.setItem(uuId+'',JSON.stringify(parsedData));
+  }else{
+    localStorage.setItem(uuId+'',JSON.stringify([message]));
+  }
+
+}
+class FriendsList extends React.Component{
+    constructor(props){
+      super(props);
+      this.state = {
+        showFriends : this.props.friends
+      }
+      this.filterFriends = this.filterFriends.bind(this);
+    }
+    filterFriends(filterBasedOn){
+      this.setState({
+        showFriends : this.props.friends.filter(friend=>{ return friend.name.toLowerCase().search(filterBasedOn) != -1 })
+      })
+    }  
+    render(){
+      var friends = this.state.showFriends.map(friend=>{
+                      var setActiveClass = "people "+ (this.props.chatWith == friend.uuId && 'selected' || '')
+                       return <li key={friend.uuId} data-uuid={friend.uuId}>
+                          <div className={setActiveClass} >
+                            <img className="peoplea" src="http://www.techz.vn/review/html/public/images/no_user_pic.png"/>
+                            <p className="peoplen" >{friend.name}</p>
+                          </div>
+                        </li>
+                    }),
+          display;
+      if(friends.length){
+        display = <ul onClick={e=>{this.props.setChatWith(Number(e.target.closest('li').dataset.uuid))}}>{friends}</ul>;
+      }else{
+        display = 'No friends to show'
+      }
+      return <div className="friend-list give-eq-pad">
+                <input type="text" placeholder="Search for a friend" onChange={e=>{this.filterFriends(e.target.value.toLowerCase()) }}/>
+                    {display}
+              </div>
+    }
+}
+
+class ChatSection extends React.Component{
+    constructor(props){
+      super(props);
+      this.state={
+        chatData:[],
+        loadStatus:'loading',
+        activeFriend : this.props.friend,
+        typeData: '',
+        webSocketConn:{}
+      }
+      this.setTypeData = this.setTypeData.bind(this);
+      this.sendChat =  this.sendChat.bind(this);
+      this.addChat =  this.addChat.bind(this);      
+    }
+    static getDerivedStateFromProps(props,state){
+      if(props.friend.uuId !=state.activeFriend.uuId){
+          return {loadStatus:'loading'}
+      }else {
+        return null;
+      }    
+    }
+    render(){
+        var chatHistory ;
+        if(this.state.loadStatus=='loaded'){
+          if(this.state.chatData.length){            
+            let showArrow = 0,
+                arrowElle, 
+                prevMessageBy ,
+                addClass;
+            chatHistory = this.state.chatData.map((message,count)=>{
+                if(message.by == 'them'){
+                  addClass = 'follow'
+                }else{
+                  addClass = 'alt'
+                }
+                if(count == 0 ){
+                  arrowElle = <div className={"bubble-arrow "+addClass} ></div>
+                  prevMessageBy = message.by
+                }else{
+                  if(prevMessageBy == message.by){
+                    arrowElle = ''
+                  }else{
+                    arrowElle = <div className={"bubble-arrow "+addClass} ></div>
+                    prevMessageBy = message.by
+                  }                  
+                }
+                return <div className="msg" key={count}>
+                  <div className={"bubble "+addClass}>
+                    <div className="txt">
+                      <span className="timestamp">{new Date(message.onTime).toLocaleTimeString()}</span>
+                      <span className={"message "+addClass}>{message.message}</span>   
+                      {arrowElle}
+                    </div>
+                  </div>
+                </div>
+            })
+          }else{
+            chatHistory = "No chat history available!"  
+          }
+        }else{
+          chatHistory = "Getting chat history, hold on tight!"
+        }
+        return      <div className="chat-section give-eq-pad">
+            <div className="header">        
+                <div className="people">
+                  <img className="peoplea" src="http://www.techz.vn/review/html/public/images/no_user_pic.png" />
+                  <p className="peoplen">{this.props.friend.name}</p>
+                </div>
+            </div>
+            <div className="chat-body">
+                {chatHistory}
+            </div>
+            <div className="type-message">
+              <textarea className="user-input-section" placeholder="Type your message..." tabindex="3" onChange={this.setTypeData} value={this.state.typeData}></textarea>
+              <button onClick={this.sendChat}><span className="glyphicon glyphicon-send"></span></button>
+            </div>
+          </div>   
+    }
+    setTypeData(e){
+      this.setState({
+        typeData:e.target.value
+      })
+    }
+    
+    sendChat(){
+      if(this.state.typeData){
+        var newMessage = {
+            by:'me',
+            message:this.state.typeData,
+            onTime:new Date().getTime()
+        }
+        this.state.webSocketConn.send(this.state.typeData);
+        this.setState(prevState =>{
+          prevState.chatData.push(newMessage)
+          prevState.typeData = ''
+          return prevState;
+        })  
+      }
+      addToLocalStorage(this.state.activeFriend.uuId,newMessage);
+    }
+    addChat(gotMessage){
+      console.log(gotMessage);
+      var newMessage = {
+          by:'them',
+          message:gotMessage,
+          onTime:new Date().getTime()
+      }
+      this.setState(prevState =>{
+        prevState.chatData.push(newMessage)
+        return prevState;
+      })  
+      addToLocalStorage(this.state.activeFriend.uuId,newMessage);      
+    }
+
+    getChatData(uuId){
+      //query localstorage
+      //if data parse and send
+      //else send no chat yet.
+      var chatData = localStorage.getItem(uuId+'');
+      if(chatData && chatData.length){
+        return JSON.parse(chatData);
+      } 
+      return [];
+    }
+    componentDidMount(){
+        this.setState({
+          loadStatus:'loaded',
+          chatData:this.getChatData(this.props.friend.uuId),
+          activeFriend:this.props.friend,
+          webSocketConn:setupWebsocket(new URL("wss://demos.kaazing.com/echo"),this.addChat)
+        })
+    }
+    componentDidUpdate(){
+      if(this.props.friend.uuId != this.state.activeFriend.uuId){
+        this.setState({loadStatus:'loaded',chatData:this.getChatData(this.props.friend.uuId),activeFriend:this.props.friend});
+      }
+    }
+}
+
+function setupWebsocket(url,onMessage) {
+  let websocket = new WebSocket(url);
+  websocket.onmessage = (evt) => {
+    onMessage(evt.data);
+  };
+  websocket.onclose = () => {
+    console.log('Websocket disconnected');
+  }
+  return websocket;
+}
+
+//this.props.friends
+class App extends React.Component{
+    constructor(props){
+      super(props);
+      this.state = {
+          friends:friends,
+          chatWith:friends[0].uuId, //if no friends show no friends
+
+      }
+      this.setChatWith = this.setChatWith.bind(this);
+    } 
+    setChatWith(uuId){
+      this.setState({
+        chatWith : uuId
+      })
+    }
+    render(){
+      var activeFriend = this.state.friends.filter(friend=>{return friend.uuId == this.state.chatWith})[0];
+      return <React.Fragment>          
+          <FriendsList friends={this.state.friends} setChatWith={this.setChatWith} chatWith={activeFriend.uuId} />
+          <ChatSection friend={activeFriend}/>
+        </React.Fragment>
+      
+    }
+}
+render(<App />, root);
+</script>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "arial";
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+}
+body .give-eq-pad,
+html .give-eq-pad {
+  padding: 10px;
+}
+
+.chat-widget {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+}
+.chat-widget .people {
+  display: flex;
+  height: 60px;
+  align-items: center;
+}
+.chat-widget .people img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+.chat-widget .people p {
+  line-height: 40px;
+  padding: 0 0 0 7px;
+  width: calc(100% - 40px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+.chat-widget .friend-list {
+  flex: 1;
+  padding-right: 5px;
+  height: 100%;
+  max-width: 300px;
+  position: relative;
+  border-right: 2px solid #e3e4e3;
+}
+.chat-widget .friend-list input {
+  width: calc(100% - 20px);
+  height: 40px;
+  padding: 0 5px;
+  margin-left: 5px;
+  border-radius: 12px;
+  font-size: 14px;
+  border: 1px solid #e3e4e3;
+  outline: none;
+}
+.chat-widget .friend-list input:focus {
+  border: 1px solid #a5a9a5;
+}
+.chat-widget .friend-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
+  height: 100%;
+  overflow: auto;
+}
+.chat-widget .friend-list ul li {
+  cursor: pointer;
+}
+.chat-widget .friend-list ul li .people {
+  border-bottom: 1px solid #e3e4e3;
+}
+.chat-widget .friend-list ul li .selected {
+  background: #d2d0d0;
+}
+.chat-widget .chat-section {
+  flex: 3;
+  height: 100%;
+}
+.chat-widget .chat-section .header {
+  background: #05483f;
+  color: white;
+}
+.chat-widget .chat-section .chat-body {
+  height: calc(100% - 124px);
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.chat-widget .chat-section .chat-body body {
+  /*I ripped this image from the WhatsApp apk*/
+  /*This is WhatsApp's official BK color*/
+  background: #ece5dd;
+  font-family: "Helvetica Neue", Helvetica;
+}
+.chat-widget .chat-section .chat-body .container {
+  width: 75%;
+  margin: 0 auto;
+}
+.chat-widget .chat-section .chat-body .msg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: hidden;
+}
+.chat-widget .chat-section .chat-body .msg .bubble {
+  float: left;
+  max-width: 75%;
+  width: auto;
+  height: auto;
+  display: block;
+  background: #ebebeb;
+  border-radius: 5px;
+  position: relative;
+  margin: 10px 0 3px 25px;
+  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2);
+}
+.chat-widget .chat-section .chat-body .msg .bubble.alt {
+  margin: 10px 25px 3px 0px;
+  background: #dcf8c6;
+  float: right;
+}
+.chat-widget .chat-section .chat-body .msg .bubble.follow {
+  margin: 2px 0 3px 25px;
+}
+.chat-widget .chat-section .chat-body .msg .bubble.altfollow {
+  margin: 2px 25px 3px 0px;
+  background: #dcf8c6;
+  float: right;
+}
+.chat-widget .chat-section .chat-body .msg .bubble .txt {
+  padding: 8px 0 8px 0;
+  width: 100%;
+}
+.chat-widget .chat-section .chat-body .msg .bubble .txt .message {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0 15px 0 15px;
+  margin: auto;
+  color: #2b2b2b;
+  display: table;
+}
+.chat-widget .chat-section .chat-body .msg .bubble .txt .timestamp {
+  font-size: 11px;
+  margin: auto;
+  padding: 0 15px 0 0;
+  display: table;
+  float: right;
+  position: relative;
+  text-transform: uppercase;
+  color: #999;
+}
+.chat-widget .chat-section .chat-body .msg .bubble .bubble-arrow {
+  position: absolute;
+  float: left;
+  left: -11px;
+  top: 0px;
+}
+.chat-widget .chat-section .chat-body .msg .bubble .bubble-arrow.alt {
+  bottom: 20px;
+  left: auto;
+  right: 4px;
+  float: right;
+}
+.chat-widget .chat-section .chat-body .msg .bubble .bubble-arrow:after {
+  content: "";
+  position: absolute;
+  border-top: 15px solid #ebebeb;
+  border-left: 15px solid transparent;
+  border-radius: 4px 0 0 0px;
+  width: 0;
+  height: 0;
+}
+.chat-widget .chat-section .chat-body .msg .bubble .bubble-arrow.alt:after {
+  border-top: 15px solid #dcf8c6;
+  transform: scaleX(-1);
+}
+.chat-widget .chat-section .type-message {
+  width: 100%;
+  display: flex;
+  height: 50px;
+  align-items: center;
+  justify-content: space-between;
+}
+.chat-widget .chat-section .type-message textarea {
+  overflow: hidden;
+  outline: none;
+  height: 45px;
+  border: 1px solid #e3e4e3;
+  resize: none;
+  border-radius: 10px;
+  padding: 5px 5px 5px;
+  box-sizing: border-box;
+  width: calc(100% - 80px);
+}
+.chat-widget .chat-section .type-message textarea:focus {
+  border: 1px solid #a5a9a5;
+}
+.chat-widget .chat-section .type-message button {
+  height: 32px;
+  padding: 5px;
+  background: #05483f;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  width: 60px;
+  border: 1px solid #e3e4e3;
+}
+
+</style>
