@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head> 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="js/auth/user/user.js"></script>
+    <script src="js/auth/owner/owner.js"></script>
+    <script src="js/auth/manager/manager.js"></script>
+    <script src="js/auth/kakao/kakao.js"></script>
+    
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Untree.co" />
@@ -14,10 +17,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="fonts/icomoon/style.css" />
     <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" />
@@ -43,24 +43,27 @@
     <nav class="site-nav">
       <div>
         <ul>
-          <a style="color:white" href="login.html">로그인</a>
-          <a style="color:white" href="signup.html">회원가입</a>
+          <a style="color:white"><span id="loginUser"></span></a>
+          <a style="color:white" href="login.html"><span id="MainLogin">로그인</span></a>
+          <a style="color:white" href="login.html"><span id="MainSignUp">회원가입</span></a>
+          <a style="color:white" href="mypage.html"><span id="mypage">마이페이지</span></a>
+          <a style="color:white" href="admin.html"><span id="adminpage">관리자페이지</span></a>
+          <a style="color:white" onclick="logout()" href="index.html" ><span id="MainLogout">로그아웃</span></a>
         </ul>
       </div>
       <div class="container">
         <div class="menu-bg-wrap">
           <div class="site-navigation">
             <a href="index.html" class="logo m-0 float-start">메인으로</a>
-
             <ul
               class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
             >
-              <li class="active"><a href="index.html">운동시설등록</a></li>
+              <li class="active"><a href="gym_write_post.html">운동시설등록</a></li>
               <li class="has-children">
-                <a href="properties.html">게시판</a>
+                <a href="totalBoard.html">게시판</a>
                 <ul class="dropdown">
                   <li><a href="#">자유게시판</a></li>
-                  <li><a href="#">오운완게시판</a></li>
+                  <li><a href="T_exe.html">오운완게시판</a></li>
                   <li><a href="#">오먹게시판</a></li>
                 </ul>
               </li>
@@ -73,23 +76,21 @@
                 </ul>
               </li>
               <li class="has-children">
-                <a href="about.html">고객센터</a>
+                <a href="contactIndex.html">고객센터</a>
                   <ul class="dropdown">
                     <li><a href="#">공지사항</a></li>
                     <li><a href="#">FAQ</a></li>
-                    <li><a href="#">1:1문의</a></li>
+                    <li><a href="contactPageIndex-inquiry.html">1:1문의</a></li>
                   </ul>
               </li>
               <li><a href="contact.html">운동시설</a></li>
             </ul>
-
             <a
               href="#"
               class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
               data-toggle="collapse"
               data-target="#main-navbar"
-            >
-              <span></span>
+            >  
             </a>
           </div>
         </div>
@@ -155,7 +156,7 @@
 
 function getFinByUserIdWithEmail(){ 
 		var settings = {
-			"url": "http://localhost:8080/api/find/username?email="+$('#getfindemail').val(),
+			"url": "http://localhost:8080/api/user/find/username?email="+$('#getfindemail').val(),
 			"method": "GET",
 			"timeout": 0,
 		};
@@ -178,7 +179,7 @@ function getFinByUserIdWithEmail(){
 	}
 
   function getFinByPasswordWithEmailandUsernmae(){var settings = {
-			"url": "http://localhost:8080/api/find/password",
+			"url": "http://localhost:8080/api/user/find/password",
 			"method": "POST",
 			"timeout": 0, 
 			"headers": {
@@ -210,6 +211,9 @@ function getFinByUserIdWithEmail(){
 
   }
 
+  document.getElementById("mypage").style.display = "none";
+  document.getElementById("MainLogout").style.display = "none";
+  document.getElementById("adminpage").style.display = "none";
 </script>
 
 <style>
