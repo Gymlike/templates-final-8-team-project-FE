@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="js/auth/user/user.js"></script>
+    <script src="js/auth/owner/owner.js"></script>
+    <script src="js/auth/manager/manager.js"></script>
+    <script src="js/auth/kakao/kakao.js"></script>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Untree.co" />
@@ -11,10 +17,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     
     <link rel="stylesheet" href="fonts/icomoon/style.css" />
@@ -23,6 +26,7 @@
     <link rel="stylesheet" href="css/tiny-slider.css" />
     <link rel="stylesheet" href="css/aos.css" />
     <link rel="stylesheet" href="css/style.css" />
+
     <title>
       운동시설 사이트
     </title>
@@ -40,21 +44,25 @@
     <nav class="site-nav">
       <div>
         <ul>
-          <a style="color:white" href="login.html">로그인</a>
-          <a style="color:white" href="signup.html">회원가입</a>
+          <a style="color:white"><span id="loginUser"></span></a>
+          <a style="color:white" href="login.html"><span id="MainLogin">로그인</span></a>
+          <a style="color:white" href="login.html"><span id="MainSignUp">회원가입</span></a>
+          <a style="color:white" href="mypage.html"><span id="mypage">마이페이지</span></a>
+          <a style="color:white" href="admin.html"><span id="adminpage">관리자페이지</span></a>
+          <a style="color:white" onclick="logout()" href="index.html" ><span id="MainLogout">로그아웃</span></a>
         </ul>
       </div>
       <div class="container">
         <div class="menu-bg-wrap">
           <div class="site-navigation">
-            <a href="home.html" class="logo m-0 float-start">메인으로</a>
+            <a href="index.html" class="logo m-0 float-start">SearchingGYM</a>
 
             <ul
               class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
             >
             <li class="active"><a href="gym_write_post.html">운동시설등록</a></li> 
             <li class="has-children"> 
-              <a href="T_exe.html">게시판</a> 
+              <a href="totalBoard.html">게시판</a> 
               <ul class="dropdown"> 
                 <li><a href="">자유게시판</a></li> 
                 <li><a href="T_exe.html">오운완게시판</a></li> 
@@ -347,5 +355,13 @@
       // iframe을 넣은 element를 보이게 한다.
       element_wrap.style.display = 'block';
   }
+  document.getElementById("mypage").style.display = "none";
+  document.getElementById("MainLogout").style.display = "none";
+  document.getElementById("adminpage").style.display = "none";
+  if (localStorage.getItem('accessToken') === null) {
+              $('#findbyIdandPw').show()
+            } else {
+              $('#findbyIdandPw').hide()
+            }
   </script>
 </html>

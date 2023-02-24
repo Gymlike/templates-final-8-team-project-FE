@@ -65,7 +65,7 @@
                                     </a>
 
                                     <div class="property-content">
-                                      <div class="price mb-2"><span>"${rating}"</span></div>
+                                      <div class="price mb-2"><span> [평점   ${rating}]</span></div>
                                       <div> 
                                         <span class="city d-block mb-3">글 제목 : ${title}</span>
 

@@ -26,11 +26,18 @@
   <link rel="stylesheet" href="css/tiny-slider.css" />
   <link rel="stylesheet" href="css/aos.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <script src="js/auth/user/user.js"></script>
+  <script src="js/auth/owner/owner.js"></script>
+  <script src="js/auth/manager/manager.js"></script>
+  <script src="js/auth/kakao/kakao.js"></script>
+
 
 
 
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-          crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
 
 
 
@@ -41,251 +48,256 @@
 </head>
 
 <body>
-<div class="site-mobile-menu site-navbar-target">
-  <div class="site-mobile-menu-header">
-    <div class="site-mobile-menu-close">
-      <span class="icofont-close js-menu-toggle"></span>
+  <div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+      <div class="site-mobile-menu-close">
+        <span class="icofont-close js-menu-toggle"></span>
+      </div>
     </div>
+    <div class="site-mobile-menu-body"></div>
   </div>
-  <div class="site-mobile-menu-body"></div>
-</div>
 
-<nav class="site-nav">
+  <nav class="site-nav">
 
-  <div>
-    <ul>
-      <a style="color:white"><span id="loginUser"></span></a>
-      <a style="color:white" href="login.html"><span id="MainLogin">로그인</span></a>
-      <a style="color:white" href="login.html"><span id="MainSignUp">회원가입</span></a>
-      <a style="color:white" href="mypage.html"><span id="mypage">마이페이지</span></a>
-      <a style="color:white" onclick="logout()" href="index.html"><span id="MainLogout">로그아웃</span></a>
-    </ul> 
-  </div> 
-  <div class="container"> 
-    <div class="menu-bg-wrap"> 
-      <div class="site-navigation"> 
-        <a href="home.html" class="logo m-0 float-start">SearchingGYM</a>
-        <ul 
-          class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end" > 
-          <li class="active"><a href="gym_write_post.html">운동시설등록</a></li> 
-          <li class="has-children"> 
-            <a href="T_exe.html">게시판</a> 
-            <ul class="dropdown"> 
-              <li><a href="">자유게시판</a></li> 
-              <li><a href="T_exe.html">오운완게시판</a></li> 
-              <li><a href="">오먹게시판</a></li> 
-            </ul> 
-          </li> 
-          <li class="has-children"> 
-            <a href="services.html">이벤트게시판</a> 
-            <ul class="dropdown"> 
-              <li><a href="#">유저이벤트</a></li>   
-              <li><a href="#">헬스장이벤트</a></li> 
-              <li><a href="#">사이트이벤트</a></li> 
-            </ul> 
-          </li> 
-          <li class="has-children"> 
-            <a href="contactIndex.html">고객센터</a> 
-              <ul class="dropdown"> 
-                <li><a href="#">공지사항</a></li> 
-                <li><a href="#">FAQ</a></li> 
-                <li><a href="contactPageIndex-inquiry.html">1:1문의</a></li> 
-    
-    </ul>
-  </div>
+    <div>
+      <ul>
+        <a style="color:white"><span id="loginUser"></span></a>
+        <a style="color:white" href="login.html"><span id="MainLogin">로그인</span></a>
+        <a style="color:white" href="login.html"><span id="MainSignUp">회원가입</span></a>
+        <a style="color:white" href="mypage.html"><span id="mypage">마이페이지</span></a>
+        <a style="color:white" onclick="logout()" href="index.html"><span id="MainLogout">로그아웃</span></a>
+        <a style="color:white" href="FIndByIdAndPw.html"><span id="findbyIdandPw">아이디 및 비밀번호 찾기</span></a>
+      </ul>
+    </div>
+    <div class="container">
+      <div class="menu-bg-wrap">
+        <div class="site-navigation">
+          <a href="index.html" class="logo m-0 float-start">SearchingGYM</a>
+          <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
+            <li class="active"><a href="gym_write_post.html">운동시설등록</a></li>
+            <li class="has-children">
+              <a href="T_exe.html">게시판</a>
+              <ul class="dropdown">
+                <li><a href="">자유게시판</a></li>
+                <li><a href="T_exe.html">오운완게시판</a></li>
+                <li><a href="">오먹게시판</a></li>
+              </ul>
+            </li>
+            <li class="has-children">
+              <a href="services.html">이벤트게시판</a>
+              <ul class="dropdown">
+                <li><a href="#">유저이벤트</a></li>
+                <li><a href="#">헬스장이벤트</a></li>
+                <li><a href="#">사이트이벤트</a></li>
+              </ul>
+            </li>
+            <li class="has-children">
+              <a href="contactIndex.html">고객센터</a>
+              <ul class="dropdown">
+                <li><a href="#">공지사항</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="contactPageIndex-inquiry.html">1:1문의</a></li>
+
+              </ul>
+        </div>
 
         </ul>
-        <a
-          href="#"
-          class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
-          data-toggle="collapse"
-          data-target="#main-navbar"
-        >
+        <a href="#" class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+          data-toggle="collapse" data-target="#main-navbar">
           <span></span>
         </a>
       </div>
     </div>
-  </div>
-</nav>
+    </div>
+  </nav>
 
-<div class="hero page-inner overlay" style="background-image: url('images/T_exe.jpg')">
-  <div class="container">
-    <div class="row justify-content-center align-items-center">
-      <div class="col-lg-9 text-center mt-5">
-        <h1 class="heading" data-aos="fade-up">
-          오늘 운동 완료
-        </h1>
+  <div class="hero page-inner overlay" style="background-image: url('images/T_exe.jpg')">
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-lg-9 text-center mt-5">
+          <h1 class="heading" data-aos="fade-up">
+            오늘 운동 완료
+          </h1>
 
 
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="section">
-  <div class="container" id="t_exePosting">
+  <div class="section">
+    <div class="container" id="t_exePosting">
 
 
-  </div>
-</div>
-
-<div class="site-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="widget">
-          <h3>Contact</h3>
-          <address>43 Raymouth Rd. Baltemoer, London 3910</address>
-          <ul class="list-unstyled links">
-            <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
-            <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
-            <li>
-              <a href="mailto:info@mydomain.com">info@mydomain.com</a>
-            </li>
-          </ul>
-        </div>
-        <!-- /.widget -->
-      </div>
-      <!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <div class="widget">
-          <h3>Sources</h3>
-          <ul class="list-unstyled float-start links">
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Vision</a></li>
-            <li><a href="#">Mission</a></li>
-            <li><a href="#">Terms</a></li>
-            <li><a href="#">Privacy</a></li>
-          </ul>
-          <ul class="list-unstyled float-start links">
-            <li><a href="#">Partners</a></li>
-            <li><a href="#">Business</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Creative</a></li>
-          </ul>
-        </div>
-        <!-- /.widget -->
-      </div>
-      <!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <div class="widget">
-          <h3>Links</h3>
-          <ul class="list-unstyled links">
-            <li><a href="#">Our Vision</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Contact us</a></li>
-          </ul>
-
-          <ul class="list-unstyled social">
-            <li>
-              <a href="#"><span class="icon-instagram"></span></a>
-            </li>
-            <li>
-              <a href="#"><span class="icon-twitter"></span></a>
-            </li>
-            <li>
-              <a href="#"><span class="icon-facebook"></span></a>
-            </li>
-            <li>
-              <a href="#"><span class="icon-linkedin"></span></a>
-            </li>
-            <li>
-              <a href="#"><span class="icon-pinterest"></span></a>
-            </li>
-            <li>
-              <a href="#"><span class="icon-dribbble"></span></a>
-            </li>
-          </ul>
-        </div>
-        <!-- /.widget -->
-      </div>
-      <!-- /.col-lg-4 -->
     </div>
-    <!-- /.row -->
+  </div>
 
-    <div class="row mt-5">
-      <div class="col-12 text-center">
-        <!--
+  <div class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="widget">
+            <h3>Contact</h3>
+            <address>43 Raymouth Rd. Baltemoer, London 3910</address>
+            <ul class="list-unstyled links">
+              <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+              <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+              <li>
+                <a href="mailto:info@mydomain.com">info@mydomain.com</a>
+              </li>
+            </ul>
+          </div>
+          <!-- /.widget -->
+        </div>
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <div class="widget">
+            <h3>Sources</h3>
+            <ul class="list-unstyled float-start links">
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Vision</a></li>
+              <li><a href="#">Mission</a></li>
+              <li><a href="#">Terms</a></li>
+              <li><a href="#">Privacy</a></li>
+            </ul>
+            <ul class="list-unstyled float-start links">
+              <li><a href="#">Partners</a></li>
+              <li><a href="#">Business</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Creative</a></li>
+            </ul>
+          </div>
+          <!-- /.widget -->
+        </div>
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <div class="widget">
+            <h3>Links</h3>
+            <ul class="list-unstyled links">
+              <li><a href="#">Our Vision</a></li>
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Contact us</a></li>
+            </ul>
+
+            <ul class="list-unstyled social">
+              <li>
+                <a href="#"><span class="icon-instagram"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="icon-twitter"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="icon-facebook"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="icon-linkedin"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="icon-pinterest"></span></a>
+              </li>
+              <li>
+                <a href="#"><span class="icon-dribbble"></span></a>
+              </li>
+            </ul>
+          </div>
+          <!-- /.widget -->
+        </div>
+        <!-- /.col-lg-4 -->
+      </div>
+      <!-- /.row -->
+
+      <div class="row mt-5">
+        <div class="col-12 text-center">
+          <!--
             **==========
             NOTE:
             Please don't remove this copyright link unless you buy the license here https://untree.co/license/
             **==========
           -->
 
-        <p>
-          Copyright &copy;
-          <script>
-            document.write(new Date().getFullYear());
-          </script>
-          . All Rights Reserved. &mdash; Designed with love by
-          <a href="https://untree.co">Untree.co</a>
-          <!-- License information: https://untree.co/license/ -->
-        </p>
-        <div>
-          Distributed by
-          <a href="https://themewagon.com/" target="_blank">themewagon</a>
+          <p>
+            Copyright &copy;
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            . All Rights Reserved. &mdash; Designed with love by
+            <a href="https://untree.co">Untree.co</a>
+            <!-- License information: https://untree.co/license/ -->
+          </p>
+          <div>
+            Distributed by
+            <a href="https://themewagon.com/" target="_blank">themewagon</a>
+          </div>
         </div>
       </div>
     </div>
+    <!-- /.container -->
   </div>
-  <!-- /.container -->
-</div>
-<!-- /.site-footer -->
+  <!-- /.site-footer -->
 
-<!-- Preloader -->
-<div id="overlayer"></div>
-<div class="loader">
-  <div class="spinner-border" role="status">
-    <span class="visually-hidden">Loading...</span>
+  <!-- Preloader -->
+  <div id="overlayer"></div>
+  <div class="loader">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
   </div>
-</div>
 
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/tiny-slider.js"></script>
-<script src="js/aos.js"></script>
-<script src="js/navbar.js"></script>
-<script src="js/counter.js"></script>
-<script src="js/custom.js"></script>
-
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/tiny-slider.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/counter.js"></script>
+  <script src="js/custom.js"></script>
 
 
 
-<script>
-  // -----------------------------[로드시 실행]-------------------------------------------------
-  $(document).ready(function () {
 
-    var para = document.location.href.split("?");
-    console.log(para[1])
-    // ----------------------------------[ajax get 시작]--------------------------------------------
-    var settingsSelectboard = {
-      "url": "http://localhost:8080/t-exercise/selectboard/" + para[1],
-      "method": "GET",
-      "timeout": 0,
-    };
+  <script>
+    // -----------------------------[로드시 실행]-------------------------------------------------
+    $(document).ready(function () {
+      document.getElementById("mypage").style.display = "none";
+      document.getElementById("MainLogout").style.display = "none";
 
-    $.ajax(settingsSelectboard).done(function (response) {
+      
+      if (localStorage.getItem('accessToken') === null) {
+        $('#findbyIdandPw').show()
+      } else {
+        $('#findbyIdandPw').hide()
+      }
 
-      console.log(response);
+      var para = document.location.href.split("?");
+      console.log(para[1])
+      // ----------------------------------[ajax get 시작]--------------------------------------------
+      var settingsSelectboard = {
+        "url": "http://localhost:8080/t-exercise/selectboard/" + para[1],
+        "method": "GET",
+        "timeout": 0,
+      };
 
-      let tilte = response['title']
-      let content = response['content']
-      let modifiedDate = response['modifiedDate']
-      let like = response['like']
-      let postid = response['id']
-      let nickname = response['userNickname']
-      let imageUrl = response['image']
-      //-------------------작성자 검증할라고 저장------------//
-      let postWriter = response['userName']
+      $.ajax(settingsSelectboard).done(function (response) {
 
-      localStorage.setItem('postWriter', postWriter)
-      //sessionStorage.setItem
+        console.log(response);
+
+        let tilte = response['title']
+        let content = response['content']
+        let modifiedDate = response['modifiedDate']
+        let like = response['like']
+        let postid = response['id']
+        let nickname = response['userNickname']
+        let imageUrl = response['image']
+        //-------------------작성자 검증할라고 저장------------//
+        let postWriter = response['userName']
+
+        localStorage.setItem('postWriter', postWriter)
+        //sessionStorage.setItem
 
 
-      // -----------------------------[게시글보여주기]-------------------------------------------------
-      var temp = `<div class="row justify-content-between">
+        // -----------------------------[게시글보여주기]-------------------------------------------------
+        var temp = `<div class="row justify-content-between">
                       <div class="col-lg-7">
 
 
@@ -330,38 +342,38 @@
                           </section>
                 </div>
               </div>`
-      $('#t_exePosting').append(temp)
+        $('#t_exePosting').append(temp)
 
 
-      let writerName = localStorage.getItem('postWriter')//
-      let accessUser = localStorage.getItem('accessUser')
-      console.log("작성자이름=" + writerName);
+        let writerName = localStorage.getItem('postWriter')//
+        let accessUser = localStorage.getItem('accessUser')
+        console.log("작성자이름=" + writerName);
 
-      if (accessUser === writerName) {
-        $('#editButton').show()
+        if (accessUser === writerName) {
+          $('#editButton').show()
 
-      } else {
-        console.log('작성한 유저가아님,불일치')
-        $('#editButton').hide()
-      }
-//---
-      slideShow();
-//---
+        } else {
+          console.log('작성한 유저가아님,불일치')
+          $('#editButton').hide()
+        }
+        //---
+        slideShow();
+        //---
 
-      // ------------------------------------------------------------------------------
+        // ------------------------------------------------------------------------------
 
-      // -----------------------------[댓글보여주기 실행]-------------------------------------------------
-      let commentList = response['commentList']
+        // -----------------------------[댓글보여주기 실행]-------------------------------------------------
+        let commentList = response['commentList']
 
-      for (let i = 0; i < commentList.length; i++) {
-        var userNickname = commentList[i]['nickname']
-        var commentContent = commentList[i]['content']
-        var createdDate = commentList[i]['creatDate']
-        var commentId = commentList[i]['id']
-        console.log(userNickname + " 닉네임이군")
+        for (let i = 0; i < commentList.length; i++) {
+          var userNickname = commentList[i]['nickname']
+          var commentContent = commentList[i]['content']
+          var createdDate = commentList[i]['creatDate']
+          var commentId = commentList[i]['id']
+          console.log(userNickname + " 닉네임이군")
 
 
-        var comment = `<div class="d-flex">
+          var comment = `<div class="d-flex">
                          <div class="ms-3">
                          <div class="fw-bold">${userNickname}</div>
                          <div class="text-black-50">${commentContent}</div> 
@@ -392,36 +404,36 @@
                          </div>
                  </div>`
 
-        $('#edit_' + commentId).hide()
-        $('#comment_' + commentId).hide()
-
-        $('#comment').append(comment)
-
-
-        var commentWirter = commentList[i]['writerName']
-        if (commentWirter === localStorage.getItem('accessUser')) {
-          $('#edit_' + commentId).show()
-          $('#comment_' + commentId).show()
-        } else {
           $('#edit_' + commentId).hide()
           $('#comment_' + commentId).hide()
-        }
+
+          $('#comment').append(comment)
+
+
+          var commentWirter = commentList[i]['writerName']
+          if (commentWirter === localStorage.getItem('accessUser')) {
+            $('#edit_' + commentId).show()
+            $('#comment_' + commentId).show()
+          } else {
+            $('#edit_' + commentId).hide()
+            $('#comment_' + commentId).hide()
+          }
 
 
 
 
-        // ------------------------------[대댓글보여주기 ]-----------------------------------------------------
+          // ------------------------------[대댓글보여주기 ]-----------------------------------------------------
 
-        let commentReplylist = commentList[i]['commentReplyList']
-        console.log(commentReplylist)
+          let commentReplylist = commentList[i]['commentReplyList']
+          console.log(commentReplylist)
 
-        for (let j = 0; j < commentReplylist.length; j++) {
-          var userNickname = commentReplylist[j]['nickname']
-          var userId = commentReplylist[j]['writerName']
-          var commentReplyContent = commentReplylist[j]['content']
-          var replyCreatDate = commentReplylist[j]['creatDate']
-          var commentReplyId = commentReplylist[j]['id']
-          var commentReply = `<div class="fw-bold">${userNickname}</div>
+          for (let j = 0; j < commentReplylist.length; j++) {
+            var userNickname = commentReplylist[j]['nickname']
+            var userId = commentReplylist[j]['writerName']
+            var commentReplyContent = commentReplylist[j]['content']
+            var replyCreatDate = commentReplylist[j]['creatDate']
+            var commentReplyId = commentReplylist[j]['id']
+            var commentReply = `<div class="fw-bold">${userNickname}</div>
                                 <div class="text-black-50">${commentReplyContent}</div> 
                                 <div class="text-black-50" style="margin-bottom:5px;">${replyCreatDate}
       
@@ -439,375 +451,376 @@
                                 </div>
                                                       `
 
-          $('#commentReply_' + commentId).append(commentReply)
+            $('#commentReply_' + commentId).append(commentReply)
 
 
-          if (userId === localStorage.getItem('accessUser')) {
-            $('#editReplyButton_' + commentReplyId).show()
-            $('#commentReplyButton_' + commentReplyId).show()
-          } else {
-            $('#editReplyButton_' + commentReplyId).hide()
-            $('#commentReplyButton_' + commentReplyId).hide()
+            if (userId === localStorage.getItem('accessUser')) {
+              $('#editReplyButton_' + commentReplyId).show()
+              $('#commentReplyButton_' + commentReplyId).show()
+            } else {
+              $('#editReplyButton_' + commentReplyId).hide()
+              $('#commentReplyButton_' + commentReplyId).hide()
+            }
+
           }
 
+          // ------------------------------대댓글보여주기끝-----------------------------------------------------
+        }
+        // ----------------------------------댓글보여주기 끝--------------------------------------------
+      });
+      // ----------------------------------ajax get 끝--------------------------------------------
+      // ----------------------------------[작성자일치여부 검증]--------------------------------------------
+    });
+    // ----------------------------------로드시 실행되는부분 끝-------------------------------------------
+
+
+
+    // ----------------------------------[해당버튼 클릭시 댓글등록]-----------------------------------------------------
+
+
+    $('#t_exePosting').on("click", "button[name='enrollComment']", function () {
+      var para = document.location.href.split("?");
+      console.log(para[1])
+
+      var settings = {
+        "url": "http://localhost:8080/t-exercise/" + para[1] + "/comment",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+          "Authorization": localStorage.getItem('accessToken'),
+          "Content-Type": "application/json"
+        },
+
+        "data": JSON.stringify({
+          "comment": $('#commentEnroll').val()
+        }),
+      };
+
+      $.ajax(settings).done(function (response) {
+        
+        console.log(response);
+        alert(response)
+        window.location.reload()
+      });
+    }
+    )
+    // ------------------------------------------------------------------------------------------------
+
+
+    // ------------------------[해당버튼 클릭시 게시글 수정 페이지 이동]------------------------
+    $('#t_exePosting').on("click", "button[name='editpost']", function () {
+      var para = document.location.href.split("?");
+      console.log(para[1])
+
+      window.location = "./T_exepostEdit.html?" + para[1]
+
+
+    })
+    // ------------------------------------------------------------------------------------------------
+
+
+
+
+    // --------------------[해당 버튼 클릭시 게시글 삭제]---------------------
+
+    $('#t_exePosting').on("click", "button[name='delpost']", function () {
+      var para = document.location.href.split("?");
+      console.log(para[1])
+
+      var settings = {
+        "url": "http://localhost:8080/t-exercise/" + para[1],
+        "method": "DELETE",
+        "timeout": 0,
+        "headers": {
+          "Authorization": localStorage.getItem('accessToken')
+        },
+      };
+
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        alert(response)
+        window.location = './T_exe.html'
+      }).fail(function (response) {
+        console.log(response.responseJSON);
+        if (response.responseJSON.statusCode === 403) {
+          alert(response.responseJSON.message)
         }
 
-        // ------------------------------대댓글보여주기끝-----------------------------------------------------
-      }
-      // ----------------------------------댓글보여주기 끝--------------------------------------------
-    });
-    // ----------------------------------ajax get 끝--------------------------------------------
-    // ----------------------------------[작성자일치여부 검증]--------------------------------------------
-  });
-  // ----------------------------------로드시 실행되는부분 끝-------------------------------------------
+      });
 
 
-
-  // ----------------------------------[해당버튼 클릭시 댓글등록]-----------------------------------------------------
-
-
-  $('#t_exePosting').on("click", "button[name='enrollComment']", function () {
-            var para = document.location.href.split("?");
-            console.log(para[1])
-
-            var settings = {
-              "url": "http://localhost:8080/t-exercise/" + para[1] + "/comment",
-              "method": "POST",
-              "timeout": 0,
-              "headers": {
-                "Authorization": localStorage.getItem('accessToken'),
-                "Content-Type": "application/json"
-              },
-
-              "data": JSON.stringify({
-                "comment": $('#commentEnroll').val()
-              }),
-            };
-
-            $.ajax(settings).done(function (response) {
-              console.log(response);
-              alert(response)
-              window.location.reload()
-            });
-          }
-  )
-  // ------------------------------------------------------------------------------------------------
-
-
-  // ------------------------[해당버튼 클릭시 게시글 수정 페이지 이동]------------------------
-  $('#t_exePosting').on("click", "button[name='editpost']", function () {
-    var para = document.location.href.split("?");
-    console.log(para[1])
-
-    window.location = "./T_exepostEdit.html?" + para[1]
-
-
-  })
-  // ------------------------------------------------------------------------------------------------
+    })
+    // ------------------------------------------------
 
 
 
 
-  // --------------------[해당 버튼 클릭시 게시글 삭제]---------------------
+    // -----[해당 버튼 클릭시 댓글삭제]-----------
 
-  $('#t_exePosting').on("click", "button[name='delpost']", function () {
-    var para = document.location.href.split("?");
-    console.log(para[1])
+    $('#t_exePosting').on("click", "button[name='delComment']", function () {
+      var para = document.location.href.split("?");
+      console.log(para[1])
 
-    var settings = {
-      "url": "http://localhost:8080/t-exercise/" + para[1],
-      "method": "DELETE",
-      "timeout": 0,
-      "headers": {
-        "Authorization": localStorage.getItem('accessToken')
-      },
-    };
+      var id_by_name = $(this).attr('id')
 
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-      alert(response)
-      window.location = './T_exe.html'
-    }).fail(function (response) {
-      console.log(response.responseJSON);
-      if (response.responseJSON.statusCode === 403) {
-        alert(response.responseJSON.message)
-      }
+      console.log(id_by_name)
+      var commentId = id_by_name.split("_")[1]
+      console.log(commentId)
+      var settings = {
+        "url": "http://localhost:8080/t-exercise/" + para[1] + "/comment/" + commentId,
+        "method": "DELETE",
+        "timeout": 0,
+        "headers": {
+          "Authorization": localStorage.getItem('accessToken')
+        },
+      };
 
-    });
-
-
-  })
-  // ------------------------------------------------
-
-
-
-
-  // -----[해당 버튼 클릭시 댓글삭제]-----------
-
-  $('#t_exePosting').on("click", "button[name='delComment']", function () {
-    var para = document.location.href.split("?");
-    console.log(para[1])
-
-    var id_by_name = $(this).attr('id')
-
-    console.log(id_by_name)
-    var commentId = id_by_name.split("_")[1]
-    console.log(commentId)
-    var settings = {
-      "url": "http://localhost:8080/t-exercise/" + para[1] + "/comment/" + commentId,
-      "method": "DELETE",
-      "timeout": 0,
-      "headers": {
-        "Authorization": localStorage.getItem('accessToken')
-      },
-    };
-
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-      alert(response)
-      window.location.reload();
-
-    }).fail(function (response) {
-      console.log(response.responseJSON);
-      if (response.responseJSON.statusCode === 403) {
-        alert(response.responseJSON.message)
-      }
-    });
-  })
-  // ------------------------------------------------
-
-
-
-  // -----[해당 버튼 클릭시 댓글수정 창 나옴]-------------------
-
-  $('#t_exePosting').on("click", "button[name='editComment']", function () {
-
-    var id_by_name = $(this).attr('id')
-    var commentId = id_by_name.split("_")[1]
-    console.log(commentId)
-
-    $("#toggleEdit_" + commentId).toggle();
-
-  })
-  // ---------------------------------------------------------
-
-
-
-  // -----[해당 버튼 클릭시 댓글수정 요청]----------------------
-  $('#t_exePosting').on("click", "button[name='saveEdit']", function () {
-
-
-    var id_by_name = $(this).attr('id')
-
-    var commentId = id_by_name.split("_")[1]
-    console.log(commentId)
-    var settings = {
-      "url": "http://localhost:8080/t-exercise/-1/comment/" + commentId,
-      "method": "PUT",
-      "timeout": 0,
-      "headers": {
-        "Authorization": localStorage.getItem('accessToken'),
-        "Content-Type": "application/json"
-      },
-      "data": JSON.stringify({
-
-        "comment": $('#editCommentContent_' + commentId).val()
-      }),
-    };
-
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-      alert(response)
-      window.location.reload();
-    }).fail(function (response) {
-      console.log(response.responseJSON);
-      if (response.responseJSON.statusCode === 403) {
-        alert(response.responseJSON.message)
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        alert(response)
         window.location.reload();
-      }
-      if (response.responseJSON.statusCode === 404) {
-        alert("다른 유저의 댓글은 수정할 수 없습니다.")
+
+      }).fail(function (response) {
+        console.log(response.responseJSON);
+        if (response.responseJSON.statusCode === 403) {
+          alert(response.responseJSON.message)
+        }
+      });
+    })
+    // ------------------------------------------------
+
+
+
+    // -----[해당 버튼 클릭시 댓글수정 창 나옴]-------------------
+
+    $('#t_exePosting').on("click", "button[name='editComment']", function () {
+
+      var id_by_name = $(this).attr('id')
+      var commentId = id_by_name.split("_")[1]
+      console.log(commentId)
+
+      $("#toggleEdit_" + commentId).toggle();
+
+    })
+    // ---------------------------------------------------------
+
+
+
+    // -----[해당 버튼 클릭시 댓글수정 요청]----------------------
+    $('#t_exePosting').on("click", "button[name='saveEdit']", function () {
+
+
+      var id_by_name = $(this).attr('id')
+
+      var commentId = id_by_name.split("_")[1]
+      console.log(commentId)
+      var settings = {
+        "url": "http://localhost:8080/t-exercise/-1/comment/" + commentId,
+        "method": "PUT",
+        "timeout": 0,
+        "headers": {
+          "Authorization": localStorage.getItem('accessToken'),
+          "Content-Type": "application/json"
+        },
+        "data": JSON.stringify({
+
+          "comment": $('#editCommentContent_' + commentId).val()
+        }),
+      };
+
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        alert(response)
         window.location.reload();
-      }
-    });
-  })
-  // ---------------------------------------------------------
+      }).fail(function (response) {
+        console.log(response.responseJSON);
+        if (response.responseJSON.statusCode === 403) {
+          alert(response.responseJSON.message)
+          window.location.reload();
+        }
+        if (response.responseJSON.statusCode === 404) {
+          alert("다른 유저의 댓글은 수정할 수 없습니다.")
+          window.location.reload();
+        }
+      });
+    })
+    // ---------------------------------------------------------
 
 
 
 
 
 
-  // -----[해당 버튼 클릭시 답글적는창 나옴]-------------------
+    // -----[해당 버튼 클릭시 답글적는창 나옴]-------------------
 
-  $('#t_exePosting').on("click", "button[name='creatRe']", function () {
+    $('#t_exePosting').on("click", "button[name='creatRe']", function () {
 
-    var id_by_name = $(this).attr('id')
-    var commentId = id_by_name.split("_")[1]
-    console.log(commentId)
+      var id_by_name = $(this).attr('id')
+      var commentId = id_by_name.split("_")[1]
+      console.log(commentId)
 
-    $("#toggleRe_" + commentId).toggle();
+      $("#toggleRe_" + commentId).toggle();
 
-  })
-  // ---------------------------------------------------------
-
-
-
-
-
-  // -----[해당 버튼 클릭시 답글DB로 보냄]-------------------
-  $('#t_exePosting').on("click", "button[name='saveRe']", function () {
-
-
-    var id_by_name = $(this).attr('id')
-
-    var commentId = id_by_name.split("_")[1]
-    console.log(commentId)
-    var settings = {
-      "url": "http://localhost:8080/t-exercise/comment/" + commentId,
-      "method": "POST",
-      "timeout": 0,
-      "headers": {
-        "Authorization": localStorage.getItem('accessToken'),
-        "Content-Type": "application/json"
-      },
-      "data": JSON.stringify({
-        "comment": $('#replyCommentContent_' + commentId).val()
-      }),
-    };
-
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-      alert(response)
-      window.location.reload();
-    }).fail(function (response) {
-      console.log(response.responseJSON);
-      if (response.responseJSON.statusCode === 403) {
-        alert(response.responseJSON.message)
-      }
-    });
-  })
-  // ---------------------------------------------------------
+    })
+    // ---------------------------------------------------------
 
 
 
 
-  // -----[해당 버튼 클릭시 답글 수정 창 나옴]-------------------
 
-  $('#t_exePosting').on("click", "button[name='editCommentReply']", function () {
-
-    var id_by_name = $(this).attr('id')
-    var commentId = id_by_name.split("_")[1]
-    console.log(commentId)
-
-    $("#toggleEditReply_" + commentId).toggle();
-
-  })
-  // ---------------------------------------------------------
+    // -----[해당 버튼 클릭시 답글DB로 보냄]-------------------
+    $('#t_exePosting').on("click", "button[name='saveRe']", function () {
 
 
+      var id_by_name = $(this).attr('id')
 
-  // -----[해당 버튼 클릭시 대댓글수정 요청]----------------------
-  $('#t_exePosting').on("click", "button[name='saveEditReply']", function () {
+      var commentId = id_by_name.split("_")[1]
+      console.log(commentId)
+      var settings = {
+        "url": "http://localhost:8080/t-exercise/comment/" + commentId,
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+          "Authorization": localStorage.getItem('accessToken'),
+          "Content-Type": "application/json"
+        },
+        "data": JSON.stringify({
+          "comment": $('#replyCommentContent_' + commentId).val()
+        }),
+      };
 
-
-    var id_by_name = $(this).attr('id')
-
-    var commentId = id_by_name.split("_")[1]
-    console.log(commentId)
-    var settings = {
-      "url": "http://localhost:8080/t-exercise/comment/" + commentId,
-      "method": "PUT",
-      "timeout": 0,
-      "headers": {
-        "Authorization": localStorage.getItem('accessToken'),
-        "Content-Type": "application/json"
-      },
-      "data": JSON.stringify({
-        "comment": $('#editCommentReplyContent_' + commentId).val()
-      }),
-    };
-
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-      alert(response)
-      window.location.reload();
-    }).fail(function (response) {
-      console.log(response.responseJSON);
-      if (response.responseJSON.statusCode === 403) {
-        alert(response.responseJSON.message)
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        alert(response)
         window.location.reload();
-      }
-      if (response.responseJSON.statusCode === 404) {
-        alert("다른 유저의 댓글은 수정할 수 없습니다.")
+      }).fail(function (response) {
+        console.log(response.responseJSON);
+        if (response.responseJSON.statusCode === 403) {
+          alert(response.responseJSON.message)
+        }
+      });
+    })
+    // ---------------------------------------------------------
+
+
+
+
+    // -----[해당 버튼 클릭시 답글 수정 창 나옴]-------------------
+
+    $('#t_exePosting').on("click", "button[name='editCommentReply']", function () {
+
+      var id_by_name = $(this).attr('id')
+      var commentId = id_by_name.split("_")[1]
+      console.log(commentId)
+
+      $("#toggleEditReply_" + commentId).toggle();
+
+    })
+    // ---------------------------------------------------------
+
+
+
+    // -----[해당 버튼 클릭시 대댓글수정 요청]----------------------
+    $('#t_exePosting').on("click", "button[name='saveEditReply']", function () {
+
+
+      var id_by_name = $(this).attr('id')
+
+      var commentId = id_by_name.split("_")[1]
+      console.log(commentId)
+      var settings = {
+        "url": "http://localhost:8080/t-exercise/comment/" + commentId,
+        "method": "PUT",
+        "timeout": 0,
+        "headers": {
+          "Authorization": localStorage.getItem('accessToken'),
+          "Content-Type": "application/json"
+        },
+        "data": JSON.stringify({
+          "comment": $('#editCommentReplyContent_' + commentId).val()
+        }),
+      };
+
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        alert(response)
         window.location.reload();
+      }).fail(function (response) {
+        console.log(response.responseJSON);
+        if (response.responseJSON.statusCode === 403) {
+          alert(response.responseJSON.message)
+          window.location.reload();
+        }
+        if (response.responseJSON.statusCode === 404) {
+          alert("다른 유저의 댓글은 수정할 수 없습니다.")
+          window.location.reload();
+        }
+      });
+    })
+    // ---------------------------------------------------------
+
+
+
+    // -----[해당 버튼 클릭시 대댓글삭제]-----------
+
+    $('#t_exePosting').on("click", "button[name='delCommentReply']", function () {
+
+      var id_by_name = $(this).attr('id')
+      console.log(id_by_name)
+      var commentId = id_by_name.split("_")[1]
+      console.log(commentId)
+      var settings = {
+        "url": "http://localhost:8080/t-exercise/comment/" + commentId,
+        "method": "DELETE",
+        "timeout": 0,
+        "headers": {
+          "Authorization": localStorage.getItem('accessToken')
+        },
+      };
+
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        alert(response)
+        window.location.reload();
+
+      }).fail(function (response) {
+        console.log(response.responseJSON);
+        if (response.responseJSON.statusCode === 403) {
+          alert(response.responseJSON.message)
+        }
+      });
+    })
+    // ------------------------------------------------
+
+
+    var index = 0;
+    function slideShow() {
+      var slideData = $('.slide1')
+      for (i = 0; i < slideData.length; i++) {
+        slideData[i].style.display = "none";   //처음에 전부 display를 none으로 한다.
       }
-    });
-  })
-  // ---------------------------------------------------------
 
 
-
-  // -----[해당 버튼 클릭시 대댓글삭제]-----------
-
-  $('#t_exePosting').on("click", "button[name='delCommentReply']", function () {
-
-    var id_by_name = $(this).attr('id')
-    console.log(id_by_name)
-    var commentId = id_by_name.split("_")[1]
-    console.log(commentId)
-    var settings = {
-      "url": "http://localhost:8080/t-exercise/comment/" + commentId,
-      "method": "DELETE",
-      "timeout": 0,
-      "headers": {
-        "Authorization": localStorage.getItem('accessToken')
-      },
-    };
-
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-      alert(response)
-      window.location.reload();
-
-    }).fail(function (response) {
-      console.log(response.responseJSON);
-      if (response.responseJSON.statusCode === 403) {
-        alert(response.responseJSON.message)
+      if (index > slideData.length) {
+        index = 1;  //인덱스가 초과되면 1로 변경
       }
-    });
-  })
-  // ------------------------------------------------
+      console.log("dom = " + slideData)
+      console.log("인덱스 = " + index)
+      console.log("슬라이드 데이터 사이즈 = " + slideData.length)
 
 
-  var index = 0;
-  function slideShow() {
-    var slideData = $('.slide1')
-    for (i = 0; i < slideData.length; i++) {
-      slideData[i].style.display = "none";   //처음에 전부 display를 none으로 한다.
+
+      if (index === slideData.length) {
+        slideData[0].style.display = "block";
+      } else {
+        slideData[index].style.display = "block";
+
+      }
+      index++;
+      //함수를 4초마다 호출
+      setTimeout(slideShow, 2000);
     }
-
-
-    if (index > slideData.length) {
-      index = 1;  //인덱스가 초과되면 1로 변경
-    }
-    console.log("dom = " + slideData)
-    console.log("인덱스 = " + index)
-    console.log("슬라이드 데이터 사이즈 = " + slideData.length)
-
-
-
-    if (index === slideData.length) {
-      slideData[0].style.display = "block";
-    } else {
-      slideData[index].style.display = "block";
-
-    }
-    index++;
-    //함수를 4초마다 호출
-    setTimeout(slideShow,2000);
-  }
-</script>
+  </script>
 
 
 </body>

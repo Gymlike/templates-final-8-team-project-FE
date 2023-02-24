@@ -1,7 +1,6 @@
 <head>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/auth/owner/owner.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    
     <link rel="stylesheet" href="css/login.css"/>
 </head>
 
@@ -74,69 +73,6 @@
     </div>
 </div>
 
-<script>
-    document.querySelector('.img__btn').addEventListener('click', function () {
-        document.querySelector('.cont').classList.toggle('s--signup');
-    });
-
-    // 회원가입
-    function signUp() {
-        var settings = {
-            "url": "http://localhost:8080/api/owner/signup",
-            "method": "POST",
-            "timeout": 0,
-            "headers": {
-                "Content-Type": "application/json"
-            },
-            "data": JSON.stringify({
-                "username": $('#username').val(),
-                "password": $('#password').val(),
-                // "password2": $('#password2').val(),
-                "nickName": $('#nickName').val(),
-                "phoneNumber": $('#phoneNumber').val(),
-                "email": $('#email').val(),
-                "storeName": $('#storeName').val(),
-                "ownerNumber": $('#ownerNumber').val()
-            }),
-        };
-
-        $.ajax(settings).done(function (response) {
-            console.log(response);
-            alert("회원가입 완료")
-            document.querySelector('.cont').classList.toggle('s--signup');
-        });
-    }
-
-
-    // 로그인
-    function logIn() {
-        var settings = {
-            "url": "http://localhost:8080/api/owner/login",
-            "method": "POST",
-            "timeout": 0,
-            "headers": {
-                "Content-Type": "application/json"
-            },
-            "data": JSON.stringify({
-                "username": $('#logInID').val(),
-                "password": $('#logInpassword').val()
-            }),
-        };
-
-        $.ajax(settings).done(function (response, status, xhr) {
-            console.log(response);
-            console.log(xhr.getResponseHeader('Authorization'))
-            localStorage.setItem('accessToken', xhr.getResponseHeader('Authorization'))
-            alert("로그인 완료")
-            window.location = 'index.html'
-        }).fail(function (response) {
-            console.log(response.responseJSON);
-            if (response.responseJSON.statusCode === 400) {
-                alert("ID와 비밀번호를 확인하여주세요.")
-            } else {
-                alert("ID와 비밀번호를 확인하여주세요.");
-            }
-        });
-    }
-
-</script>
+<body>
+    <script src="js/auth/owner/owner.js"></script>
+</body>

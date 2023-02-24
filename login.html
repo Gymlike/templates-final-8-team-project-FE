@@ -1,7 +1,6 @@
 <head>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/auth/user/user.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    
     <link rel="stylesheet" href="css/login.css"/>
 </head>
 
@@ -19,6 +18,7 @@
     </label>
     <p class="forgot-pass">비밀번호 찾기</p>
     <button type="button" class="submit" onclick="logIn()">로그인</button>
+    <button type="button" class="submit" onclick="location.href='FIndByIdAndPw.html'">ID/PW 찾기</button>
     <button class="fb-btn" id="login-kakao-btn" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=adacc39e0738d79ed04fd79995f809d3&redirect_uri=http://localhost:8080/api/user/kakao/callback&response_type=code'">카카오로 로그인하기</button>
     <button type="button" class="owner-login" onclick="location.href='ownerlogin.html'">사업자회원 로그인</button>
   </div>
@@ -64,13 +64,12 @@
         <input type="email" id="email"/>
       </label>
       <button type="button" class="submit" onclick="signUp()">가입하기</button>
-      <button type="button" class="fb-btn">카카오톡으로 가입하기 </button>
+      <button class="fb-btn" id="login-kakao-btn" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=adacc39e0738d79ed04fd79995f809d3&redirect_uri=http://localhost:8080/api/user/kakao/callback&response_type=code'">카카오로 가입하기</button>
       <button type="button" class="owner-signup" onclick="location.href='ownerlogin.html'">사업자회원 가입하기 </button>
     </div>
   </div>
 </div>
 
-<script>
-document.querySelector('.img__btn').addEventListener('click', function () { document.querySelector('.cont').classList.toggle('s--signup'); });
-
-</script>
+<body>
+  <script src="js/auth/user/user.js"></script>
+</body>
