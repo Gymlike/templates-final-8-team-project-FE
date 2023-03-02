@@ -120,7 +120,7 @@
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-9 text-center mt-5">
-                    <h1 class="heading" data-aos="fade-up">1 : 1 문의</h1>
+                    <h1 class="heading" data-aos="fade-up">공지사항</h1>
 
                     <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
                         <ol class="breadcrumb text-center justify-content-center">
@@ -128,7 +128,7 @@
                                 <a href="index.html">메인</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="contactPageIndex-notice.html">
+                                <a href="contactPageIndex-notice.html" onclick="showNotice()">
                                     공지사항
                                 </a>
                             </li>
@@ -138,7 +138,7 @@
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="contactPageIndex-inquiry.html" onclick="showInquiry()">
+                                <a href="contactPageIndex-inquiry.html">
                                     1:1 문의
                                 </a>
                             </li>
@@ -158,7 +158,7 @@
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="제목 및 내용 " aria-label="Recipient's username"
                             aria-describedby="button-addon2" id="keywordInput">
-                        <button class="btn btn-outline-secondary" type="button" onclick="inquirySearch()">검색</button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="noticeSearch()">검색</button>
                     </div>
                 </div>
                 <div class="row">
@@ -169,19 +169,17 @@
                             <!-- 게시글 목록 -->
                             <div class="container">
                                 <button type="button" class="btn btn-outline-secondary border">
-                                    <a href="contactWriteInquiry.html">글쓰기</a>
+                                    <a href="contactWrite.html">글쓰기</a>
                                 </button>
                                 <table class="table table-hover table-striped " style="border:1px solid;">
                                     <thead>
                                         <tr>
                                             <th>번호</th>
                                             <th>제목</th>
-                                            <th>작성자</th>
                                             <th>작성일</th>
-                                            <!-- <th>조회수</th> -->
                                         </tr>
                                     </thead>
-                                    <tbody id="inquiryList">
+                                    <tbody id="noticeList">
 
                                     </tbody>
 
@@ -194,7 +192,7 @@
                     <div class="row align-items-center py-5">
                         <div class="col-lg-3">Pagination (1 of 10)</div>
                         <div class="col-lg-6 text-center">
-                            <div class="custom-pagination" id="inquiryPaging">
+                            <div class="custom-pagination" id="noticePaging">
                                 <!-- 페이지번호 temp_html -->
                             </div>
                         </div>
@@ -203,7 +201,7 @@
             </div>
             <script>
                 $(document).ready(function () {
-                    showInquiry();
+                    showNotice();
                     if (localStorage.getItem('accessToken') === null) {
                         $('#findbyIdandPw').show()
                     } else {
@@ -211,9 +209,9 @@
                     }
                 });
                 // 전체조회
-                function showInquiry() {
+                function showNotice() {
                     var settings = {
-                        "url": "http://localhost:8080/api/contact/inquiries",
+                        "url": "http://localhost:8080/api/managers/notices/check",
                         
                         "method": "GET",
                         "timeout": 0
@@ -225,32 +223,17 @@
                             console.log(response);
                             let rows = response.data
                             for (let i = 0; i < rows.length; i++) {
-                                let inquiryId = rows[i]['id']
-                                let number = inquiryId
+                                let noticeId = rows[i]['id']
+                                let number = noticeId
                                 let title = rows[i]['title']
                                 let createdDate = rows[i]['createdDate']
-                                let secret = rows[i]['secret']
-                                let nickName = rows[i]['nickName']
-                                if(secret===true){
+                                let temp_html = `<tr>
+                                                    <td>${number}</td>
+                                                    <td><a href ="contactDe-notice.html?${noticeId}">${title}</td>
+                                                    <th>${createdDate}</th> 
+                                                </tr>`
+                                $('#noticeList').append(temp_html)
 
-                                    let temp_html = `<tr>
-                                                        <td>${number}</td>
-                                                        <td><a href ="contactDe-inquiry.html?${inquiryId}">🔐 ${title}</td>
-                                                        <th>${nickName}</th>     
-                                                        <th>${createdDate}</th> 
-                                                     </tr>`
-
-                                $('#inquiryList').append(temp_html)
-                                }else{
-                                    let temp_html = `<tr>
-                                                        <td>${number}</td>
-                                                        <td><a href ="contactDe-inquiry.html?${inquiryId}">${title}</td>
-                                                        <th>${nickName}</th>  
-                                                        <th>${createdDate}</th> 
-                                                     </tr>`
-
-                                $('#inquiryList').append(temp_html)
-                                }
 
                             }
                             let page = response.page
@@ -268,15 +251,12 @@
 
                             for (let i = startPage; i <= endPage; i++) {
                                 let number = i
-                                let temp_html = `<a href="contactPageMove-inquiry.html?${number}">${number}</a>`
+                                let temp_html = `<a href="contactPageMove-notice.html?${number}">${number}</a>`
 
-                                $('#inquiryPaging').append(temp_html);
+                                $('#noticePaging').append(temp_html);
                             }
                         }).fail(function (response,status) {
                             console.log(response.responseJSON);
-                            if(status === 400){
-                                alert('비회원 접근 할 수 없습니다.')
-                            }
                             if (response.responseJSON.statusCode === 403) {
                                 alert(response.responseJSON.message)
                             }
@@ -289,11 +269,11 @@
 
                 //------------------ 검색창조회 -------------------------------
 
-                function inquirySearch() {
+                function noticeSearch() {
                     var keywords = $('#keywordInput').val();
                     localStorage.setItem('searching', keywords) //로컬스토리지에 키워드 저장 
                     console.log(keywords)
-                    window.location = './contactPageMove-inquiry.html?1'
+                    window.location = './contactPageMove-notice.html?1'
                 }
             </script>
             <div class="site-footer">
