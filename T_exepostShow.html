@@ -302,7 +302,7 @@
 
 
                        <div id="slider-wrap">
-                        <img class="slide1" src="https://images.chosun.com/resizer/J5T-Xzne-7awWdx5KM_r1aCBzeI=/650x523/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/5GEREBAWY2IJKFBARNGGTNTT4I.jpg" style="width: 600px; height:625px; display:none;border-radius:15%;" >
+                       
                         <img class="slide1" src="https://w.namu.la/s/5b83651d0d0f82d7095cd5c69a9314cc25a359215fb3bb859271e6220d0bbada899445ab004b59c143da84aded95460156ac2148093cc4645f64b93c4966c8a857af07788014a5dcd8ede04c60c10c31521ed9f24423e7453650792dcaeddf629433fdde584a1e3ed1b4c1b472f95aac"style="width: 600px; height:625px;display:none;border-radius:15%;">
                         <img class="slide1" src="${imageUrl}"style="width: 600px; height:625px;display:none;border-radius:15%;">
                         <img class="slide1" src="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MDhfMTYg/MDAxNTkxNTY3NTI1Mzc5.Hh6_Rwoy_-3XuDjwYmrM8rm3KXf-EnQlo9yOkHR3PUkg.D1rn430i-2dp_-U-8_nP9QRqbJXhhi5xwYQgTWe-9qwg.JPEG.infei02/1.jpg?type=w800"style="width: 600px; height:625px;display:none;border-radius:15%;">
@@ -411,6 +411,7 @@
 
 
           var commentWirter = commentList[i]['writerName']
+          
           if (commentWirter === localStorage.getItem('accessUser')) {
             $('#edit_' + commentId).show()
             $('#comment_' + commentId).show()
