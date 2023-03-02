@@ -334,6 +334,9 @@
                                     var settings = {
                                         "url": "http://localhost:8080/api/contact/inquiries/" + param[1],
                                         "method": "GET",
+                                         "headers": {
+                                                "Authorization": localStorage.getItem("accessToken"),
+                                            },
                                         "timeout": 0
                                     };
                                     //----------------------------------agax --------------------------- 필요변수 여기에 선언
@@ -446,12 +449,14 @@
                                                                 </div>`
                                                 }
                                 // ----------------------------------댓글보여주기 끝--------------------------------------------
-                                         }).fail(function (response) {   //실패시 실행 
-                                        console.log(response.responseJSON);
-                                        if (response.responseJSON.statusCode === 404) {
-                                            alert(response.responseJSON.message)
-                                        }
-                                        });
+                                            }).fail(function (respons,statusCode) {   //실패시 실행 
+                                                console.log("상세페이지 이동 실패시"+respons+"코드"+statusCode);
+                                                if(statusCode === "error"){
+                                                    alert("회원 및 해당 글의 회원만 접근 가능한 글입니다.")
+                                                    window.location = './contactPageIndex-inquiry.html'
+                                                }
+                                            });
+                                            
                                 // ----------------------------------ajax get 끝--------------------------------------------
                                 });
 

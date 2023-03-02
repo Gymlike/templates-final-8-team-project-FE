@@ -176,6 +176,7 @@
                                         <tr>
                                             <th>번호</th>
                                             <th>제목</th>
+                                            <th>작성자</th>
                                             <th>작성일</th>
                                             <!-- <th>조회수</th> -->
                                         </tr>
@@ -228,14 +229,29 @@
                                 let number = inquiryId
                                 let title = rows[i]['title']
                                 let createdDate = rows[i]['createdDate']
+                                let secret = rows[i]['secret']
+                                let nickName = rows[i]['nickName']
+                                if(secret===true){
 
-                                let temp_html = ` <tr>
-                                   <td>${number}</td>
-                                   <td><a href ="contactDe-inquiry.html?${inquiryId}">${title}</td>
-                                   <th>${createdDate}</th> 
-                                 </tr>`
+                                    let temp_html = `<tr>
+                                                        <td>${number}</td>
+                                                        <td><a href ="contactDe-inquiry.html?${inquiryId}">🔐 ${title}</td>
+                                                        <th>${nickName}</th>     
+                                                        <th>${createdDate}</th> 
+                                                     </tr>`
 
                                 $('#inquiryList').append(temp_html)
+                                }else{
+                                    let temp_html = `<tr>
+                                                        <td>${number}</td>
+                                                        <td><a href ="contactDe-inquiry.html?${inquiryId}">${title}</td>
+                                                        <th>${nickName}</th>  
+                                                        <th>${createdDate}</th> 
+                                                     </tr>`
+
+                                $('#inquiryList').append(temp_html)
+                                }
+
                             }
                             let page = response.page
                             let totalCount = response.totalCount
@@ -256,8 +272,11 @@
 
                                 $('#inquiryPaging').append(temp_html);
                             }
-                        }).fail(function (response) {
+                        }).fail(function (response,status) {
                             console.log(response.responseJSON);
+                            if(status === 400){
+                                alert('비회원 접근 할 수 없습니다.')
+                            }
                             if (response.responseJSON.statusCode === 403) {
                                 alert(response.responseJSON.message)
                             }

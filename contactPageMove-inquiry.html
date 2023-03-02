@@ -318,16 +318,29 @@
                                 let number = inquiryId
                                 let title = rows[i]['title']
                                 let createdDate = rows[i]['createdDate']
+                                let secret = rows[i]['secret']
+                                let nickName = rows[i]['nickName']
+                                if(secret===true){
 
-
-                                let temp_html = ` <tr>
-                                <td>${number}</td>
-                                <td><a href ="contactDe-inquiry.html?${inquiryId}">${title}</td>
-                                <th>${createdDate}</th> 
-                                </tr>`
-
+                                    let temp_html = `<tr>
+                                                        <td>${number}</td>
+                                                        <td><a href ="contactDe-inquiry.html?${inquiryId}">🔐 ${title}</td>
+                                                        <th>${nickName}</th>     
+                                                        <th>${createdDate}</th> 
+                                                     </tr>`
 
                                 $('#inquiryList').append(temp_html)
+                                }else{
+                                    let temp_html = `<tr>
+                                                        <td>${number}</td>
+                                                        <td><a href ="contactDe-inquiry.html?${inquiryId}">${title}</td>
+                                                        <th>${nickName}</th>  
+                                                        <th>${createdDate}</th> 
+                                                     </tr>`
+
+                                $('#inquiryList').append(temp_html)
+                                }
+
                             }
 
                             //----------  페이징 처리 -----------------------
