@@ -159,47 +159,124 @@
 </body>
 
 <script>
+  //--------------------[글등록버튼 누를시 실행]--------------------------------
   function t_exePost() {
-    var form = new FormData();
-    form.append("file", $("#t_exeFile")[0].files[0]);
-    form.append("file", $("#t_exeFile")[0].files[1]);
-
-    console.log($("#t_exeFile")[0].files[0])
-    console.log($("#t_exeFile")[0].files[1])
-
-    const dtoTitle = $('#utitle').val();
-    const dtoContent = $('#ucontent').val();
-
-    const json = JSON.stringify({ "title": dtoTitle, "content": dtoContent });
-
-    const blob = new Blob([json], { type: "application/json" });
-
-
-    form.append("BordRequestDTO", blob);
-
-    var settings = {
-      "url": "http://localhost:8080/t-exercise",
+    var presignedUrlg = "이미지.jpa"
+    console.log("이미지라고 나와야함 = " + presignedUrlg)
+ 
+  //--------------------[프리사인url발급요청---]-------------------------
+    var presigned = {
+      "url": "http://localhost:8080/t-exercise/presigned",
       "method": "POST",
       "timeout": 0,
-      "processData": false,
-      "mimeType": "multipart/form-data",
       "headers": {
-        "Authorization": localStorage.getItem('accessToken')
+        "Authorization": localStorage.getItem('accessToken'),
+        "Content-Type": "application/json"
       },
-      "contentType": false,
-      "data": form
+      "data": JSON.stringify({
+        "imageName": document.getElementById("t_exeFile").files[0].name
+      }),
     };
 
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-      alert(response);
-      window.location = '/T_exe.html'
+      console.log("이미지 이름이 나와야함 = "+document.getElementById("t_exeFile").files[0].name)
+
+    $.ajax(presigned).done(function (response) {
+      presignedUrlg = response.toString()
+
+      console.log("함수안에서" + presignedUrlg)
+//--------------------[프리사인url발급성공시 S3에 이미지 upload요청--]-------------------------
+      var upload = {
+        "url": presignedUrlg,
+        "method": "PUT",
+        "timeout": 0,
+        "processData": false,
+        "Content-Type": "binary/octet-stream",
+        "data": document.getElementById("t_exeFile").files[0]
+      };
+
+      $.ajax(upload).done(function (response) {
+        console.log(response);
+      });
+
+//--------------------[프리사인url발급성공시 서버에 게시글 upload요청--]-------------------------
+      var settings = {
+        "url": "http://localhost:8080/t-exercise",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+          "Authorization": localStorage.getItem('accessToken'),
+          "Content-Type": "application/json"
+        },
+        "data": JSON.stringify({
+          "title": $('#utitle').val(),
+          "content": $('#ucontent').val()
+        }),
+      };
+
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        alert(response);
+        window.location = '/T_exe.html'
+      });
+
     });
+
+//----------------[프리사인 발급및 게시글 등록 끝]-------------------------
+    //-----------------------------------------------------------------
+    // var form = new FormData();
+    // form.append("file", $("#t_exeFile")[0].files[0]);
+    // form.append("file", $("#t_exeFile")[0].files[1]);dw
+
+    // console.log($("#t_exeFile")[0].files[0])
+    // console.log($("#t_exeFile")[0].files[1])
+
+    const dtoTitle = $('#utitle').val();
+
+    if (!dtoTitle) {
+      return alert("제목을 입력해주세요")
+    }
+    const dtoContent = $('#ucontent').val();
+
+    if (!dtoContent) {
+      return alert("내용을 입력해주세요")
+    }
+
+    // const json = JSON.stringify({ "title": dtoTitle, "content": dtoContent });
+
+    // const blob = new Blob([json], { type: "application/json" });
+
+
+    // form.append("BordRequestDTO", blob);
+
+    // var settings = {
+    //   "url": "http://localhost:8080/t-exercise",
+    //   "method": "POST",
+    //   "timeout": 0,
+    //   "processData": false,
+    //   "mimeType": "multipart/form-data",
+    //   "headers": {
+    //     "Authorization": localStorage.getItem('accessToken')
+    //   },
+    //   "contentType": false,
+    //   "data": form
+    // };
+
+    // $.ajax(settings).done(function (response) {
+    //   console.log(response);
+    //   alert(response);
+    //   window.location = '/T_exe.html'
+    // });
+
+    console.log("함수밖에서" + presignedUrlg)
+
+
+
+
   }
   document.getElementById("mypage").style.display = "none";
   document.getElementById("MainLogout").style.display = "none";
 
-  
+
 </script>
 
 </html>
