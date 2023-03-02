@@ -92,7 +92,7 @@
                             </ul>
                         </li>
                         <li class="has-children">
-                            <a href="about.html">고객센터</a>
+                            <a href="contactPageIndex-inquiry.html">고객센터</a>
                             <ul class="dropdown">
                                 <li>
                                     <a href="contactPageIndex-notice">공지사항</a>
@@ -350,12 +350,22 @@
                                             let title = response['title']
                                             let content = response['content']
                                             let createdDate = response['createdDate']
+                                            let imageUrl = response['image']
 
                                             let temp_html = `<div class="container">
+                                                                <div class="col-lg-7">
+                                                                    <div class="img-property-slide-wrap">
+                                                                    <div class="img-property-slide">
+                                                                        <img src="제목을 입력해주세요_-001.jpg" alt="Image" class="img-fluid" />
+                                                                        <img src="${imageUrl}" alt="Image" class="img-fluid" />
+                                                                    </div>
+                                                                    </div>
+                                                                </div>
+                                                
                                                                 <table class="table table-hover" width="1000" id="textBox">
                                                                     <tr>
                                                                         <td>제목 </td>
-                                                                        <td colspan="4" align="left">${title}</td>
+                                                                        <td><pre colspan="4" align="left">${title}</pre></td>
                                                                         </tr>
                                                                     <tr align="center">
                                                                         <td>작성일</td>
@@ -364,7 +374,8 @@
                                                                         <td>관리자</td>
                                                                     </tr>
                                                                     <tr height="300">
-                                                                        <td colspan="5" align="left">${content}</td>
+
+                                                                        <td><pre colspan="5" align="left">${content}</pre></td>
                                                                     </tr>
                                                                 </table>
                                                                     <button type="button" class="btn btn-outline-secondary border">
@@ -388,7 +399,7 @@
                                         });
                                 })
 
-                                // ------------------------------delete----------------------------
+                                // ------------------------------delete
                                 $('#textEditBox').on("click", "button[name='b-delete']", function () {
 
                                     var param = document.location.href.split("?");

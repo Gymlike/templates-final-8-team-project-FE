@@ -87,7 +87,7 @@
                             </ul>
                         </li>
                         <li class="has-children">
-                            <a href="about.html">고객센터</a>
+                            <a href="contactPageIndex-inquiry.html">고객센터</a>
                             <ul class="dropdown">
                                 <li>
                                     <a href="contactPageIndex-notice.html">공지사항</a>
@@ -152,11 +152,10 @@
     <div class="section">
         <div class="container">
             <div class="row mb-5 align-items-center">
-                <div class="col-lg-6 text-center mx-auto">
 
                     <!-- 검색기능 -->
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="제목 및 내용 " aria-label="Recipient's username"
+                        <input type="text"   class="form-control" placeholder="제목 및 내용 " aria-label="Recipient's username"
                             aria-describedby="button-addon2" id="keywordInput">
                         <button class="btn btn-outline-secondary" type="button" onclick="inquirySearch()">검색</button>
                     </div>
@@ -210,7 +209,7 @@
                         $('#findbyIdandPw').hide()
                     }
                 });
-                // 전체조회
+                // -----------------전체조회-----------------
                 function showInquiry() {
                     var settings = {
                         "url": "http://localhost:8080/api/contact/inquiries",

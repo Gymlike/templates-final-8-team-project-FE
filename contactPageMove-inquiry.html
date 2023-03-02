@@ -99,7 +99,7 @@
                             </ul>
                         </li>
                         <li class="has-children">
-                            <a href="about.html">고객센터</a>
+                            <a href="contactPageIndex-inquiry.html">고객센터</a>
                             <ul class="dropdown">
                                 <li>
                                     <a href="contactPageIndex-notice.html">공지사항</a>
@@ -187,6 +187,7 @@
                                         <tr>
                                             <th>번호</th>
                                             <th>제목</th>
+                                            <th>작성자</th>
                                             <th>작성일</th>
                                         </tr>
                                     </thead>
@@ -242,14 +243,29 @@
                                 let number = inquiryId
                                 let title = rows[i]['title']
                                 let createdDate = rows[i]['createdDate']
+                                let secret = rows[i]['secret']
+                                let nickName = rows[i]['nickName']
+                                if(secret===true){
 
-                                let temp_html = ` <tr>
-                                   <td>${number}</td>
-                                   <td><a href ="contactDe-inquiry.html?${inquiryId}">${title}</td>
-                                   <th>${createdDate}</th> 
-                                 </tr>`
+                                    let temp_html = `<tr>
+                                                        <td>${number}</td>
+                                                        <td><a href ="contactDe-inquiry.html?${inquiryId}">🔐 ${title}</td>
+                                                        <th>${nickName}</th>     
+                                                        <th>${createdDate}</th> 
+                                                     </tr>`
 
                                 $('#inquiryList').append(temp_html)
+                                }else{
+                                    let temp_html = `<tr>
+                                                        <td>${number}</td>
+                                                        <td><a href ="contactDe-inquiry.html?${inquiryId}">${title}</td>
+                                                        <th>${nickName}</th>  
+                                                        <th>${createdDate}</th> 
+                                                     </tr>`
+
+                                $('#inquiryList').append(temp_html)
+                                }
+
                             }
                             //----------  페이징 처리 -----------------------
                             let page = response.page
@@ -318,29 +334,17 @@
                                 let number = inquiryId
                                 let title = rows[i]['title']
                                 let createdDate = rows[i]['createdDate']
-                                let secret = rows[i]['secret']
                                 let nickName = rows[i]['nickName']
-                                if(secret===true){
 
-                                    let temp_html = `<tr>
-                                                        <td>${number}</td>
-                                                        <td><a href ="contactDe-inquiry.html?${inquiryId}">🔐 ${title}</td>
-                                                        <th>${nickName}</th>     
-                                                        <th>${createdDate}</th> 
-                                                     </tr>`
 
-                                $('#inquiryList').append(temp_html)
-                                }else{
-                                    let temp_html = `<tr>
-                                                        <td>${number}</td>
-                                                        <td><a href ="contactDe-inquiry.html?${inquiryId}">${title}</td>
-                                                        <th>${nickName}</th>  
-                                                        <th>${createdDate}</th> 
-                                                     </tr>`
+                                let temp_html = ` <tr>
+                                                    <td>${number}</td>
+                                                    <td><a href ="contactDe-inquiry.html?${inquiryId}">${title}</td>
+                                                    <th>${nickName}</th>  
+                                                    <th>${createdDate}</th> 
+                                                  </tr>`
 
                                 $('#inquiryList').append(temp_html)
-                                }
-
                             }
 
                             //----------  페이징 처리 -----------------------

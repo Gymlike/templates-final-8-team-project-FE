@@ -93,7 +93,7 @@
                             </ul>
                         </li>
                         <li class="has-children">
-                            <a href="contactIndex.html">고객센터</a>
+                            <a href="contactPageIndex-inquiry.html">고객센터</a>
                             <ul class="dropdown">
                                 <li>
                                     <a href="contactPageIndex-notice.html">공지사항</a>
@@ -125,7 +125,7 @@
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-9 text-center mt-5">
-                    <h1 class="heading" data-aos="fade-up">1 : 1 문의</h1>
+                    <h1 class="heading" data-aos="fade-up">공지 사항</h1>
 
                     <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
                         <ol class="breadcrumb text-center justify-content-center">
@@ -181,7 +181,7 @@
     <script src="js/counter.js"></script>
     <script src="js/custom.js"></script>
     <script>
-        //--------------------[글등록버튼 누를시 실행] 이거 쓰이는 곳있음???????--------------------------------
+        //--------------------[글등록버튼 누를시 실행] --------------------------------
         function contactWrite() {
             var presignedUrlg = "이미지.jpa"
             console.log("이미지라고 나와야함 = " + presignedUrlg)
@@ -238,7 +238,7 @@
                 $.ajax(settings).done(function (response) {
                     console.log(response);
                     alert(response);
-                    //window.location = './contactPageIndex-notice.html'
+                    window.location = './contactPageIndex-notice.html'
                 });
 
             });
@@ -258,9 +258,7 @@
             console.log("함수밖에서" + presignedUrlg)
 
         }
-        //--------------------[변경 후 ]-------------------------
 
-        //--------------------[변경 전 시작 ]-------------------------
 
         document.getElementById("mypage").style.display = "none";
         document.getElementById("MainLogout").style.display = "none";

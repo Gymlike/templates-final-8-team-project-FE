@@ -125,53 +125,38 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4">
-            <h2 class="heading text-primary">5232 California Ave. 21BC</h2>
-            <p class="meta">California, United States</p>
-            <p class="text-black-50">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione
-              laborum quo quos omnis sed magnam id, ducimus saepe, debitis error
-              earum, iste dicta odio est sint dolorem magni animi tenetur.
-            </p>
-            <p class="text-black-50">
-              Perferendis eligendi reprehenderit, assumenda molestias nisi eius
-              iste reiciendis porro tenetur in, repudiandae amet libero.
-              Doloremque, reprehenderit cupiditate error laudantium qui, esse
-              quam debitis, eum cumque perferendis, illum harum expedita.
-            </p>
 
-            <div class="d-block agent-box p-5">
-              <div class="img mb-4">
-                <img
-                  src="images/person_2-min.jpg"
-                  alt="Image"
-                  class="img-fluid"
-                />
-              </div>
-              <div class="text">
-                <h3 class="mb-0">Alicia Huston</h3>
-                <div class="meta mb-3">Real Estate</div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Ratione laborum quo quos omnis sed magnam id ducimus saepe
-                </p>
-                <ul class="list-unstyled social dark-hover d-flex">
-                  <li class="me-1">
-                    <a href="#"><span class="icon-instagram"></span></a>
-                  </li>
-                  <li class="me-1">
-                    <a href="#"><span class="icon-twitter"></span></a>
-                  </li>
-                  <li class="me-1">
-                    <a href="#"><span class="icon-facebook"></span></a>
-                  </li>
-                  <li class="me-1">
-                    <a href="#"><span class="icon-linkedin"></span></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+         
+          <div class="col-lg-4">
+            <div class="container">
+                                                
+              <table class="table table-hover" width="1000" id="textBox">
+                  <tr>
+                      <td>제목 </td>
+                      <td><pre colspan="4" align="left">${title}</pre></td>
+                      </tr>
+                  <tr align="center">
+                      <td>작성일</td>
+                      <td>${createdDate}</td>
+                      <td>작성자</td>
+                      <td>관리자</td>
+                  </tr>
+                  <tr height="300">
+
+                      <td><pre colspan="5" align="left">${content}</pre></td>
+                  </tr>
+              </table>
+                  <button type="button" class="btn btn-outline-secondary border">
+                      <a href="contactPageIndex-notice.html">목록보기</a>
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary border" id="b-edit">
+                      <a href="contactEdit-notice.html?${noticeId}">수정</a>
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary border" name ='b-delete'>삭제</button>
           </div>
+          </div>
+
+
         </div>
       </div>
     </div>
