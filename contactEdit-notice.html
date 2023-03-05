@@ -188,7 +188,7 @@
 
             //--------------------[프리사인url발급요청---]-------------------------
             var presigned = {
-                "url": "http://localhost:8080/api/managers/notices/presigned",
+                "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/managers/notices/presigned",
                 "method": "POST",
                 "timeout": 0,
                 "headers": {
@@ -224,7 +224,7 @@
                 var param = document.location.href.split("?");
                 console.log("수정페이지 : "+param[1])
                 var settings = {
-                    "url": "http://localhost:8080/api/managers/notices/"+ param[1],
+                    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/managers/notices/"+ param[1],
                     "method": "PUT",
                     "timeout": 0,
                     "headers": {

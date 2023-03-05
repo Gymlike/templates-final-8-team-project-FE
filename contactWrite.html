@@ -188,7 +188,7 @@
 
             //--------------------[프리사인url발급요청---]-------------------------
             var presigned = {
-                "url": "http://localhost:8080/api/managers/notices/presigned",
+                "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/managers/notices/presigned",
                 "method": "POST",
                 "timeout": 0,
                 "headers": {
@@ -222,7 +222,7 @@
 
                 //--------------------[프리사인url발급성공시 서버에 게시글 upload요청--]-------------------------
                 var settings = {
-                    "url": "http://localhost:8080/api/managers/notices",
+                    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/managers/notices",
                     "method": "POST",
                     "timeout": 0,
                     "headers": {

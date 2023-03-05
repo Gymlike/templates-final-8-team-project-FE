@@ -196,7 +196,7 @@
         var para = document.location.href.split("?");
             console.log(para[1])
           var settings = {
-            "url": "http://localhost:8080/api/gym/"+para[1],
+            "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/"+para[1],
             "method": "GET",
             "timeout": 0, 
           }; 
@@ -396,7 +396,7 @@ $('#gym_review_write').on("click", "button[name='enrollReview']", function(){
     }
   }
   var settings = {
-  "url": "http://localhost:8080/api/gymreview/"+para[1]+"/write",
+  "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gymreview/"+para[1]+"/write",
   "method": "POST",
   "timeout": 0,
   "headers": {
@@ -446,7 +446,7 @@ $('#gymReview').on("click", "button[name='delReview']", function(){
       console.log(commentId)
       var settings = {
         // para[1]+"/deletereview/"+commentId
-  "url": "http://localhost:8080/api/gymreview/"+commentId+"/deletereview",
+  "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gymreview/"+commentId+"/deletereview",
   "method": "DELETE",
   "timeout": 0,
   "headers": {
@@ -495,7 +495,7 @@ $('#gymReview').on("click", "button[name='saveReview']", function(){
   var commentId = id_by_name.split("_")[1]
   console.log(commentId)
   var settings = {
-  "url": "http://localhost:8080/api/gymreview/"+commentId +"/putreview",
+  "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gymreview/"+commentId +"/putreview",
   "method": "PUT",
   "timeout": 0,
   "headers": {

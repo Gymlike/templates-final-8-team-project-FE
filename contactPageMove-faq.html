@@ -225,7 +225,7 @@
                         .split("?");
                     console.log(para[1])
                     var settings = {
-                        "url": "http://localhost:8080/api/faqs/check?page=" + para[1],
+                        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/faqs/check?page=" + para[1],
 
                         "method": "GET",
                         "timeout": 0
@@ -300,7 +300,7 @@
                     var para = document.location.href.split("?");
                     console.log("검색창조회시 url에서 pathvariable값 : " + para[1]) //현재페이지 url에서 pathvariable값 가져오기 
                     var settings = {
-                        "url": "http://localhost:8080/api/faqs/check/search?keyword=" + keywords + "&page=" + para[1],
+                        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/faqs/check/search?keyword=" + keywords + "&page=" + para[1],
                         "method": "GET",
                         "timeout": 0
                     };
