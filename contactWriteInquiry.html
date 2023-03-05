@@ -90,7 +90,7 @@
                                 </ul>
                             </li>
                             <li class="has-children">
-                                <a href="contactIndex.html">고객센터</a>
+                                <a href="contactPageIndex-inquiry.html">고객센터</a>
                                 <ul class="dropdown">
                                     <li>
                                         <a href="contactPageIndex-notice.html">공지사항</a>
@@ -166,11 +166,12 @@
                     <textarea class="form-control" id="contactContent" rows="3"></textarea>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                    <label class="form-check-label" for="gridCheck">
-                      비밀글
+                    <label>
+                        <input type='checkbox' id='my_checkbox'> 비밀글 
                     </label>
-                  </div>
+                    <pre id='result'>
+                    </pre>
+                </div>
                 <button
                     type="button"
                     class="btn btn-outline-secondary"
@@ -191,7 +192,7 @@
         <script>
             function contactWrite() {
                 var settings = {
-                    "url": "http://localhost:8080/api/users/contact/inquiries",
+                    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/users/contact/inquiries",
                     "method": "POST",
                     "timeout": 0,
                     "headers": {
@@ -199,7 +200,11 @@
                         "Content-Type": "application/json"
                     },
                     "data": JSON.stringify(
-                        {"title": $('#contactTitle').val(), "content": $('#contactContent').val()}
+                        {
+                         "title": $('#contactTitle').val(),
+                         "content": $('#contactContent').val(),
+                         "secret": document.getElementById('my_checkbox').checked // 비밀글 체크 박스 클릭시 true값을 가져옴
+                        }
                     )
                 };
 
@@ -227,6 +232,8 @@
             } else {
               $('#findbyIdandPw').hide()
             }
+
+
         </script>
 
     </body>

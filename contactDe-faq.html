@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="css/tiny-slider.css" />
     <link rel="stylesheet" href="css/aos.css" />
     <link rel="stylesheet" href="css/style.css" />
-
     <title>
         운동시설 사이트
     </title>
@@ -65,32 +64,44 @@
                             <a href="gym_write_post.html">운동시설등록</a>
                         </li>
                         <li class="has-children">
-                            <a href="totalBoard.html">게시판</a>
+                            <a href="properties.html">게시판</a>
                             <ul class="dropdown">
-                                <li><a href="">자유게시판</a></li>
-                                <li><a href="T_exe.html">오운완게시판</a></li>
-                                <li><a href="">오먹게시판</a></li>
+                                <li>
+                                    <a href="#">자유게시판</a>
+                                </li>
+                                <li>
+                                    <a href="T_exe.html">오운완게시판</a>
+                                </li>
+                                <li>
+                                    <a href="#">오먹게시판</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="has-children">
                             <a href="services.html">이벤트게시판</a>
                             <ul class="dropdown">
-                                <li><a href="#">유저이벤트</a></li>
-                                <li><a href="#">헬스장이벤트</a></li>
-                                <li><a href="#">사이트이벤트</a></li>
+                                <li>
+                                    <a href="#">유저이벤트</a>
+                                </li>
+                                <li>
+                                    <a href="#">헬스장이벤트</a>
+                                </li>
+                                <li>
+                                    <a href="#">사이트이벤트</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="has-children">
-                            <a href="contactPageIndex-inquiry.html.html">고객센터</a>
+                            <a href="contactPageIndex-inquiry.html">고객센터</a>
                             <ul class="dropdown">
                                 <li>
-                                    <a href="contactPageIndex-notice.html">공지사항</a>
+                                    <a href="contactPageIndex-notice">공지사항</a>
                                 </li>
                                 <li>
-                                    <a href="contactPageIndex-faq.html">FAQ</a>
+                                    <a href="contactPageIndex-faq.html" onclick="showFaq()">FAQ</a>
                                 </li>
                                 <li>
-                                    <a href="contactPageIndex-inquiry.html">1:1문의</a>
+                                    <a href="contactPageIndex-inquiry.html" >1:1문의</a>
                                 </li>
                             </ul>
                         </li>
@@ -113,7 +124,7 @@
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-9 text-center mt-5">
-                    <h1 class="heading" data-aos="fade-up">고객센터</h1>
+                    <h1 class="heading" data-aos="fade-up">FAQ</h1>
 
                     <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
                         <ol class="breadcrumb text-center justify-content-center">
@@ -131,7 +142,7 @@
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="contactPageIndex-inquiry.html">
+                                <a href="contactPageIndex-inquiry.html" >
                                     1:1 문의
                                 </a>
                             </li>
@@ -152,7 +163,9 @@
                             <div class="property-slider"></div>
 
                             <!-- 게시글 테이블 -->
-                            <div id="textEditBox"></div>
+                            <div id="textEditBox">
+                                <!-- 게시글 부분  -->
+                            </div>
 
                             <div class="site-footer">
                                 <div class="container">
@@ -283,11 +296,6 @@
                                                     document.getElementById("mypage").style.display = "none";
                                                     document.getElementById("MainLogout").style.display = "none";
                                                     document.getElementById("adminpage").style.display = "none";
-                                                    if (localStorage.getItem('accessToken') === null) {
-                                                        $('#findbyIdandPw').show()
-                                                    } else {
-                                                        $('#findbyIdandPw').hide()
-                                                    }
                                                 </script>
                                                 . All Rights Reserved. &mdash; Designed with love by
                                                 <a href="https://untree.co">Untree.co</a>
@@ -318,6 +326,89 @@
                             <script src="js/navbar.js"></script>
                             <script src="js/counter.js"></script>
                             <script src="js/custom.js"></script>
+
+                            <script>
+                                //-------- 로드실행---------------------------------------- 
+
+                                $(document).ready(function () {
+                                    var param = document
+                                        .location
+                                        .href
+                                        .split("?");
+                                    console.log(param[1])
+
+                                    var settings = {
+                                        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/faqs/check/" + param[1],
+                                        "method": "GET",
+                                        "timeout": 0
+                                    };
+
+                                    $.ajax(settings)
+                                        .done(function (response) {
+                                            console.log(response);
+                                            let faqId = response['id']
+                                            let question = response['question']
+                                            let answer = response['answer']
+                                            let createdDate = response['createdDate']
+                                            let imageUrl = response['image']
+
+                                            let temp_html = `<div class="container" id= faqBox>
+                                                                <table class="table table-hover" width="1000" id="textBox">
+                                                                    <tr>
+                                                                        <td>제목 </td>
+                                                                        <td colspan="4" align="left">${question}</td>
+                                                                        </tr>
+                                                                    <tr align="center">
+                                                                        <td>작성일</td>
+                                                                        <td>${createdDate}</td>
+                                                                        <td>작성자</td>
+                                                                        <td>관리자</td>
+                                                                    </tr>
+                                                                </table>
+                                                                    <tr height="300">
+                                                                        <td><pre colspan="5" align="left">${answer}</pre></td>
+                                                                    </tr>
+                                                               
+                                                                    <button type="button" class="btn btn-outline-secondary border">
+                                                                        <a href="contactPageIndex-faq.html">목록보기</a>
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-outline-secondary border" name ='b-edit'>
+                                                                        <a href="contactEdit-faq.html?${faqId}">수정</a>
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-outline-secondary border" name ='b-delete'>삭제</button>
+                                                                    <section class="mb-5">
+
+                                                                     </section>
+                                                             </div>`
+                                            $('#textEditBox').append(temp_html)
+
+                                        });
+                                })
+
+                                // ------------------------------delete
+                                $('#textEditBox').on("click", "button[name='b-delete']", function () {
+
+                                    var param = document.location.href.split("?");
+                                    console.log("게사글 삭제글 번호" + param[1])
+                                    var settings = {
+                                        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/faqs/" + param[1],
+                                        "method": "DELETE",
+                                        "timeout": 0,
+                                        "headers": {
+                                            "Authorization": localStorage.getItem("accessToken")
+                                        },
+                                    };
+
+                                    $.ajax(settings).done(function (response) {
+                                        console.log(response);
+                                        window.location = "./contactPageIndex-faq.html"
+                                        alert("삭제 완료");
+                                    });
+
+
+                                });
+
+                            </script>
 
 </body>
 

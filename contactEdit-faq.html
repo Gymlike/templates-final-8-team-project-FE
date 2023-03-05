@@ -77,7 +77,7 @@
                                 </ul> 
                             </li> 
                             <li class="has-children">
-                                <a href="contactPageIndex-inquiry.html">고객센터</a>
+                                <a href="contactPageIndex-inquiry.html.html">고객센터</a>
                                 <ul class="dropdown">
                                     <li>
                                         <a href="contactPageIndex-notice.html">공지사항</a>
@@ -114,7 +114,7 @@
             <div class="container">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-9 text-center mt-5">
-                        <h1 class="heading" data-aos="fade-up"> 1 : 1 문의 </h1>
+                        <h1 class="heading" data-aos="fade-up"> FAQ </h1>
 
                         <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
                             <ol class="breadcrumb text-center justify-content-center">
@@ -132,7 +132,7 @@
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="index.html">
+                                    <a href="contactPageIndex-inquiry.html">
                                         1:1 문의
                                     </a>
                                 </li>
@@ -143,7 +143,7 @@
             </div>
         </div>
         <!-- 게시글 테이블 -->
-        <div class="container" id= "t-inquiry">
+        <div class="container" id= "t-faq">
         <!-- 게시글 부분  -->
         </div>
 
@@ -163,7 +163,7 @@
             console.log("====수정페이지 : "+param[1])
 
             var settings = {
-            "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/contact/inquiries/"+ param[1],
+            "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/faqs/check/"+ param[1],
             "method": "GET",
             "timeout": 0,
             "headers": {
@@ -174,28 +174,27 @@
             $.ajax(settings).done(function (response) {
             console.log(response);
 
-            let inquiryId = response['id']
-            let title = response['title']
-            let content = response['content']
+            let faqId = response['id']
+            let question = response['question']
+            let answer = response['answer']
             let createdDate = response['createdDate']
             let username = response['username']
-            let nickName = response['nickName']
-
+            
 
             //------------------------------ 게시글 보여주기 -----------------------------------
             let temp_html =  `<form action="#">
                                     <div>
                                         <label for="exampleFormControlInput1" class="form-label">제목</label>
-                                        <textarea class="form-control" id="editInquiryTitle" rows="3" placeholder="title">${title}</textarea>
+                                        <textarea class="form-control" id="editFaqTitle" rows="3" placeholder="title">${question}</textarea>
                                     </div>
                                     <div>
                                         <label for="exampleFormControlTextarea1" class="form-label">내용</label>
-                                        <textarea class="form-control" id="editInquiryContent" rows="3">${content}</textarea>
+                                        <textarea class="form-control" id="editFaqContent" rows="3">${answer}</textarea>
                                     </div>
-                                        <button type="button" class="btn btn-outline-secondary" onclick="inquiryEdit()">등록하기</button>
-                                        <button type="button" class="btn btn-outline-secondary"><a href="contactPageIndex-inquiry.html">취소하기</a></button>          
+                                        <button type="button" class="btn btn-outline-secondary" onclick="faqEdit()">등록하기</button>
+                                        <button type="button" class="btn btn-outline-secondary"><a href="contactPageIndex-faq.html">취소하기</a></button>          
                                 </form>`
-                $('#t-inquiry').append(temp_html)
+                $('#t-faq').append(temp_html)
 
 
 
@@ -206,11 +205,11 @@
 
         //--------게시글 수정 (버튼 클릭시 ) ----------------------- 
         //수정페이지 @PathVariable 값을 url에 넣기 
-            function inquiryEdit() {
+            function faqEdit() {
                 var param = document.location.href.split("?");
                 console.log("수정페이지 : "+param[1])
                 var settings = {
-                    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/users/contact/inquiries/"+ param[1],
+                    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/faqs/"+ param[1],
                     "method": "PUT",
                     "timeout": 0,
                     "headers": {
@@ -218,8 +217,8 @@
                         "Content-Type": "application/json"
                     },
                     "data": JSON.stringify(
-                        {"title": $('#editInquiryTitle').val(), 
-                        "content": $('#editInquiryContent').val()}
+                        {"question": $('#editFaqTitle').val(), 
+                        "answer": $('#editFaqContent').val()}
                     )
                 };
 
@@ -227,7 +226,7 @@
                     .done(function (response) {
                         console.log(response);
                         alert("수정 성공")
-                        window.location = './contactPageIndex-inquiry.html'
+                        window.location = './contactPageIndex-faq.html'
                     }).fail(function(response){
                     console.log(response.responseJSON);
                     if(response.responseJSON.statusCode === 403){

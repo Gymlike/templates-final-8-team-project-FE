@@ -2,29 +2,31 @@
 <html lang="en">
 
 <head>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="js/auth/user/user.js"></script>
     <script src="js/auth/owner/owner.js"></script>
     <script src="js/auth/manager/manager.js"></script>
     <script src="js/auth/kakao/kakao.js"></script>
 
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="author" content="Untree.co"/>
-    <link rel="shortcut icon" href="favicon.png"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Untree.co" />
+    <link rel="shortcut icon" href="favicon.png" />
 
-    <meta name="description" content=""/>
-    <meta name="keywords" content="bootstrap, bootstrap5"/>
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap5" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
 
-    <link rel="stylesheet" href="fonts/icomoon/style.css"/>
-    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css"/>
-    <link rel="stylesheet" href="css/tiny-slider.css"/>
-    <link rel="stylesheet" href="css/aos.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="fonts/icomoon/style.css" />
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" />
+    <link rel="stylesheet" href="css/tiny-slider.css" />
+    <link rel="stylesheet" href="css/aos.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>
         운동시설 사이트
     </title>
@@ -48,7 +50,7 @@
                 <a style="color:white" href="login.html"><span id="MainSignUp">회원가입</span></a>
                 <a style="color:white" href="mypage.html"><span id="mypage">마이페이지</span></a>
                 <a style="color:white" href="admin.html"><span id="adminpage">관리자페이지</span></a>
-                <a style="color:white" onclick="logout()" href="index.html" ><span id="MainLogout">로그아웃</span></a>
+                <a style="color:white" onclick="logout()" href="index.html"><span id="MainLogout">로그아웃</span></a>
                 <a style="color:white" href="FIndByIdAndPw.html"><span id="findbyIdandPw">아이디 및 비밀번호 찾기</span></a>
             </ul>
         </div>
@@ -90,7 +92,7 @@
                             </ul>
                         </li>
                         <li class="has-children">
-                            <a href="about.html">고객센터</a>
+                            <a href="contactPageIndex-inquiry.html">고객센터</a>
                             <ul class="dropdown">
                                 <li>
                                     <a href="contactPageIndex-notice">공지사항</a>
@@ -99,7 +101,7 @@
                                     <a href="contactPageIndex-faq.html">FAQ</a>
                                 </li>
                                 <li>
-                                    <a href="contactPageIndex-inquiry.html" onclick="showInquiry">1:1문의</a>
+                                    <a href="contactPageIndex-inquiry.html" >1:1문의</a>
                                 </li>
                             </ul>
                         </li>
@@ -140,7 +142,7 @@
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="contactPageIndex-inquiry.html" onclick="showInquiry()">
+                                <a href="contactPageIndex-inquiry.html">
                                     1:1 문의
                                 </a>
                             </li>
@@ -162,7 +164,7 @@
 
                             <!-- 게시글 테이블 -->
                             <div id="t-inquiry">
-
+                                <!-- 게시글 부분  -->
                             </div>
 
                             <div class="site-footer">
@@ -329,11 +331,14 @@
                                 //-------- 로드실행---------------------------------------- 
                                 $(document).ready(function () {
                                     var param = document.location.href.split("?");
-                                    console.log("해당 게시글 번호 : "+ param[1])
+                                    console.log("해당 게시글 번호 : " + param[1])
 
                                     var settings = {
-                                        "url": "http://localhost:8080/api/contact/inquiries/" + param[1],
+                                        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/contact/inquiries/" + param[1],
                                         "method": "GET",
+                                        "headers": {
+                                            "Authorization": localStorage.getItem("accessToken"),
+                                        },
                                         "timeout": 0
                                     };
                                     //----------------------------------agax --------------------------- 필요변수 여기에 선언
@@ -363,19 +368,18 @@
                                                                         <td>작성자</td>
                                                                         <td>${nickName}</td>
                                                                     </tr>
-                                                                    <tr height="300">
-                                                                        <td colspan="5" align="left">${content}</td>
-                                                                    </tr>
                                                                 </table>
+                                                                    <tr height="300">
+                                                                        <td><pre colspan="5" align="left">${content}</pre></td>
+                                                                    </tr>
+                                                                
                                                                     <button type="button" class="btn btn-outline-secondary border">
                                                                         <a href="contactPageIndex-inquiry.html">목록보기</a>
                                                                     </button>
                                                                     <button type="button" class="btn btn-outline-secondary border" name ='b-edit'>
                                                                         <a href="contactEdit-inquiry.html?${inquiryId}">수정</a>
                                                                     </button>
-                                                                    <button type="button" class="btn btn-outline-secondary border" name ='b-delete'>
-                                                                        <a href="contactPageIndex-inquiry.html">삭제</a>
-                                                                    </button>
+                                                                    <button type="button" class="btn btn-outline-secondary border" name ='b-delete'>삭제</button>
                                                                     <section class="mb-5">
                                                                         <div class="card bg-light">
                                                                             <div class="card-body"  id = "commentShow">
@@ -391,32 +395,32 @@
                                             $('#t-inquiry').append(temp_html)
 
                                             showComment(response['comments'], 0)
-                                        //------------------------ 댓글 보여주기 ------------------------
+                                            //------------------------ 댓글 보여주기 ------------------------
 
                                             function showComment(commentList, depth) {
-                                                            if (commentList.length === 0) {
-                                                                return; //탈출조건 
-                                                            }
+                                                if (commentList.length === 0) {
+                                                    return; //탈출조건 
+                                                }
 
-                                                            for (let index = 0; index < commentList.length; index++) {
-                                                                const singleComment = commentList[index];
-                                                                const depth = singleComment['depth']
+                                                for (let index = 0; index < commentList.length; index++) {
+                                                    const singleComment = commentList[index];
+                                                    const depth = singleComment['depth']
 
-                                                                let temp_html = makeCommentHtml(singleComment,depth)
-                                                                $('#commentShow').append(temp_html)
-                                                                showComment(singleComment['children'], depth);
-                                                            }
+                                                    let temp_html = makeCommentHtml(singleComment, depth)
+                                                    $('#commentShow').append(temp_html)
+                                                    showComment(singleComment['children'], depth);
+                                                }
 
-                                                        }
-                                            function makeCommentHtml(singleComment,depth) {
+                                            }
+                                            function makeCommentHtml(singleComment, depth) {
                                                 var space = ""
                                                 var point = ""
-                                                if(depth>=2){
-                                                    point ="ㄴ "
+                                                if (depth >= 2) {
+                                                    point = "ㄴ "
                                                 }
                                                 for (let i = 1; i < depth; i++) {
-                                                        space = space + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"
-                                                    }
+                                                    space = space + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"
+                                                }
                                                 var nickName = singleComment['nickName']
                                                 return `<div class="d-flex">                       
                                                                     <div class="ms-3">
@@ -444,27 +448,28 @@
                                                                         </p>
                                                                     </div>
                                                                 </div>`
-                                                }
-                                // ----------------------------------댓글보여주기 끝--------------------------------------------
-                                         }).fail(function (response) {   //실패시 실행 
-                                        console.log(response.responseJSON);
-                                        if (response.responseJSON.statusCode === 404) {
-                                            alert(response.responseJSON.message)
-                                        }
+                                            }
+                                            // ----------------------------------댓글보여주기 끝--------------------------------------------
+                                        }).fail(function (respons, statusCode) {   //실패시 실행 
+                                            console.log("상세페이지 이동 실패시" + respons + "코드" + statusCode);
+                                            if (statusCode === "error") {
+                                                alert("회원 및 해당 글의 회원만 접근 가능한 글입니다.")
+                                                window.location = './contactPageIndex-inquiry.html'
+                                            }
                                         });
-                                // ----------------------------------ajax get 끝--------------------------------------------
+
+                                    // ----------------------------------ajax get 끝--------------------------------------------
                                 });
 
                                 // ----------------------------------로드시 실행되는부분 끝-------------------------------------------
-        
- 
+
 
                                 // ----------------------------------[해당버튼 클릭시 댓글쓰기]-----------------------------------------------------
 
                                 $('#t-inquiry').on("click", "button[name='b-commentSave']", function () {
                                     var param = document.location.href.split("?");
                                     var settings = {
-                                        "url": "http://localhost:8080/api/comments/inquiry/" + param[1],
+                                        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/comments/inquiry/" + param[1],
                                         "method": "POST",
                                         "timeout": 0,
                                         "headers": {
@@ -480,229 +485,170 @@
                                         console.log(response);
                                         alert(response)
                                         window.location.reload()
-                                    }).fail(function(response){
-                                    console.log(response.responseJSON);
-                                    if(response.responseJSON.statusCode === 403){
-                                    alert(response.responseJSON.message)
-                                    }
-                                    if(response.responseJSON.statusCode === 404){
-                                        alert(response.responseJSON.message)
-                                    }
+                                    }).fail(function (response) {
+                                        console.log(response.responseJSON);
+                                        if (response.responseJSON.statusCode === 403) {
+                                            alert(response.responseJSON.message)
+                                        }
+                                        if (response.responseJSON.statusCode === 404) {
+                                            alert(response.responseJSON.message)
+                                        }
                                     });
                                 })
                                 //------------------------------------------------------------------------------------------
 
-
-
-                                // //-------[★게시글수정/ 해당 버튼 클릭시 기존데이터 불러와서 수정창에 붙이기 ]-----------
-                                // $('#t-inquiry').on("click", "button[name = 'd-edit']",function(){
-                                //     var param = document.location.href.split("?"); //현재 위치 유알엘 가져 와서 , 수정할 페이지 값 받아오는 방법 
-                                //     console.log("====수정페이지 : "+param[1])
-
-                                //     var settings = {
-                                //     "url": "localhost:8080/api/contact/inquiries"+ param[1],
-                                //     "method": "GET",
-                                //     "timeout": 0,
-                                //     "headers": {
-                                //         "Authorization": localStorage.getItem('accessToken')
-                                //     },
-                                //     };
-
-                                //     $.ajax(settings).done(function (response) {
-                                //     console.log("가져온 데이터:"+response);
-                                //     });
-
-    
-                                // })
-                                // //------------------------------------------------------------------------------------------
-
                                 // -----[해당 버튼 클릭시 댓글삭제]-----------
 
-                                $('#t-inquiry').on("click", "button[name='delComment']", function(){
+                                $('#t-inquiry').on("click", "button[name='delComment']", function () {
                                     var id_by_name = $(this).attr('id')
                                     console.log(id_by_name)
                                     var commentId = id_by_name.split("_")[1]
                                     console.log(commentId)
                                     var settings = {
-                                    "url": "http://localhost:8080/api/comments/"+commentId+"/inquiry",
-                                    "method": "DELETE",
-                                    "timeout": 0,
-                                    "headers": {
-                                        "Authorization": localStorage.getItem('accessToken')
-                                    },
-                                };
-
-                                $.ajax(settings).done(function (response) {
-                                    console.log(response);
-                                    alert(response)
-                                    window.location.reload();
-
-                                }).fail(function(response){
-                                    console.log(response.responseJSON);
-                                    if(response.responseJSON.statusCode === 403){
-                                    alert(response.responseJSON.message)
-                                    }
-                                    if(response.responseJSON.statusCode === 404){
-                                        alert(response.responseJSON.message)
-                                    }
-                                    });
-                                })
-                                    // -----[해당 버튼 클릭시 답글 수정 창 나옴]-------------------
-
-                                    $('#t-inquiry').on("click", "button[name='editComment']", function(){
-                                    var id_by_name = $(this).attr('id')
-                                    var commentId =id_by_name.split("_")[1]
-                                    $("#toggleEdit_"+commentId).toggle();
-                                    })
-                                    // ---------------------------------------------------------
-
-                                    // -----[해당 버튼 클릭시 댓글수정 요청]----------------------
-                                    $('#t-inquiry').on("click", "button[name='saveEdit']", function(){    
-                                        var id_by_name = $(this).attr('id')
-                                        var commentId = id_by_name.split("_")[1]
-                                        var settings = {
-                                    "url": "http://localhost:8080/api/comments/"+commentId+"/inquiry",
-                                    "method": "PUT",
-                                    "timeout": 0,
-                                    "headers": {
-                                    "Authorization": localStorage.getItem('accessToken'),
-                                    "Content-Type": "application/json"
-                                    },
-                                    "data": JSON.stringify({
-                                    "comments": $('#editCommentContent_'+commentId).val()
-                                    }),
+                                        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/comments/" + commentId + "/inquiry",
+                                        "method": "DELETE",
+                                        "timeout": 0,
+                                        "headers": {
+                                            "Authorization": localStorage.getItem('accessToken')
+                                        },
                                     };
 
                                     $.ajax(settings).done(function (response) {
-                                    console.log(response);
-                                    alert(response)
-                                    window.location.reload();
-                                    }).fail(function(response){
-                                    console.log(response.responseJSON);
-                                    if(response.responseJSON.statusCode === 403){
-                                    alert(response.responseJSON.message)
-                                    }
-                                    if(response.responseJSON.statusCode === 404){
-                                        alert("다른 유저의 댓글은 수정할 수 없습니다.")
-                                    }
-                                    });
-                                    })
-                                    
-                                    // ---------------------------------------------------------
-                                    // -----[해당 버튼 클릭시 답글적는창 나옴]-------------------
-
-
-                                    $('#t-inquiry').on("click", "button[name='creatRe']", function(){
-                                        var id_by_name = $(this).attr('id')
-                                        console.log(id_by_name)
-                                        var commentId =id_by_name.split("_")[1]
-                                        console.log("★"+commentId)                                    
-                                        $("#toggleRe_"+commentId).toggle();
-
-                                    })
-                                    // ---------------------------------------------------------
-
-                                    // -----[해당 버튼 클릭시 답글DB로 보냄]-------------------todo : 답글보여지는 위치에서 에러남 
-                                    $('#t-inquiry').on("click", "button[name='saveRe']", function(){
-                                        var param = document.location.href.split("?");
-                                        console.log(param[1])
-
-                                        var id_by_name = $(this).attr('id')
-                                        console.log(id_by_name)
-                                        var commentId = id_by_name.split("_")[1]
-                                        console.log("☆"+commentId)
-                                        var settings = {
-                                            "url": "http://localhost:8080/api/comments/inquiry/"+param[1],
-                                            "method": "POST",
-                                            "timeout": 0,
-                                            "headers": {
-                                                "Authorization": localStorage.getItem('accessToken'),
-                                                "Content-Type": "application/json"
-                                            },
-                                            "data": JSON.stringify({
-                                                "comments": $('#replyCommentContent_'+commentId).val(),
-                                                "parentId": commentId
-                                    }),
-                                    };
-
-                                    $.ajax(settings).done(function (response) {
-                                    console.log(response);
-                                    alert(response)
-                                    window.location.reload();
-                                    }).fail(function(response){
-                                    console.log(response.responseJSON);
-                                    if(response.responseJSON.statusCode === 403){
-                                    alert(response.responseJSON.message)
-                                    window.location.reload();
-                                    }
-                                    if(response.responseJSON.statusCode === 404){
-                                        alert(response.responseJSON.message)
+                                        console.log(response);
+                                        alert(response)
                                         window.location.reload();
-                                    }
+
+                                    }).fail(function (response) {
+                                        console.log(response.responseJSON);
+                                        if (response.responseJSON.statusCode === 403) {
+                                            alert(response.responseJSON.message)
+                                        }
+                                        if (response.responseJSON.statusCode === 404) {
+                                            alert(response.responseJSON.message)
+                                        }
+                                    });
+                                })
+                                // -----[해당 버튼 클릭시 답글 수정 창 나옴]-------------------
+
+                                $('#t-inquiry').on("click", "button[name='editComment']", function () {
+                                    var id_by_name = $(this).attr('id')
+                                    var commentId = id_by_name.split("_")[1]
+                                    $("#toggleEdit_" + commentId).toggle();
+                                })
+                                // ---------------------------------------------------------
+
+                                // -----[해당 버튼 클릭시 댓글수정 요청]----------------------
+                                $('#t-inquiry').on("click", "button[name='saveEdit']", function () {
+                                    var id_by_name = $(this).attr('id')
+                                    var commentId = id_by_name.split("_")[1]
+                                    var settings = {
+                                        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/comments/" + commentId + "/inquiry",
+                                        "method": "PUT",
+                                        "timeout": 0,
+                                        "headers": {
+                                            "Authorization": localStorage.getItem('accessToken'),
+                                            "Content-Type": "application/json"
+                                        },
+                                        "data": JSON.stringify({
+                                            "comments": $('#editCommentContent_' + commentId).val()
+                                        }),
+                                    };
+
+                                    $.ajax(settings).done(function (response) {
+                                        console.log(response);
+                                        alert(response)
+                                        window.location.reload();
+                                    }).fail(function (response) {
+                                        console.log(response.responseJSON);
+                                        if (response.responseJSON.statusCode === 403) {
+                                            alert(response.responseJSON.message)
+                                        }
+                                        if (response.responseJSON.statusCode === 404) {
+                                            alert("다른 유저의 댓글은 수정할 수 없습니다.")
+                                        }
                                     });
                                 })
 
-                                    // ---------------------------------------------------------
-                                    //-------------------------------게시글 삭제(해당유저)--------------------------------------------
-                                    $('textBox').on("click", "button[name='b-delete']", function () {
-                                        var param = document.location.href.split("?");
-                                        console.log(param[1])
+                                // ---------------------------------------------------------
+                                // -----[해당 버튼 클릭시 답글적는창 나옴]-------------------
 
-                                        var settings = {
-                                            "url": "http://localhost:8080/api/users/contact/inquiries/" + param[1],
-                                            "method": "DELETE",
-                                            "timeout": 0,
-                                            "headers": {
-                                                "Authorization": localStorage.getItem("accessToken")
-                                            }
-                                        };
 
-                                        $
-                                            .ajax(settings)
-                                            .done(function (response) {
-                                                console.log(response);
-                                                alert("삭제 완료");
-                                            }).fail(function(response){
-                                            console.log(response.responseJSON);
-                                            if(response.responseJSON.statusCode === 403){
+                                $('#t-inquiry').on("click", "button[name='creatRe']", function () {
+                                    var id_by_name = $(this).attr('id')
+                                    console.log(id_by_name)
+                                    var commentId = id_by_name.split("_")[1]
+                                    console.log("★" + commentId)
+                                    $("#toggleRe_" + commentId).toggle();
+
+                                })
+                                // ---------------------------------------------------------
+
+                                // -----[해당 버튼 클릭시 답글DB로 보냄]-------------------todo : 답글보여지는 위치에서 에러남 
+                                $('#t-inquiry').on("click", "button[name='saveRe']", function () {
+                                    var param = document.location.href.split("?");
+                                    console.log(param[1])
+
+                                    var id_by_name = $(this).attr('id')
+                                    console.log(id_by_name)
+                                    var commentId = id_by_name.split("_")[1]
+                                    console.log("☆" + commentId)
+                                    var settings = {
+                                        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/comments/inquiry/" + param[1],
+                                        "method": "POST",
+                                        "timeout": 0,
+                                        "headers": {
+                                            "Authorization": localStorage.getItem('accessToken'),
+                                            "Content-Type": "application/json"
+                                        },
+                                        "data": JSON.stringify({
+                                            "comments": $('#replyCommentContent_' + commentId).val(),
+                                            "parentId": commentId
+                                        }),
+                                    };
+
+                                    $.ajax(settings).done(function (response) {
+                                        console.log(response);
+                                        alert(response)
+                                        window.location.reload();
+                                    }).fail(function (response) {
+                                        console.log(response.responseJSON);
+                                        if (response.responseJSON.statusCode === 403) {
                                             alert(response.responseJSON.message)
-                                            }
-                                            if(response.responseJSON.statusCode === 404){
-                                                alert(response.responseJSON.message)
-                                            }
-                                            });
-                                    })
-                                    //-------------------------------게시글 삭제(관리자)--------------------------------------------
-                                    $('#textBox').on("click", "button[name='b-delete']", function () {
-                                        var param = document.location.href.split("?");
-                                        console.log(param[1])
-
-                                        var settings = {
-                                            "url": "http://localhost:8080/api/managers/contact/inquiries/" + param[1],
-                                            "method": "DELETE",
-                                            "timeout": 0,
-                                            "headers": {
-                                                "Authorization": localStorage.getItem("accessToken")
-                                            }
-                                        };
-
-                                        $
-                                            .ajax(settings)
-                                            .done(function (response) {
-                                                console.log(response);
-                                                let inquiryId = response['id']
-                                                alert("삭제 완료");
-                                            }).fail(function(response){
-                                            console.log(response.responseJSON);
-                                            if(response.responseJSON.statusCode === 403){
+                                            window.location.reload();
+                                        }
+                                        if (response.responseJSON.statusCode === 404) {
                                             alert(response.responseJSON.message)
-                                            }
-                                            if(response.responseJSON.statusCode === 404){
-                                                alert(response.responseJSON.message)
-                                            }
-                                            });
-                                    })
-   
+                                            window.location.reload();
+                                        }
+                                    });
+                                })
+
+                                // ---------------------------------------------------------
+                                //-------------------------------게시글 삭제(해당유저)--------------------------------------------
+                                $('#t-inquiry').on("click", "button[name='b-delete']", function () {
+
+                                    var param = document.location.href.split("?");
+                                    console.log("게사글 삭제글 번호" + param[1])
+                                    var settings = {
+                                        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/users/contact/inquiries/" + param[1],
+                                        "method": "DELETE",
+                                        "timeout": 0,
+                                        "headers": {
+                                            "Authorization": localStorage.getItem("accessToken")
+                                        },
+                                    };
+
+                                    $.ajax(settings).done(function (response) {
+                                        console.log(response);
+                                        window.location = "./contactPageIndex-inquiry.html"
+                                        alert("삭제 완료");
+                                    });
+
+
+                                });
+
+
+
 
                             </script>
 

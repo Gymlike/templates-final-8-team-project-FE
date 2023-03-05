@@ -11,7 +11,7 @@ document.querySelector('.img__btn').addEventListener('click', function () {
 // 상단 프로필
 function getKakaoMe() {
     var settings = {
-        "url": "http://localhost:8080/api/profile/kakao",
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/profile/kakao",
         "method": "GET",
         "timeout": 0,
         "headers": {

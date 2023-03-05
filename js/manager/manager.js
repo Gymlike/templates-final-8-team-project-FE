@@ -1,7 +1,7 @@
 //리스트
 $(document).ready(function () {
     var settings = {
-        "url": "http://localhost:8080/api/manager/standby",
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/manager/standby",
         "method": "GET",
         "timeout": 0,
     };
@@ -39,7 +39,7 @@ $('#standbylist').on("click", "button[name='allowmanager']", function () {
     console.log(id)
 
     var settings = {
-        "url": "http://localhost:8080/api/manager/standby/" + id,
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/manager/standby/" + id,
         "method": "PATCH",
         "timeout": 0,
     };
@@ -61,7 +61,7 @@ $('#standbylist').on("click", "button[name='refusemanager']", function () {
     console.log(id)
 
     var settings = {
-        "url": "http://localhost:8080/api/manager/standby/" + id,
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/manager/standby/" + id,
         "method": "DELETE",
         "timeout": 0,
     };

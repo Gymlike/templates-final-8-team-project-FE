@@ -73,17 +73,29 @@
                         <li class="has-children">
                             <a href="totalBoard.html">게시판</a>
                             <ul class="dropdown">
-                                <li><a href="">자유게시판</a></li>
-                                <li><a href="T_exe.html">오운완게시판</a></li>
-                                <li><a href="">오먹게시판</a></li>
+                                <li>
+                                    <a href="#">자유게시판</a>
+                                </li>
+                                <li>
+                                    <a href="T_exe.html">오운완게시판</a>
+                                </li>
+                                <li>
+                                    <a href="#">오먹게시판</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="has-children">
                             <a href="services.html">이벤트게시판</a>
                             <ul class="dropdown">
-                                <li><a href="#">유저이벤트</a></li>
-                                <li><a href="#">헬스장이벤트</a></li>
-                                <li><a href="#">사이트이벤트</a></li>
+                                <li>
+                                    <a href="#">유저이벤트</a>
+                                </li>
+                                <li>
+                                    <a href="#">헬스장이벤트</a>
+                                </li>
+                                <li>
+                                    <a href="#">사이트이벤트</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="has-children">
@@ -105,7 +117,6 @@
                         </li>
                     </ul>
 
-
                     <a href="#"
                         class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
                         data-toggle="collapse" data-target="#main-navbar">
@@ -120,7 +131,7 @@
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-9 text-center mt-5">
-                    <h1 class="heading" data-aos="fade-up">1 : 1 문의</h1>
+                    <h1 class="heading" data-aos="fade-up">공지사항</h1>
 
                     <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
                         <ol class="breadcrumb text-center justify-content-center">
@@ -133,12 +144,12 @@
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="contactPageIndex-faq.html">
+                                <a href="contactPageIndex-faq.html" onclick="showFaq()">
                                     FAQ
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="contactPageIndex-inquiry.html" onclick="showInquiry()">
+                                <a href="contactPageIndex-inquiry.html">
                                     1:1 문의
                                 </a>
                             </li>
@@ -152,12 +163,13 @@
     <div class="section">
         <div class="container">
             <div class="row mb-5 align-items-center">
+                <div class="col-lg-6 text-center mx-auto">
 
                     <!-- 검색기능 -->
                     <div class="input-group mb-3">
-                        <input type="text"   class="form-control" placeholder="제목 및 내용 " aria-label="Recipient's username"
+                        <input type="text" class="form-control" placeholder="제목 및 내용 " aria-label="Recipient's username"
                             aria-describedby="button-addon2" id="keywordInput">
-                        <button class="btn btn-outline-secondary" type="button" onclick="inquirySearch()">검색</button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="faqSearch()">검색</button>
                     </div>
                 </div>
                 <div class="row">
@@ -168,21 +180,17 @@
                             <!-- 게시글 목록 -->
                             <div class="container">
                                 <button type="button" class="btn btn-outline-secondary border">
-                                    <a href="contactWriteInquiry.html">글쓰기</a>
+                                    <a href="contactWriteFaq.html">글쓰기</a>
                                 </button>
                                 <table class="table table-hover table-striped " style="border:1px solid;">
                                     <thead>
                                         <tr>
                                             <th>번호</th>
                                             <th>제목</th>
-                                            <th>작성자</th>
                                             <th>작성일</th>
-                                            <!-- <th>조회수</th> -->
                                         </tr>
                                     </thead>
-                                    <tbody id="inquiryList">
-
-                                    </tbody>
+                                    <tbody id= "faqList"></tbody>
 
                                 </table>
                             </div>
@@ -193,7 +201,7 @@
                     <div class="row align-items-center py-5">
                         <div class="col-lg-3">Pagination (1 of 10)</div>
                         <div class="col-lg-6 text-center">
-                            <div class="custom-pagination" id="inquiryPaging">
+                            <div class="custom-pagination" id="faqPaging">
                                 <!-- 페이지번호 temp_html -->
                             </div>
                         </div>
@@ -202,21 +210,27 @@
             </div>
             <script>
                 $(document).ready(function () {
-                    showInquiry();
+                    showFaq();
                     if (localStorage.getItem('accessToken') === null) {
                         $('#findbyIdandPw').show()
                     } else {
                         $('#findbyIdandPw').hide()
                     }
                 });
-                // -----------------전체조회-----------------
-                function showInquiry() {
+                //-------------------- 전체조회 --------------------------------
+                function showFaq() {
+                    var para = document
+                        .location
+                        .href
+                        .split("?");
+                    console.log(para[1])
                     var settings = {
-                        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/contact/inquiries",
-                        
+                        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/faqs/check?page=" + para[1],
+
                         "method": "GET",
                         "timeout": 0
                     };
+
 
                     $
                         .ajax(settings)
@@ -224,34 +238,20 @@
                             console.log(response);
                             let rows = response.data
                             for (let i = 0; i < rows.length; i++) {
-                                let inquiryId = rows[i]['id']
-                                let number = inquiryId
-                                let title = rows[i]['title']
+                                let faqId = rows[i]['id']
+                                let number = faqId
+                                let question = rows[i]['question']
                                 let createdDate = rows[i]['createdDate']
-                                let secret = rows[i]['secret']
-                                let nickName = rows[i]['nickName']
-                                if(secret===true){
 
-                                    let temp_html = `<tr>
-                                                        <td>${number}</td>
-                                                        <td><a href ="contactDe-inquiry.html?${inquiryId}">🔐 ${title}</td>
-                                                        <th>${nickName}</th>     
-                                                        <th>${createdDate}</th> 
-                                                     </tr>`
+                                let temp_html = ` <tr>
+                                   <td>${number}</td>
+                                   <td><a href ="contactDe-faq.html?${faqId}">${question}</td>
+                                   <th>${createdDate}</th> 
+                                 </tr>`
 
-                                $('#inquiryList').append(temp_html)
-                                }else{
-                                    let temp_html = `<tr>
-                                                        <td>${number}</td>
-                                                        <td><a href ="contactDe-inquiry.html?${inquiryId}">${title}</td>
-                                                        <th>${nickName}</th>  
-                                                        <th>${createdDate}</th> 
-                                                     </tr>`
-
-                                $('#inquiryList').append(temp_html)
-                                }
-
+                                $('#faqList').append(temp_html)
                             }
+                            //----------  페이징 처리 -----------------------
                             let page = response.page
                             let totalCount = response.totalCount
                             let countPage = response.countPage
@@ -265,35 +265,119 @@
                                 endPage = totalPage
                             }
 
+
+                            var param = document.location.href.split("?");
+                            console.log("현재페이지 : " + param[1])
+                            //이전페이지
+                            if (page > 1) {
+                                let temp_html = `<a href="contactPageMove-faq.html?${page - 1}">pre</a>`
+                                $('#faqPaging').append(temp_html);
+                            }
+                            //한 화면에 보여지는 페이지 수만큼 반복 하여 번호로 나타냄
                             for (let i = startPage; i <= endPage; i++) {
                                 let number = i
-                                let temp_html = `<a href="contactPageMove-inquiry.html?${number}">${number}</a>`
+                                let temp_html = `<a href="contactPageMove-faq.html?${number}">${number}</a>`
+                                $('#faqPaging').append(temp_html);
+                            }
+                            //다음페이지 page
+                            if (page < totalPage) {
+                                let temp_html = `<a href="contactPageMove-faq.html?${page + 1}">next</a>`
 
-                                $('#inquiryPaging').append(temp_html);
+                                $('#faqPaging').append(temp_html);
                             }
-                        }).fail(function (response,status) {
-                            console.log(response.responseJSON);
-                            if(status === 400){
-                                alert('비회원 접근 할 수 없습니다.')
+
+                        });
+                }
+
+                //------------------------------- 검색창조회 -------------------------------------------------
+                $(document).ready(function () {
+                    var keywords = localStorage.getItem('searching')//로컬스토리지에서 가져오기 
+                    console.log("keyword : " + keywords)
+
+                    if (keywords === null) {
+                        keywords = ""
+                    }
+                    var para = document.location.href.split("?");
+                    console.log("검색창조회시 url에서 pathvariable값 : " + para[1]) //현재페이지 url에서 pathvariable값 가져오기 
+                    var settings = {
+                        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/faqs/check/search?keyword=" + keywords + "&page=" + para[1],
+                        "method": "GET",
+                        "timeout": 0
+                    };
+
+                    $.ajax(settings)
+                        .done(function (response) {
+                            $('#faqList').empty()
+                            $('#faqPaging').empty()
+
+                            console.log("검색리스트" + response.data);
+                            let rows = response.data;
+
+                            for (let i = 0; i < rows.length; i++) {
+                                let faqId = rows[i]['id']
+                                let number = faqId
+                                let question = rows[i]['question']
+                                let createdDate = rows[i]['createdDate']
+                                    let temp_html = `<tr>
+                                                        <td>${number}</td>
+                                                        <td><a href ="contactDe-faq.html?${faqId}">${question}</td>
+                                                        <th>${createdDate}</th> 
+                                                     </tr>`
+
+                                $('#faqList').append(temp_html)
+                                
+
                             }
-                            if (response.responseJSON.statusCode === 403) {
-                                alert(response.responseJSON.message)
+
+                            //----------  페이징 처리 -----------------------
+                            let page = response.page
+                            let totalCount = response.totalCount
+                            let countPage = response.countPage
+                            let startPage = ((page - 1) / 10) * 10 + 1;
+                            let endPage = startPage + countPage - 1;
+                            let totalPage = response.totalPage;
+                            if (totalPage < page) {
+                                page = totalPage;
                             }
-                            if (response.responseJSON.statusCode === 404) {
-                                alert(response.responseJSON.message)
+                            if (endPage > totalPage) {
+                                endPage = totalPage
+                            }
+
+
+                            var param = document.location.href.split("?");
+                            console.log("현재페이지 : " + param[1])
+                            //이전페이지
+                            if (page > 1) {
+                                let temp_html = `<a href="contactPageMove-faq.html?${page - 1}">pre</a>`
+                                $('#faqPaging').append(temp_html);
+                            }
+                            //한 화면에 보여지는 페이지 수만큼 반복 하여 번호로 나타냄
+                            for (let i = startPage; i <= endPage; i++) {
+                                let number = i
+                                let temp_html = `<a href="contactPageMove-faq.html?${number}">${number}</a>`
+                                $('#faqPaging').append(temp_html);
+                            }
+                            //다음페이지 page
+                            if (page < totalPage) {
+                                let temp_html = `<a href="contactPageMove-faq.html?${page + 1}">next</a>`
+
+                                $('#faqPaging').append(temp_html);
                             }
                         });
+                })
 
-                }
-
-                //------------------ 검색창조회 -------------------------------
-
-                function inquirySearch() {
+                //------------------------페이지 처리 끝 -----------------------
+                //-----------검색창 끝 --------------------------------------
+                //------------현 페이지 검색 버튼 클릭시 검색함수 -----------------
+                function faqSearch() {
                     var keywords = $('#keywordInput').val();
+                    $('#faqList').empty()
+                    $('#faqPaging').empty()
                     localStorage.setItem('searching', keywords) //로컬스토리지에 키워드 저장 
                     console.log(keywords)
-                    window.location = './contactPageMove-inquiry.html?1'
+                    window.location = './contactPageMove-faq.html?1'
                 }
+                //--------------------------------------------------------------
             </script>
             <div class="site-footer">
                 <div class="container">

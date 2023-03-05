@@ -58,7 +58,7 @@ $(function(){
 });
 // function getFinByUserIdWithEmail(){ 
 // 		var settings = {
-// 			"url": "http://localhost:8080/api/findbyusername?email="+$('#getfindemail').val(),
+// 			"url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/findbyusername?email="+$('#getfindemail').val(),
 // 			"method": "GET",
 // 			"timeout": 0,
 // 		};
@@ -80,7 +80,7 @@ $(function(){
 
 	function SignUp(){
 		var settings = {
-			"url": "http://localhost:8080/api/signup",
+			"url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/signup",
 			"method": "POST",
 			"timeout": 0,
 			"headers": {
@@ -103,7 +103,7 @@ $(function(){
 	
 	function SignIn(){
 		var settings = {
-			"url": "http://localhost:8080/api/user/login",
+			"url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/user/login",
 			"method": "POST",
 			"timeout": 0,
 			"headers": {
@@ -131,7 +131,7 @@ $(function(){
 	}
 	function Logout(){
 		var settings = {
-			"url": "http://localhost:8080/api/logout",
+			"url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/logout",
 			"method": "DELETE",
 			"timeout": 0,
 			"headers": {
