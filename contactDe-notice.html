@@ -95,13 +95,13 @@
                             <a href="contactPageIndex-inquiry.html">고객센터</a>
                             <ul class="dropdown">
                                 <li>
-                                    <a href="contactPageIndex-notice">공지사항</a>
+                                    <a href="contactPageIndex-notice.html">공지사항</a>
                                 </li>
                                 <li>
                                     <a href="contactPageIndex-faq.html">FAQ</a>
                                 </li>
                                 <li>
-                                    <a href="contactPageIndex-inquiry.html" onclick="showInquiry">1:1문의</a>
+                                    <a href="contactPageIndex-inquiry.html" >1:1문의</a>
                                 </li>
                             </ul>
                         </li>
@@ -124,7 +124,7 @@
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-9 text-center mt-5">
-                    <h1 class="heading" data-aos="fade-up">1 : 1 문의</h1>
+                    <h1 class="heading" data-aos="fade-up">공지사항</h1>
 
                     <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
                         <ol class="breadcrumb text-center justify-content-center">
@@ -142,7 +142,7 @@
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="contactPageIndex-inquiry.html" onclick="showInquiry()">
+                                <a href="contactPageIndex-inquiry.html" >
                                     1:1 문의
                                 </a>
                             </li>
@@ -338,7 +338,7 @@
                                     console.log(param[1])
 
                                     var settings = {
-                                        "url": "http://localhost:8080/api/managers/notices/check/" + param[1],
+                                        "url": "http://localhost:8080/api/managers/notices/check/"+ param[1],
                                         "method": "GET",
                                         "timeout": 0
                                     };
@@ -356,7 +356,6 @@
                                                                 <div class="col-lg-7">
                                                                     <div class="img-property-slide-wrap">
                                                                     <div class="img-property-slide">
-                                                                        <img src="제목을 입력해주세요_-001.jpg" alt="Image" class="img-fluid" />
                                                                         <img src="${imageUrl}" alt="Image" class="img-fluid" />
                                                                     </div>
                                                                     </div>
@@ -373,11 +372,12 @@
                                                                         <td>작성자</td>
                                                                         <td>관리자</td>
                                                                     </tr>
+                                                                </table>
                                                                     <tr height="300">
 
                                                                         <td><pre colspan="5" align="left">${content}</pre></td>
                                                                     </tr>
-                                                                </table>
+                                                                
                                                                     <button type="button" class="btn btn-outline-secondary border">
                                                                         <a href="contactPageIndex-notice.html">목록보기</a>
                                                                     </button>

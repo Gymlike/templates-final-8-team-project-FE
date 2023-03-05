@@ -139,12 +139,12 @@
                                 <a href="index.html">메인</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="contactPageIndex-notice.html" onclick="showNotice()">
+                                <a href="contactPageIndex-notice.html">
                                     공지사항
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="contactPageIndex-faq.html">
+                                <a href="contactPageIndex-faq.html" onclick="showFaq()">
                                     FAQ
                                 </a>
                             </li>
@@ -169,7 +169,7 @@
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="제목 및 내용 " aria-label="Recipient's username"
                             aria-describedby="button-addon2" id="keywordInput">
-                        <button class="btn btn-outline-secondary" type="button" onclick="noticeSearch()">검색</button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="faqSearch()">검색</button>
                     </div>
                 </div>
                 <div class="row">
@@ -180,7 +180,7 @@
                             <!-- 게시글 목록 -->
                             <div class="container">
                                 <button type="button" class="btn btn-outline-secondary border">
-                                    <a href="contactWrite.html">글쓰기</a>
+                                    <a href="contactWriteFaq.html">글쓰기</a>
                                 </button>
                                 <table class="table table-hover table-striped " style="border:1px solid;">
                                     <thead>
@@ -190,7 +190,7 @@
                                             <th>작성일</th>
                                         </tr>
                                     </thead>
-                                    <tbody id= "noticeList"></tbody>
+                                    <tbody id= "faqList"></tbody>
 
                                 </table>
                             </div>
@@ -201,7 +201,7 @@
                     <div class="row align-items-center py-5">
                         <div class="col-lg-3">Pagination (1 of 10)</div>
                         <div class="col-lg-6 text-center">
-                            <div class="custom-pagination" id="noticePaging">
+                            <div class="custom-pagination" id="faqPaging">
                                 <!-- 페이지번호 temp_html -->
                             </div>
                         </div>
@@ -210,7 +210,7 @@
             </div>
             <script>
                 $(document).ready(function () {
-                    showNotice();
+                    showFaq();
                     if (localStorage.getItem('accessToken') === null) {
                         $('#findbyIdandPw').show()
                     } else {
@@ -218,14 +218,14 @@
                     }
                 });
                 //-------------------- 전체조회 --------------------------------
-                function showNotice() {
+                function showFaq() {
                     var para = document
                         .location
                         .href
                         .split("?");
                     console.log(para[1])
                     var settings = {
-                        "url": "http://localhost:8080/api/managers/notices/check?page=" + para[1],
+                        "url": "http://localhost:8080/api/faqs/check?page=" + para[1],
 
                         "method": "GET",
                         "timeout": 0
@@ -238,18 +238,18 @@
                             console.log(response);
                             let rows = response.data
                             for (let i = 0; i < rows.length; i++) {
-                                let noticeId = rows[i]['id']
-                                let number = noticeId
-                                let title = rows[i]['title']
+                                let faqId = rows[i]['id']
+                                let number = faqId
+                                let question = rows[i]['question']
                                 let createdDate = rows[i]['createdDate']
 
                                 let temp_html = ` <tr>
                                    <td>${number}</td>
-                                   <td><a href ="contactDe-notice.html?${noticeId}">${title}</td>
+                                   <td><a href ="contactDe-faq.html?${faqId}">${question}</td>
                                    <th>${createdDate}</th> 
                                  </tr>`
 
-                                $('#noticeList').append(temp_html)
+                                $('#faqList').append(temp_html)
                             }
                             //----------  페이징 처리 -----------------------
                             let page = response.page
@@ -270,20 +270,20 @@
                             console.log("현재페이지 : " + param[1])
                             //이전페이지
                             if (page > 1) {
-                                let temp_html = `<a href="contactPageMove-notice.html?${page - 1}">pre</a>`
-                                $('#noticePaging').append(temp_html);
+                                let temp_html = `<a href="contactPageMove-faq.html?${page - 1}">pre</a>`
+                                $('#faqPaging').append(temp_html);
                             }
                             //한 화면에 보여지는 페이지 수만큼 반복 하여 번호로 나타냄
                             for (let i = startPage; i <= endPage; i++) {
                                 let number = i
-                                let temp_html = `<a href="contactPageMove-notice.html?${number}">${number}</a>`
-                                $('#noticePaging').append(temp_html);
+                                let temp_html = `<a href="contactPageMove-faq.html?${number}">${number}</a>`
+                                $('#faqPaging').append(temp_html);
                             }
                             //다음페이지 page
                             if (page < totalPage) {
-                                let temp_html = `<a href="contactPageMove-notice.html?${page + 1}">next</a>`
+                                let temp_html = `<a href="contactPageMove-faq.html?${page + 1}">next</a>`
 
-                                $('#noticePaging').append(temp_html);
+                                $('#faqPaging').append(temp_html);
                             }
 
                         });
@@ -300,31 +300,31 @@
                     var para = document.location.href.split("?");
                     console.log("검색창조회시 url에서 pathvariable값 : " + para[1]) //현재페이지 url에서 pathvariable값 가져오기 
                     var settings = {
-                        "url": "http://localhost:8080/api/managers/notices/check/search?keyword=" + keywords + "&page=" + para[1],
+                        "url": "http://localhost:8080/api/faqs/check/search?keyword=" + keywords + "&page=" + para[1],
                         "method": "GET",
                         "timeout": 0
                     };
 
                     $.ajax(settings)
                         .done(function (response) {
-                            $('#noticeList').empty()
-                            $('#noticePaging').empty()
+                            $('#faqList').empty()
+                            $('#faqPaging').empty()
 
                             console.log("검색리스트" + response.data);
                             let rows = response.data;
 
                             for (let i = 0; i < rows.length; i++) {
-                                let noticeId = rows[i]['id']
-                                let number = noticeId
-                                let title = rows[i]['title']
+                                let faqId = rows[i]['id']
+                                let number = faqId
+                                let question = rows[i]['question']
                                 let createdDate = rows[i]['createdDate']
                                     let temp_html = `<tr>
                                                         <td>${number}</td>
-                                                        <td><a href ="contactDe-notice.html?${noticeId}">${title}</td>
+                                                        <td><a href ="contactDe-faq.html?${faqId}">${question}</td>
                                                         <th>${createdDate}</th> 
                                                      </tr>`
 
-                                $('#noticeList').append(temp_html)
+                                $('#faqList').append(temp_html)
                                 
 
                             }
@@ -348,20 +348,20 @@
                             console.log("현재페이지 : " + param[1])
                             //이전페이지
                             if (page > 1) {
-                                let temp_html = `<a href="contactPageMove-notice.html?${page - 1}">pre</a>`
-                                $('#noticePaging').append(temp_html);
+                                let temp_html = `<a href="contactPageMove-faq.html?${page - 1}">pre</a>`
+                                $('#faqPaging').append(temp_html);
                             }
                             //한 화면에 보여지는 페이지 수만큼 반복 하여 번호로 나타냄
                             for (let i = startPage; i <= endPage; i++) {
                                 let number = i
-                                let temp_html = `<a href="contactPageMove-notice.html?${number}">${number}</a>`
-                                $('#noticePaging').append(temp_html);
+                                let temp_html = `<a href="contactPageMove-faq.html?${number}">${number}</a>`
+                                $('#faqPaging').append(temp_html);
                             }
                             //다음페이지 page
                             if (page < totalPage) {
-                                let temp_html = `<a href="contactPageMove-notice.html?${page + 1}">next</a>`
+                                let temp_html = `<a href="contactPageMove-faq.html?${page + 1}">next</a>`
 
-                                $('#noticePaging').append(temp_html);
+                                $('#faqPaging').append(temp_html);
                             }
                         });
                 })
@@ -369,13 +369,13 @@
                 //------------------------페이지 처리 끝 -----------------------
                 //-----------검색창 끝 --------------------------------------
                 //------------현 페이지 검색 버튼 클릭시 검색함수 -----------------
-                function noticeSearch() {
+                function faqSearch() {
                     var keywords = $('#keywordInput').val();
-                    $('#noticeList').empty()
-                    $('#noticePaging').empty()
+                    $('#faqList').empty()
+                    $('#faqPaging').empty()
                     localStorage.setItem('searching', keywords) //로컬스토리지에 키워드 저장 
                     console.log(keywords)
-                    window.location = './contactPageMove-notice.html?1'
+                    window.location = './contactPageMove-faq.html?1'
                 }
                 //--------------------------------------------------------------
             </script>
