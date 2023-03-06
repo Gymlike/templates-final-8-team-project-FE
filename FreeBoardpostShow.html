@@ -43,7 +43,7 @@
 
 
   <title>
-    SearchingGYM &mdash; 오늘의 식단
+    SearchingGYM &mdash; 자유게시판
   </title>
 </head>
 
@@ -111,12 +111,12 @@
     </div>
   </nav>
 
-  <div class="hero page-inner overlay" style="background-image: url('images/T_exe.jpg')">
+  <div class="hero page-inner overlay" style="background-image: url('images/free.jpg')">
     <div class="container">
       <div class="row justify-content-center align-items-center">
         <div class="col-lg-9 text-center mt-5">
           <h1 class="heading" data-aos="fade-up">
-            오.운.완
+            자유게시판
           </h1>
 
 
@@ -262,7 +262,7 @@
       document.getElementById("mypage").style.display = "none";
       document.getElementById("MainLogout").style.display = "none";
 
-      
+
       if (localStorage.getItem('accessToken') === null) {
         $('#findbyIdandPw').show()
       } else {
@@ -273,7 +273,7 @@
       console.log(para[1])
       // ----------------------------------[ajax get 시작]--------------------------------------------
       var settingsSelectboard = {
-        "url": "http://localhost:8080/t-exercise/selectboard/" + para[1],
+        "url": "http://localhost:8080/freeboard/selectboard/" + para[1],
         "method": "GET",
         "timeout": 0,
       };
@@ -289,6 +289,11 @@
         let postid = response['id']
         let nickname = response['userNickname']
         let imageUrl = response['image']
+        var noimage = imageUrl.slice(-5)
+
+        if (noimage === "이미지없음") {
+          imageUrl = "https://nbcfinalproject.s3.ap-northeast-2.amazonaws.com/freeBoard/e8e0a530-a4c5-4c1b-b06d-5a64922c9ee3noImage.PNG"
+        }
         //-------------------작성자 검증할라고 저장------------//
         let postWriter = response['userName']
 
@@ -339,6 +344,7 @@
                           </section>
                 </div>
               </div>`
+
         $('#t_exePosting').append(temp)
 
 
@@ -408,7 +414,7 @@
 
 
           var commentWirter = commentList[i]['writerName']
-          
+
           if (commentWirter === localStorage.getItem('accessUser')) {
             $('#edit_' + commentId).show()
             $('#comment_' + commentId).show()
@@ -481,7 +487,7 @@
       console.log(para[1])
 
       var settings = {
-        "url": "http://localhost:8080/t-exercise/" + para[1] + "/comment",
+        "url": "http://localhost:8080/freeboard/" + para[1] + "/comment",
         "method": "POST",
         "timeout": 0,
         "headers": {
@@ -495,7 +501,7 @@
       };
 
       $.ajax(settings).done(function (response) {
-        
+
         console.log(response);
         alert(response)
         window.location.reload()
@@ -510,7 +516,7 @@
       var para = document.location.href.split("?");
       console.log(para[1])
 
-      window.location = "./T_exepostEdit.html?" + para[1]
+      window.location = "./FreeBoardpostEdit.html?" + para[1]
 
 
     })
@@ -526,7 +532,7 @@
       console.log(para[1])
 
       var settings = {
-        "url": "http://localhost:8080/t-exercise/" + para[1],
+        "url": "http://localhost:8080/freeboard/" + para[1],
         "method": "DELETE",
         "timeout": 0,
         "headers": {
@@ -565,7 +571,7 @@
       var commentId = id_by_name.split("_")[1]
       console.log(commentId)
       var settings = {
-        "url": "http://localhost:8080/t-exercise/" + para[1] + "/comment/" + commentId,
+        "url": "http://localhost:8080/freeboard/" + para[1] + "/comment/" + commentId,
         "method": "DELETE",
         "timeout": 0,
         "headers": {
@@ -613,7 +619,7 @@
       var commentId = id_by_name.split("_")[1]
       console.log(commentId)
       var settings = {
-        "url": "http://localhost:8080/t-exercise/-1/comment/" + commentId,
+        "url": "http://localhost:8080/freeboard/-1/comment/" + commentId,
         "method": "PUT",
         "timeout": 0,
         "headers": {
@@ -675,7 +681,7 @@
       var commentId = id_by_name.split("_")[1]
       console.log(commentId)
       var settings = {
-        "url": "http://localhost:8080/t-exercise/comment/" + commentId,
+        "url": "http://localhost:8080/freeboard/comment/" + commentId,
         "method": "POST",
         "timeout": 0,
         "headers": {
@@ -727,7 +733,7 @@
       var commentId = id_by_name.split("_")[1]
       console.log(commentId)
       var settings = {
-        "url": "http://localhost:8080/t-exercise/comment/" + commentId,
+        "url": "http://localhost:8080/freeboard/comment/" + commentId,
         "method": "PUT",
         "timeout": 0,
         "headers": {
@@ -768,7 +774,7 @@
       var commentId = id_by_name.split("_")[1]
       console.log(commentId)
       var settings = {
-        "url": "http://localhost:8080/t-exercise/comment/" + commentId,
+        "url": "http://localhost:8080/freeboard/comment/" + commentId,
         "method": "DELETE",
         "timeout": 0,
         "headers": {
@@ -780,6 +786,7 @@
         console.log(response);
         alert(response)
         window.location.reload();
+        
 
       }).fail(function (response) {
         console.log(response.responseJSON);

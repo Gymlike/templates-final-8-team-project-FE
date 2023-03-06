@@ -64,7 +64,7 @@
           <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
             <li class="active"><a href="gym_write_post.html">운동시설등록</a></li>
             <li class="has-children">
-              <a href="T_exe.html">게시판</a>
+              <a href="totalBoard.html">게시판</a>
               <ul class="dropdown">
                 <li><a href="FreeBoard.html">자유게시판</a></li>
                 <li><a href="T_exe.html">오운완게시판</a></li>
@@ -98,11 +98,11 @@
     </div>
   </nav>
 
-  <div class="hero page-inner overlay" style="background-image: url('images/T_exe.jpg')">
+  <div class="hero page-inner overlay" style="background-image: url('images/todaymeal.png')">
     <div class="container">
       <div class="row justify-content-center align-items-center">
         <div class="col-lg-9 text-center mt-5">
-          <h1 class="heading" data-aos="fade-up">오늘 운동 완료!</h1>
+          <h1 class="heading" data-aos="fade-up">오늘의 식단</h1>
 
           <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
             <ol class="breadcrumb text-center justify-content-center">
@@ -118,7 +118,7 @@
   </div>
 
   <div id="board_write">
-    <h4>오늘의 운동을 기록하는 공간 입니다</h4>
+    <h4>오늘의 식단을 기록하는 공간 입니다</h4>
     <div id="write_area">
 
       <div id="in_title">
@@ -188,7 +188,7 @@
 
 
     var presigned = {
-      "url": "http://localhost:8080/t-exercise/presigned",
+      "url": "http://localhost:8080/todaymeal/presigned",
       "method": "POST",
       "timeout": 0,
       "headers": {
@@ -227,7 +227,7 @@
 
       //--------------------[프리사인url발급성공시 서버에 게시글 upload요청--]-------------------------
       var settings = {
-        "url": "http://localhost:8080/t-exercise",
+        "url": "http://localhost:8080/todaymeal",
         "method": "POST",
         "timeout": 0,
         "headers": {
@@ -243,7 +243,7 @@
       $.ajax(settings).done(function (response) {
         console.log(response);
         alert(response);
-         window.location = '/T_exe.html'
+         window.location = '/TodayMeal.html'
       });
 
     });

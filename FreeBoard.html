@@ -33,13 +33,12 @@
   <link rel="stylesheet" href="css/tiny-slider.css" />
   <link rel="stylesheet" href="css/aos.css" />
   <link rel="stylesheet" href="css/style.css" />
-  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-    crossorigin="anonymous"></script>
+
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 
 
   <title>
-    Property &mdash; Free Bootstrap 5 Website Template by Untree.co
+    SearchingGYM &mdash; 자유게시판
   </title>
 </head>
 
@@ -60,6 +59,7 @@
         <a style="color:white" href="login.html"><span id="MainLogin">로그인</span></a>
         <a style="color:white" href="login.html"><span id="MainSignUp">회원가입</span></a>
         <a style="color:white" href="mypage.html"><span id="mypage">마이페이지</span></a>
+        <a style="color:white" href="admin.html"><span id="adminpage">관리자페이지</span></a>
         <a style="color:white" onclick="logout()" href="index.html"><span id="MainLogout">로그아웃</span></a>
         <a style="color:white" href="FIndByIdAndPw.html"><span id="findbyIdandPw">아이디 및 비밀번호 찾기</span></a>
       </ul>
@@ -68,6 +68,7 @@
       <div class="menu-bg-wrap">
         <div class="site-navigation">
           <a href="index.html" class="logo m-0 float-start">SearchingGYM</a>
+
           <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
             <li class="active"><a href="gym_write_post.html">운동시설등록</a></li>
             <li class="has-children">
@@ -93,31 +94,30 @@
                 <li><a href="#">FAQ</a></li>
                 <li><a href="contactPageIndex-inquiry.html">1:1문의</a></li>
 
-              </ul>
 
-          </ul>
-          <a href="#"
-            class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
-            data-toggle="collapse" data-target="#main-navbar">
-            <span></span>
-          </a>
+              </ul>
+              <a href="#"
+                class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+                data-toggle="collapse" data-target="#main-navbar">
+                <span></span>
+              </a>
         </div>
       </div>
     </div>
   </nav>
 
-  <div class="hero page-inner overlay" style="background-image: url('images/T_exe.jpg')">
+  <div class="hero page-inner overlay" style="background-image: url('images/free.jpg')">
     <div class="container">
       <div class="row justify-content-center align-items-center">
         <div class="col-lg-9 text-center mt-5">
-          <h1 class="heading" data-aos="fade-up">오늘 운동 완료!</h1>
+          <h1 class="heading" data-aos="fade-up">자유게시판</h1>
 
           <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
             <ol class="breadcrumb text-center justify-content-center">
-              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-              <li class="breadcrumb-item active text-white-50" aria-current="page">
-                오.운.완
-              </li>
+              <li class="breadcrumb-item"><a href="index.html">SearchingGYM</a></li>
+              <li class="breadcrumb-item"><a href="T_exe.html">오.운.완</a></li>
+              <li class="breadcrumb-item active text-white-50" aria-current="page">자유게시판</li>
+              <li class="breadcrumb-item"><a href="TodayMeal.html" >오먹게시판</a></li>
             </ol>
           </nav>
         </div>
@@ -137,27 +137,33 @@
       <div class="row">
         <div class="col-12">
           <div class="property-slider-wrap">
-            <div class="row" id ="top3">
-              
+            <div class="row" id="top3">
+             
+          
             </div>
 
-            
+           
           </div>
         </div>
       </div>
     </div>
   </div>
   </div>
+  <div>
+
   </div>
+  </div>
+
   <div class="section section-properties">
     <div class="container">
       <div class="row" id="t_exePosting">
       </div>
       <div class="row align-items-center py-5">
+
         <div style="display: flex; margin-bottom: 25px">
-          <a href="T-exepost.html" class="btn btn-primary py-2 px-3">오운완 등록하기</a>
+          <a href="FreeBoardpost.html" class="btn btn-primary py-2 px-3">자유게시판 등록하기</a>
           <input id="searchInput" type="text" placeholder="제목 + 내용 검색" style="text-align:center;flex:1;border:0;">
-          <button class="btn btn-primary py-2 px-3" onclick="searching()">검색</button>
+          <button class="btn btn-primary py-2 px-3" id="searchPost" onclick="searching()" type="button">검색</button>
         </div>
         <div class="col-lg-3"></div>
         <div class="col-lg-6 text-center">
@@ -295,19 +301,40 @@
 <script>
 
   $(document).ready(function () {
-    var keywords = localStorage.getItem('searching')
+    localStorage.removeItem('accessUser');
+    localStorage.removeItem('postWriter');
+    localStorage.removeItem('searching');
+
     document.getElementById("mypage").style.display = "none";
     document.getElementById("MainLogout").style.display = "none";
 
-   
+    document.getElementById("adminpage").style.display = "none";
+
     if (localStorage.getItem('accessToken') === null) {
       $('#findbyIdandPw').show()
     } else {
       $('#findbyIdandPw').hide()
     }
-  //------------top3------------------
-  var top3 = {
-  "url": "http://localhost:8080/t-exercise/top3",
+
+    //-----------------------------------------------
+    var settingsCheckwriter = {
+      "url": "http://localhost:8080/freeboard/selectboard/checkwriter",
+      "method": "GET",
+      "timeout": 0,
+      "headers": {
+        "Authorization": localStorage.getItem('accessToken')
+      },
+    };
+
+
+    $.ajax(settingsCheckwriter).done(function (response) {
+      console.log(response);
+      localStorage.setItem('accessUser', response)
+    });
+
+    //------------top3------------------
+    var top3 = {
+  "url": "http://localhost:8080/freeboard/top3",
   "method": "GET",
   "timeout": 0,
 };
@@ -317,17 +344,22 @@ $.ajax(top3).done(function (response) {
   let rows = response
       for (let i = 0; i < rows.length; i++) {
         let title = rows[i]['title']
-        let modifiedDate = rows[i]['modifiedDate']
+        let modifiedDate = rows[i]['createdDate']
         let nickname = rows[i]['userNickname']
         let postid = rows[i]['id']
         let like = rows[i]['like']
         let imageUrl = rows[i]['image']
         console.log(title)
+        var noimage= imageUrl.slice(-5)
+
+        if(noimage==="이미지없음"){
+          imageUrl = "https://nbcfinalproject.s3.ap-northeast-2.amazonaws.com/freeBoard/e8e0a530-a4c5-4c1b-b06d-5a64922c9ee3noImage.PNG"	
+        }
 
         let temp_html = `<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
 
 <div class="property-item mb-30" style="border:3px solid gold;">
-  <a id ="urlmap" href="T_exepostShow.html?${postid}" class="img">
+  <a id ="urlmap" href="FreeBoardpostShow.html?${postid}" class="img">
     <img src="${imageUrl}" alt="Image" class="img-fluid" style="height:350px; width: 415px;" />
   </a>
 
@@ -348,7 +380,7 @@ $.ajax(top3).done(function (response) {
       </div>
 
       <a
-        href="T_exepostShow.html?${postid}"
+        href="FreeBoardpostShow.html?${postid}"
         class="btn btn-primary py-2 px-3"
         >글 읽기</a
       >
@@ -362,22 +394,8 @@ $.ajax(top3).done(function (response) {
 });
     //---------------------------------------
 
-
-
-
-    if (keywords === null) {
-      keywords = ""
-    }
-    var para = document
-      .location
-      .href
-      .split("?");
-    console.log(para[1])
-
-    console.log("키워드값" + keywords)
-
     var settings = {
-      "url": "http://localhost:8080/t-exercise/allboard?page=" + para[1] + "&search=" + keywords,
+      "url": "http://localhost:8080/freeboard/allboard",
       "method": "GET",
       "timeout": 0,
     };
@@ -392,12 +410,18 @@ $.ajax(top3).done(function (response) {
         let postid = rows[i]['id']
         let like = rows[i]['like']
         let imageUrl = rows[i]['image']
+        var noimage= imageUrl.slice(-5)
+
+        if(noimage==="이미지없음"){
+          imageUrl = "https://nbcfinalproject.s3.ap-northeast-2.amazonaws.com/freeBoard/e8e0a530-a4c5-4c1b-b06d-5a64922c9ee3noImage.PNG"	
+        }
+        
         console.log(title)
 
         let temp_html = `<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
 
             <div class="property-item mb-30">
-              <a id ="urlmap" href="T_exepostShow.html?${postid}" class="img">
+              <a id ="urlmap" href="FreeBoardpostShow.html?${postid}" class="img">
                 <img src="${imageUrl}" alt="Image" class="img-fluid" style="height:350px; width: 350px;" />
               </a>
 
@@ -418,7 +442,7 @@ $.ajax(top3).done(function (response) {
                   </div>
 
                   <a
-                    href="T_exepostShow.html?${postid}"
+                    href="FreeBoardpostShow.html?${postid}"
                     class="btn btn-primary py-2 px-3"
                     >글 읽기</a
                   >
@@ -428,6 +452,25 @@ $.ajax(top3).done(function (response) {
           </div>`
 
         $('#t_exePosting').append(temp_html)
+        //좋아요 눌렀는지 안눌렀는지 판별하는 메소드를 가져가보자..!
+        //$("#notice a").attr('class','ab');//notice란 아이디명으로 찾아서 a 태그에 해당되는 클래스명을 ab으로 변경
+        // var settings = {
+        //   "url": "http://localhost:8080/t-exercise/"+postid+"/checklike",
+        //   "method": "GET",
+        //   "timeout": 0,
+        //   "headers": {
+        //     "Authorization": localStorage.getItem('accessToken')
+        //   },
+        // };
+
+        // $.ajax(settings).done(function (response) {
+        //   console.log("좋아요 여부   "+response);
+        //   $('#update_like_'+postid).removeClass("fa fa-heart-o");
+        //   $('#update_like_'+postid).addClass("fa fa-heart");
+        //   //$('#update_like_'+postid).attr('class','fa fa-heart')
+        // });
+
+
       }
       let page = response.page
       let totalCount = response.totalCount
@@ -435,6 +478,8 @@ $.ajax(top3).done(function (response) {
       let startPage = ((page - 1) / 10) * 10 + 1;
       let endPage = startPage + countPage - 1;
       let totalPage = response.totalPage;
+      var param = document.location.href.split("=");
+      console.log(param[1])
       if (totalPage < page) {
         page = totalPage;
       }
@@ -442,32 +487,23 @@ $.ajax(top3).done(function (response) {
         endPage = totalPage
       }
 
-      var param = document.location.href.split("=");
-      console.log(param[1])
-      if (page > 1) {
-        let temp_html = `<a href="T_exeMove.html?${page - 1}">pre</a>`
-        $('#noticePaging').append(temp_html);
-      }
-
       for (let i = startPage; i <= endPage; i++) {
 
         let temp_html
         let number = i
         if (page === number) {
-          temp_html = `<a href="T_exeMove.html?${number}"class="active">${number}</a>`
+          temp_html = `<a href="FreeBoardMove.html?${number}"class="active">${number}</a>`
         } else {
-          temp_html = `<a href="t_exeMove.html?${number}" >${number}</a>`
+          temp_html = `<a href="FreeBoardMove.html?${number}" >${number}</a>`
         }
+
+
         $('#noticePaging').append(temp_html);
       }
-      if (page < totalPage) {
-        let temp_html = `<a href="T_exeMove.html?${page + 1}">next</a>`
-        $('#noticePaging').append(temp_html);
-      }
+
     });
-
-
   });
+
 
 
   $('#t_exePosting').on("click", "a[name='like']", function () {
@@ -482,7 +518,7 @@ $.ajax(top3).done(function (response) {
 
 
     var settings = {
-      "url": "http://localhost:8080/t-exercise/" + postId + "/like",
+      "url": "http://localhost:8080/freeboard/" + postId + "/like",
       "method": "POST",
       "timeout": 0,
       "headers": {
@@ -492,10 +528,12 @@ $.ajax(top3).done(function (response) {
 
     $.ajax(settings).done(function (response) {
       console.log(response);
-      //클릭시 라이크 갯수를 아는게 좋다... 응답으로도 받든가(비추)
+      //클릭시 라이크 갯수를 아는게 좋다... //응답으로도 받든가(비추) -DB조회하니까~
+
       var like = $('#update_like_' + postId).val()
+      // notice란 아이디명으로 찾아서 a 태그에 해당되는 클래스명을 ab으로 변경
       // $('#update_like_' + postId).empty()
-      // $('#update_like_' + postId).append("like : " + like + 1)
+      // $('#update_like_' + postId).append("like : " + like + 1) //size db좋아요 누른사람만 저장하고 승미티
       window.location.reload();
     });
 
@@ -507,9 +545,10 @@ $.ajax(top3).done(function (response) {
     var keywords = $('#searchInput').val();
 
     localStorage.setItem('searching', keywords)
+    sessionStorage.setItem('searching', keywords)
 
     console.log(keywords)
-    window.location = '/T_exeMove.html?1'
+    window.location = './FreeBoardMove.html?1'
 
   }
 
