@@ -5,37 +5,87 @@ jQuery(document).ready(function ($) {
 });
 
 document.querySelector('.img__btn').addEventListener('click', function () {
-    document.querySelector('.cont').classList.toggle('s--signup');
+document.querySelector('.cont').classList.toggle('s--signup');
 });
 
 
 // 회원가입
 function signUp() {
-    var settings = {
-        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/owner/signup",
-        "method": "POST",
-        "timeout": 0,
-        "headers": {
-            "Content-Type": "application/json"
-        },
-        "data": JSON.stringify({
-            "username": $('#username').val(),
-            "password": $('#password').val(),
-            // "password2": $('#password2').val(),
-            "nickName": $('#nickName').val(),
-            "phoneNumber": $('#phoneNumber').val(),
-            "email": $('#email').val(),
-            "storeName": $('#storeName').val(),
-            "ownerNumber": $('#ownerNumber').val()
-        }),
-    };
+    const username = $('#username').val();
+    if (!username) {
+        return alert("ID를 입력하세요.")
+    }
+    const password = $('#password').val();
+    if (!password) {
+        return alert("비밀번호를 입력하세요.")
+    }
+    const password2 = $('#password2').val();
+    if (!password2) {
+        return alert("비밀번호를 확인하세요.")
+    }
+    const nickName = $('#nickName').val();
+    if (!nickName) {
+        return alert("닉네임을 입력하세요.")
+    }
+    const phoneNumber = $('#phoneNumber').val();
+    if (!phoneNumber) {
+        return alert("휴대폰번호를 입력하세요.")
+    }
+    const email = $('#email').val();
+    if (!email) {
+        return alert("이메일을 입력하세요.")
+    }
 
-    $.ajax(settings).done(function (response) {
-        console.log(response);
-        alert("회원가입 완료")
-        document.querySelector('.cont').classList.toggle('s--signup');
-    });
+    if (localStorage.getItem('validate') == 1) {
+        var settings = {
+            "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/owner/signup",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify({
+                "username": $('#username').val(),
+                "password": $('#password').val(),
+                "password2": $('#password2').val(),
+                "nickName": $('#nickName').val(),
+                "phoneNumber": $('#phoneNumber').val(),
+                "email": $('#email').val(),
+                "storeName": localStorage.getItem('b_nm'),
+                "b_no": localStorage.getItem('b_no'),
+                "start_dt": localStorage.getItem('start_dt'),
+                "p_nm": localStorage.getItem('p_nm')
+            }),
+        };
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+            localStorage.removeItem('validate')
+            localStorage.removeItem('b_no');
+            localStorage.removeItem('b_nm');
+            localStorage.removeItem('start_dt');
+            localStorage.removeItem('p_nm');
+            localStorage.removeItem('verifyEmailCode');
+            alert("회원가입 완료")
+            document.querySelector('.cont').classList.toggle('s--signup');
+            location.reload();
+        }).fail(function (response) {
+            console.log(response.responseJSON);
+            if (response.responseJSON.statusCode === 409) {
+                alert("중복된 ID입니다.")
+            } if (response.responseJSON.statusCode === 408) {
+                alert("중복된 닉네임입니다.")
+            } if (response.responseJSON.statusCode === 407) {
+                alert("중복된 이메일입니다.")
+            } if (response.responseJSON.statusCode === 406) {
+                alert("중복된 휴대폰번호입니다.")
+            }
+        })
+    } else {
+        alert("사업자 인증 후 다시 시도하여주세요.")
+    }
 }
+
 
 
 // 로그인
@@ -116,10 +166,61 @@ function getOwnerMe() {
         console.log(response.nickName);
         $('#loginUser').show();
         $('#loginUser').append(response.nickName + "님 환영합니다.");
-        $('#mypage').show();
+        $('#mypage').hide();
+        $('#ownermypage').show();
         $('#MainLogout').show();
         $('#MainLogin').hide();
         $('#MainSignUp').hide();
         $('#adminpage').hide();
     });
 }
+
+//이메일 보내기
+function sendEmail() {
+    var settings = {
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/user/email?email=" + $('#email').val(),
+        "method": "POST",
+        "timeout": 0,
+      };
+      
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        alert("이메일이 발송되었습니다.")
+        $('#verifyEmail').show();
+        $('#verifyEmail2').show();
+        $('#sendEmail2').hide();
+        $('#sendEmail3').show();
+      }).fail (function (response) {
+        console.log(response.responseJSON);
+        if (response.responseJSON.status === 404) {
+            alert("중복된 이메일입니다. 다른 이메일을 사용하여주세요.")
+        }
+        if (response.responseJSON.statusCode === 400) {
+            alert("잘못된 이메일형식입니다. 다시 한번 확인해주세요.")
+        }
+    })}
+
+    //이메일 코드 인증
+    function verifymail() {
+        var settings = {
+            "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/user/verifyCode?code=" + $('#EmailCode').val(),
+            "method": "POST",
+            "timeout": 0,
+          };
+          
+          $.ajax(settings).done(function (response) {
+            if(response == 1) {
+                localStorage.setItem('verifyEmailCode', 1)
+                alert("이메일 인증에 성공하였습니다.")
+                $('#emailOk').show();
+                $('#verifyEmail').hide();
+                $('#verifyEmail2').hide();
+                $('#sendEmail3').hide();
+                email.readOnly = true;
+            } else {
+                localStorage.setItem('verifyEmailCode', 0)
+                console.log(response);
+                alert("전송된 코드를 다시 한번 확인해주세요.")
+            }
+          });
+        }

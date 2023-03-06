@@ -7,7 +7,7 @@
   }
   
   body {
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     background: #ededed;
   }
   
@@ -15,7 +15,7 @@
     border: none;
     outline: none;
     background: none;
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
   }
   
   .tip {
@@ -84,7 +84,7 @@
     top: 0;
     width: 900px;
     height: 100%;
-    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/sections-3.jpg");
+    background-image: url("/images/login.png");
     background-size: cover;
     transition: transform 1.2s ease-in-out;
   }
@@ -194,7 +194,7 @@
   }
   label span {
     font-size: 12px;
-    color: #cfcfcf;
+    color: #000;
     text-transform: uppercase;
   }
   
@@ -212,30 +212,54 @@
     margin-top: 15px;
     text-align: center;
     font-size: 12px;
-    color: #cfcfcf;
+    color: #000;
+  }
+
+  .line {
+    margin-top: 10px;
   }
   
   .submit {
     margin-top: 20px;
     margin-bottom: 20px;
-    background: #d4af7a;
+    border: 2px solid #d4af7a;
+    color: #d4af7a;
     text-transform: uppercase;
   }
-  
-  .fb-btn {
-    border: 2px solid #f9e000;
-    color: #f9e000;
+
+  .kakao-btn {
+    float: left;
+    width: 128px;
   }
-  .fb-btn span {
-    font-weight: bold;
-    color: #455a81;
+
+  .kakao_login {
+  margin-top: 10px;
+  height: 36px;
+  width: 128px;
+  border-radius: 30px;
   }
   
   .owner-login {
-    /* float: right; */
-    margin-top: 20px;
+    float: left;
+    width: 128px;
+    margin-left: -150px;
+    margin-top: 10px;
     margin-bottom: 20px;
-    background: #000;
+    font-size: 12px;
+    font-weight: bold;
+    border: 2px solid #000;
+    background-color: #000;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .member-login {
+    float: left;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    border: 2px solid #005555;
+    color: #005555;
     text-transform: uppercase;
   }
   
@@ -243,6 +267,8 @@
     /* float: right; */
     margin-top: 20px;
     margin-bottom: 20px;
+    border: 2px solid #000;
+    color: #000;
     background: #000;
     text-transform: uppercase;
   }
@@ -276,4 +302,78 @@
   .icon-link--twitter {
     left: auto;
     right: 5px;
+  }
+
+  .id-check {
+    float: right;
+    width: auto;
+    margin-top: 15px;
+    margin-right: 90px;
+    color: #455a81;
+  }
+
+  .send-email {
+    float: right;
+    width: auto;
+    height: auto;
+    margin-top: 30px;
+    margin-right: 63px;
+    color: #455a81;
+  }
+
+  .send-email2 {
+    float: right;
+    width: auto;
+    margin-top: 22px;
+    margin-right: 48px;
+    color: #455a81;
+  }
+
+  .verifyEmail {
+    float: right;
+    width: auto;
+    margin-top: 22px;
+    margin-right: 63px;
+    color: #455a81;
+  }
+
+  .validate {
+    margin-top: 10px;
+   border-radius: 2px;
+    color: #455a81;
+  }
+
+  .owner-send-email2 {
+    float: right;
+    width: auto;
+    margin-top: 10px;
+    margin-right: 50px;
+    color: #455a81;
+  }
+
+  .owner-verifyEmail {
+    float: right;
+    width: auto;
+    margin-top: 20px;
+    margin-right: 63px;
+    color: #455a81;
+  }
+
+  .emailOk {
+    float: right;
+    width: auto;
+    margin-top: 30px;
+    margin-right: 30px;
+    font-weight: bo;
+    color: #000;
+  }
+
+  .validateOk {
+    text-align: center;
+    display: flex;
+    width: auto;
+    font-weight: bold;
+    margin-left: 200px;
+    margin-top: 25px;
+    color: #000;
   }

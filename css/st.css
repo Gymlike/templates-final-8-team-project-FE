@@ -1,0 +1,150 @@
+/* 페이지 스타일 */
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+  }
+  
+  /* 페이지 타이틀 스타일 */
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  /* 테이블 스타일 */
+  table {
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    text-align: center;
+    padding: 12px;
+    border: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f7f7f7;
+    font-weight: bold;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* 버튼 스타일 */
+  button {
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .allowbtn {
+    background-color: #4CAF50;
+  }
+  
+  .refusebtn {
+    background-color: #f44336;
+  }
+  
+  /* 상태 스타일 */
+  .status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .status.pending {
+    background-color: #ffc107;
+    color: #000;
+  }
+  
+  .status.approved {
+    background-color: #4CAF50;
+    color: #fff;
+  }
+  
+  .status.rejected {
+    background-color: #f44336;
+    color: #fff;
+  }
+  
+  /* 닉네임 스타일 */
+  .nickname {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* 대기 목록 테이블 스타일 */
+  #standbylist {
+    font-size: 14px;
+  }
+  
+  #standbylist tr:hover {
+    background-color: #ddd;
+  }
+  
+  #standbylist td:nth-child(1) {
+    width: 10%;
+  }
+  
+  #standbylist td:nth-child(2) {
+    width: 10%;
+  }
+  
+  #standbylist td:nth-child(3) {
+    width: 30%;
+  }
+  
+  #standbylist td:nth-child(4),
+  #standbylist td:nth-child(5) {
+    width: 25%;
+  }
+  
+  #standbylist button {
+    margin-right: 10px;
+    width: 70px;
+    font-size: 14px;
+  }
+  
+  #standbylist button.success {
+    background-color: #2ecc71;
+  }
+  
+  #standbylist button.danger {
+    background-color: #e74c3c;
+  }
+  
+  #standbylist .status {
+    padding: 5px 8px;
+    font-size: 12px;
+    border-radius: 3px;
+    text-align: center;
+    display: inline-block;
+    margin-right: 5px;
+  }
+  
+  #standbylist .status.pending {
+    background-color: #f1c40f;
+    color: #000;
+  }
+  
+  #standbylist .status.approved {
+    background-color: #2ecc71;
+    color: #fff;
+  }
+  
+  #standbylist .status.rejected {
+    background-color: #e74c3c;
+    color: #fff;
+  }
+  
