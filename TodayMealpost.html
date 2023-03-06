@@ -188,7 +188,7 @@
 
 
     var presigned = {
-      "url": "http://localhost:8080/todaymeal/presigned",
+      "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/todaymeal/presigned",
       "method": "POST",
       "timeout": 0,
       "headers": {
@@ -227,7 +227,7 @@
 
       //--------------------[프리사인url발급성공시 서버에 게시글 upload요청--]-------------------------
       var settings = {
-        "url": "http://localhost:8080/todaymeal",
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/todaymeal",
         "method": "POST",
         "timeout": 0,
         "headers": {
@@ -266,7 +266,7 @@
     // form.append("BordRequestDTO", blob);
 
     // var settings = {
-    //   "url": "http://localhost:8080/t-exercise",
+    //   "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/t-exercise",
     //   "method": "POST",
     //   "timeout": 0,
     //   "processData": false,
