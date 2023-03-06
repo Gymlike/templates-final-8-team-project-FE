@@ -252,11 +252,9 @@
         <a style="color:white" href="login.html"><span id="MainLogin">로그인</span></a>
         <a style="color:white" href="login.html"><span id="MainSignUp">회원가입</span></a>
         <a style="color:white" href="mypage.html"><span id="mypage">마이페이지</span></a>
+        <a style="color:white" href="ownermypage.html"><span id="ownermypage">마이페이지</span></a>
         <a style="color:white" href="admin.html"><span id="adminpage">관리자페이지</span></a>
         <a style="color:white" onclick="logout()" href="index.html"><span id="MainLogout">로그아웃</span></a>
-
-        
-        <a style="color:white" href="FIndByIdAndPw.html"><span id="findbyIdandPw">아이디 및 비밀번호 찾기</span></a>
       </ul>
     </div>
 
@@ -269,9 +267,9 @@
             <li class="has-children">
               <a href="totalBoard.html">게시판</a>
               <ul class="dropdown">
-                <li><a href="#">자유게시판</a></li>
+                <li><a href="FreeBoard.html">자유게시판</a></li>
                 <li><a href="T_exe.html">오운완게시판</a></li>
-                <li><a href="#">오먹게시판</a></li>
+                <li><a href="TodayMeal.html">오먹게시판</a></li>
               </ul>
             </li>
             <li class="has-children">
@@ -637,7 +635,7 @@
 
             document.getElementById("mypage").style.display = "none";
             document.getElementById("MainLogout").style.display = "none";
-
+            document.getElementById("ownermypage").style.display = "none";
             document.getElementById("adminpage").style.display = "none";
 
             if (localStorage.getItem('accessToken') === null) {

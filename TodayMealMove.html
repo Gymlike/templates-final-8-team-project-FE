@@ -106,17 +106,17 @@
     </div>
   </nav>
 
-  <div class="hero page-inner overlay" style="background-image: url('images/T_exe.jpg')">
+  <div class="hero page-inner overlay" style="background-image: url('images/todaymeal.png')">
     <div class="container">
       <div class="row justify-content-center align-items-center">
         <div class="col-lg-9 text-center mt-5">
-          <h1 class="heading" data-aos="fade-up">오늘 운동 완료!</h1>
+          <h1 class="heading" data-aos="fade-up">오늘의 식단!</h1>
 
           <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
             <ol class="breadcrumb text-center justify-content-center">
               <li class="breadcrumb-item"><a href="index.html">Home</a></li>
               <li class="breadcrumb-item active text-white-50" aria-current="page">
-                오.운.완
+                오.먹
               </li>
             </ol>
           </nav>
@@ -141,7 +141,7 @@
               
             </div>
 
-            
+      
           </div>
         </div>
       </div>
@@ -155,7 +155,7 @@
       </div>
       <div class="row align-items-center py-5">
         <div style="display: flex; margin-bottom: 25px">
-          <a href="T-exepost.html" class="btn btn-primary py-2 px-3">오운완 등록하기</a>
+          <a href="TodayMealpost.html" class="btn btn-primary py-2 px-3">오먹 등록하기</a>
           <input id="searchInput" type="text" placeholder="제목 + 내용 검색" style="text-align:center;flex:1;border:0;">
           <button class="btn btn-primary py-2 px-3" onclick="searching()">검색</button>
         </div>
@@ -307,7 +307,7 @@
     }
   //------------top3------------------
   var top3 = {
-  "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/t-exercise/top3",
+  "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/todaymeal/top3",
   "method": "GET",
   "timeout": 0,
 };
@@ -327,7 +327,7 @@ $.ajax(top3).done(function (response) {
         let temp_html = `<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
 
 <div class="property-item mb-30" style="border:3px solid gold;">
-  <a id ="urlmap" href="T_exepostShow.html?${postid}" class="img">
+  <a id ="urlmap" href="TodayMealpostShow.html?${postid}" class="img">
     <img src="${imageUrl}" alt="Image" class="img-fluid" style="height:350px; width: 415px;" />
   </a>
 
@@ -348,7 +348,7 @@ $.ajax(top3).done(function (response) {
       </div>
 
       <a
-        href="T_exepostShow.html?${postid}"
+        href="TodayMealpostShow.html?${postid}"
         class="btn btn-primary py-2 px-3"
         >글 읽기</a
       >
@@ -377,7 +377,7 @@ $.ajax(top3).done(function (response) {
     console.log("키워드값" + keywords)
 
     var settings = {
-      "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/t-exercise/allboard?page=" + para[1] + "&search=" + keywords,
+      "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/todaymeal/allboard?page=" + para[1] + "&search=" + keywords,
       "method": "GET",
       "timeout": 0,
     };
@@ -397,7 +397,7 @@ $.ajax(top3).done(function (response) {
         let temp_html = `<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
 
             <div class="property-item mb-30">
-              <a id ="urlmap" href="T_exepostShow.html?${postid}" class="img">
+              <a id ="urlmap" href="TodayMealpostShow.html?${postid}" class="img">
                 <img src="${imageUrl}" alt="Image" class="img-fluid" style="height:350px; width: 350px;" />
               </a>
 
@@ -418,7 +418,7 @@ $.ajax(top3).done(function (response) {
                   </div>
 
                   <a
-                    href="T_exepostShow.html?${postid}"
+                    href="TodayMealpostShow.html?${postid}"
                     class="btn btn-primary py-2 px-3"
                     >글 읽기</a
                   >
@@ -445,7 +445,7 @@ $.ajax(top3).done(function (response) {
       var param = document.location.href.split("=");
       console.log(param[1])
       if (page > 1) {
-        let temp_html = `<a href="T_exeMove.html?${page - 1}">pre</a>`
+        let temp_html = `<a href="TodayMealMove.html?${page - 1}">pre</a>`
         $('#noticePaging').append(temp_html);
       }
 
@@ -454,14 +454,14 @@ $.ajax(top3).done(function (response) {
         let temp_html
         let number = i
         if (page === number) {
-          temp_html = `<a href="T_exeMove.html?${number}"class="active">${number}</a>`
+          temp_html = `<a href="TodayMealMove.html?${number}"class="active">${number}</a>`
         } else {
-          temp_html = `<a href="t_exeMove.html?${number}" >${number}</a>`
+          temp_html = `<a href="TodayMealMove.html?${number}" >${number}</a>`
         }
         $('#noticePaging').append(temp_html);
       }
       if (page < totalPage) {
-        let temp_html = `<a href="T_exeMove.html?${page + 1}">next</a>`
+        let temp_html = `<a href="TodayMealMove.html?${page + 1}">next</a>`
         $('#noticePaging').append(temp_html);
       }
     });
@@ -482,7 +482,7 @@ $.ajax(top3).done(function (response) {
 
 
     var settings = {
-      "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/t-exercise/" + postId + "/like",
+      "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/todaymeal/" + postId + "/like",
       "method": "POST",
       "timeout": 0,
       "headers": {
@@ -509,7 +509,7 @@ $.ajax(top3).done(function (response) {
     localStorage.setItem('searching', keywords)
 
     console.log(keywords)
-    window.location = '/T_exeMove.html?1'
+    window.location = '/TodayMealMove.html?1'
 
   }
 

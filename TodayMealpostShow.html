@@ -111,12 +111,12 @@
     </div>
   </nav>
 
-  <div class="hero page-inner overlay" style="background-image: url('images/T_exe.jpg')">
+  <div class="hero page-inner overlay" style="background-image: url('images/todaymeal.png')">
     <div class="container">
       <div class="row justify-content-center align-items-center">
         <div class="col-lg-9 text-center mt-5">
           <h1 class="heading" data-aos="fade-up">
-            오.운.완
+            오늘의 식단
           </h1>
 
 
@@ -273,7 +273,7 @@
       console.log(para[1])
       // ----------------------------------[ajax get 시작]--------------------------------------------
       var settingsSelectboard = {
-        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/t-exercise/selectboard/" + para[1],
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/todaymeal/selectboard/" + para[1],
         "method": "GET",
         "timeout": 0,
       };
@@ -284,7 +284,7 @@
 
         let tilte = response['title']
         let content = response['content']
-        let modifiedDate = response['modifiedDate']
+        let modifiedDate = response['createdDate']
         let like = response['like']
         let postid = response['id']
         let nickname = response['userNickname']
@@ -481,7 +481,7 @@
       console.log(para[1])
 
       var settings = {
-        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/t-exercise/" + para[1] + "/comment",
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/todaymeal/" + para[1] + "/comment",
         "method": "POST",
         "timeout": 0,
         "headers": {
@@ -510,7 +510,7 @@
       var para = document.location.href.split("?");
       console.log(para[1])
 
-      window.location = "./T_exepostEdit.html?" + para[1]
+      window.location = "./TodayMealpostEdit.html?" + para[1]
 
 
     })
@@ -526,7 +526,7 @@
       console.log(para[1])
 
       var settings = {
-        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/t-exercise/" + para[1],
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/todaymeal/" + para[1],
         "method": "DELETE",
         "timeout": 0,
         "headers": {
@@ -565,7 +565,7 @@
       var commentId = id_by_name.split("_")[1]
       console.log(commentId)
       var settings = {
-        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/t-exercise/" + para[1] + "/comment/" + commentId,
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/todaymeal/" + para[1] + "/comment/" + commentId,
         "method": "DELETE",
         "timeout": 0,
         "headers": {
@@ -613,7 +613,7 @@
       var commentId = id_by_name.split("_")[1]
       console.log(commentId)
       var settings = {
-        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/t-exercise/-1/comment/" + commentId,
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/todaymeal/-1/comment/" + commentId,
         "method": "PUT",
         "timeout": 0,
         "headers": {
@@ -675,7 +675,7 @@
       var commentId = id_by_name.split("_")[1]
       console.log(commentId)
       var settings = {
-        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/t-exercise/comment/" + commentId,
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/todaymeal/comment/" + commentId,
         "method": "POST",
         "timeout": 0,
         "headers": {
@@ -727,7 +727,7 @@
       var commentId = id_by_name.split("_")[1]
       console.log(commentId)
       var settings = {
-        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/t-exercise/comment/" + commentId,
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/todaymeal/comment/" + commentId,
         "method": "PUT",
         "timeout": 0,
         "headers": {
@@ -768,7 +768,7 @@
       var commentId = id_by_name.split("_")[1]
       console.log(commentId)
       var settings = {
-        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/t-exercise/comment/" + commentId,
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/todaymeal/comment/" + commentId,
         "method": "DELETE",
         "timeout": 0,
         "headers": {

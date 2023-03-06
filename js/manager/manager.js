@@ -20,8 +20,8 @@ $(document).ready(function () {
       <td>${id}</td>
       <td>${role}</td>
       <th>${nickname}</th>
-      <th><button name="allowmanager" id ="allow_${id}" class="btn btn-primary py-2 px-3">수락</button></th>
-      <th><button name="refusemanager" id ="refuse_${id}" class="btn btn-primary py-2 px-3">거절</button></th>
+      <th><button name="allowmanager" id ="allow_${id}" class = "allowbtn">수락</button></th>
+      <th><button name="refusemanager" id ="refuse_${id}" class = "refusebtn">거절</button></th>
     </tr>`
             $('#standbylist').append(temp_html)
         }

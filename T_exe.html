@@ -72,11 +72,11 @@
           <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
             <li class="active"><a href="gym_write_post.html">운동시설등록</a></li>
             <li class="has-children">
-              <a href="T_exe.html">게시판</a>
+              <a href="totalBoard.html">게시판</a>
               <ul class="dropdown">
                 <li><a href="">자유게시판</a></li>
                 <li><a href="T_exe.html">오운완게시판</a></li>
-                <li><a href="">오먹게시판</a></li>
+                <li><a href="TodayMeal.html">오먹게시판</a></li>
               </ul>
             </li>
             <li class="has-children">
@@ -116,8 +116,8 @@
             <ol class="breadcrumb text-center justify-content-center">
               <li class="breadcrumb-item"><a href="index.html">SearchingGYM</a></li>
               <li class="breadcrumb-item active text-white-50" aria-current="page">오.운.완</li>
-              <li class="breadcrumb-item"><a href="">자유게시판</a></li>
-              <li class="breadcrumb-item"><a href="">오먹게시판</a></li>
+              <li class="breadcrumb-item"><a href="FreeBoard.html">자유게시판</a></li>
+              <li class="breadcrumb-item"><a href="TodayMeal.html">오먹게시판</a></li>
             </ol>
           </nav>
         </div>
@@ -137,89 +137,12 @@
       <div class="row">
         <div class="col-12">
           <div class="property-slider-wrap">
-            <div class="property-slider">
-              <div class="property-item">
-                <a href="property-single.html" class="img">
-                  <img
-                    src="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MDhfMTYg/MDAxNTkxNTY3NTI1Mzc5.Hh6_Rwoy_-3XuDjwYmrM8rm3KXf-EnQlo9yOkHR3PUkg.D1rn430i-2dp_-U-8_nP9QRqbJXhhi5xwYQgTWe-9qwg.JPEG.infei02/1.jpg?type=w800"
-                    alt="Image" class="img-fluid" style="height:350px; width: 350px;" />
-                </a>
-
-                <div class="property-content">
-                  <div class="price mb-2"><span>안녕하세요 반갑습니다</span></div>
-                  <div>
-                    <span class="d-block mb-2 text-black-50">2023-02-23 19:37</span>
-                    <span class="city d-block mb-3">지기TV</span>
-
-                    <div class="specs d-flex mb-4">
-                      <span class="d-block d-flex align-items-center me-3">
-                        <a class='fa fa-heart' id="like_${postid}" name="like" style="color:red;"> </a>
-                        <span class="caption" style="margin-left: 6px;">59</span>
-                      </span>
-                    </div>
-
-                    <a href="property-single.html" class="btn btn-primary py-2 px-3">글읽기</a>
-                  </div>
-                </div>
-              </div>
-              <!-- .item -->
-              <div class="property-item">
-                <a href="property-single.html" class="img">
-                  <img
-                    src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F999B58455C3034C024"
-                    alt="Image" class="img-fluid" style="height:350px; width: 350px;" />
-                </a>
-
-                <div class="property-content">
-                  <div class="price mb-2"><span>Yeah Buddy</span></div>
-                  <div>
-                    <span class="d-block mb-2 text-black-50">2023-02-23 19:37</span>
-                    <span class="city d-block mb-3">로니</span>
-
-                    <div class="specs d-flex mb-4">
-                      <span class="d-block d-flex align-items-center me-3">
-                        <a class='fa fa-heart' id="like_${postid}" name="like" style="color:red;"> </a>
-                        <span class="caption" style="margin-left: 6px;">154</span>
-                      </span>
-                    </div>
-
-                    <a href="property-single.html" class="btn btn-primary py-2 px-3">글읽기</a>
-                  </div>
-                </div>
-              </div>
-              <!-- .item -->
-              <div class="property-item">
-                <a href="property-single.html" class="img">
-                  <img
-                    src="https://w.namu.la/s/5b83651d0d0f82d7095cd5c69a9314cc25a359215fb3bb859271e6220d0bbada899445ab004b59c143da84aded95460156ac2148093cc4645f64b93c4966c8a857af07788014a5dcd8ede04c60c10c31521ed9f24423e7453650792dcaeddf629433fdde584a1e3ed1b4c1b472f95aac"
-                    alt="Image" class="img-fluid" style="height:350px; width: 350px;" />
-                </a>
-
-                <div class="property-content">
-                  <div class="price mb-2"><span>하이하이</span></div>
-                  <div>
-                    <span class="d-block mb-2 text-black-50">2023-02-23 19:37</span>
-                    <span class="city d-block mb-3">호주타잔</span>
-
-                    <div class="specs d-flex mb-4">
-                      <span class="d-block d-flex align-items-center me-3">
-                        <a class='fa fa-heart-o' id="like_${postid}" name="like" style="color:red;"> </a>
-                        <span class="caption" style="margin-left: 6px;">14</span>
-                      </span>
-                    </div>
-
-                    <a href="property-single.html" class="btn btn-primary py-2 px-3">글읽기</a>
-                  </div>
-                </div>
-              </div>
-              <!-- .item -->
+            <div class="row" id="top3">
+             
+          
             </div>
 
-            <div id="property-nav" class="controls" tabindex="0" aria-label="Carousel Navigation">
-              <span class="prev" data-controls="prev" aria-controls="property" tabindex="-1">Prev</span>
-
-              <span class="next" data-controls="next" aria-controls="property" tabindex="-1">Next</span>
-            </div>
+          
           </div>
         </div>
       </div>
@@ -408,6 +331,62 @@
       console.log(response);
       localStorage.setItem('accessUser', response)
     });
+
+    //------------top3------------------
+    var top3 = {
+  "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/t-exercise/top3",
+  "method": "GET",
+  "timeout": 0,
+};
+
+$.ajax(top3).done(function (response) {
+  console.log(response);
+  let rows = response
+      for (let i = 0; i < rows.length; i++) {
+        let title = rows[i]['title']
+        let modifiedDate = rows[i]['modifiedDate']
+        let nickname = rows[i]['userNickname']
+        let postid = rows[i]['id']
+        let like = rows[i]['like']
+        let imageUrl = rows[i]['image']
+        console.log(title)
+
+        let temp_html = `<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+
+<div class="property-item mb-30" style="border:3px solid gold;">
+  <a id ="urlmap" href="T_exepostShow.html?${postid}" class="img">
+    <img src="${imageUrl}" alt="Image" class="img-fluid" style="height:350px; width: 415px;" />
+  </a>
+
+  <div class="property-content">
+    <div class="price mb-2"><span>${title}</span></div>
+    <div>
+      <span class="d-block mb-2 text-black-50"
+        >${modifiedDate}</span
+      >
+      <span class="city d-block mb-3">${nickname}</span>
+
+      <div class="specs d-flex mb-4">
+        <span class="d-block d-flex align-items-center me-3">
+          <a class='fa fa-star' style="color:gold" id ="like_${postid}" name="like">  </a>
+          <span class="caption" id="update_like_${postid}"style="margin-left: 6px;">    ${like}</span>
+        </span>
+
+      </div>
+
+      <a
+        href="T_exepostShow.html?${postid}"
+        class="btn btn-primary py-2 px-3"
+        >글 읽기</a
+      >
+    </div>
+  </div>
+</div>
+</div>`
+
+          $('#top3').append(temp_html)
+        }
+});
     //---------------------------------------
 
     var settings = {
@@ -542,9 +521,9 @@
 
       var like = $('#update_like_' + postId).val()
       // notice란 아이디명으로 찾아서 a 태그에 해당되는 클래스명을 ab으로 변경
-      $('#update_like_' + postId).empty()
-      $('#update_like_' + postId).append("like : " + like + 1) //size db좋아요 누른사람만 저장하고 승미티
-    //window.location.reload();
+      // $('#update_like_' + postId).empty()
+      // $('#update_like_' + postId).append("like : " + like + 1) //size db좋아요 누른사람만 저장하고 승미티
+      window.location.reload();
     });
 
 
@@ -552,7 +531,7 @@
 
   function searching() {
 
-    var keywords = $('#searchInput').val();
+    var keywords = $('#searchInput').val(); wacvx 
 
     localStorage.setItem('searching', keywords)
     sessionStorage.setItem('searching', keywords)
@@ -561,7 +540,7 @@
     window.location = '/T_exeMove.html?1'
 
   }
-
+d
 
 </script>
 

@@ -72,7 +72,7 @@
           <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
             <li class="active"><a href="gym_write_post.html">운동시설등록</a></li>
             <li class="has-children">
-              <a href="T_exe.html">게시판</a>
+              <a href="totalBoard.html">게시판</a>
               <ul class="dropdown">
                 <li><a href="FreeBoard.html">자유게시판</a></li>
                 <li><a href="T_exe.html">오운완게시판</a></li>
@@ -107,12 +107,12 @@
     </div>
   </nav>
 
-  <div class="hero page-inner overlay" style="background-image: url('images/T_exe.jpg')">
+  <div class="hero page-inner overlay" style="background-image: url('images/todaymeal.png')">
     <div class="container">
       <div class="row justify-content-center align-items-center">
         <div class="col-lg-9 text-center mt-5">
           <h1 class="heading" data-aos="fade-up">
-            오늘 운동 완료
+            오먹
           </h1>
 
 
@@ -269,7 +269,7 @@
       console.log(para[1])
 
       var settings = {
-        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/t-exercise/selectboard/" + para[1],
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/todaymeal/selectboard/" + para[1],
         "method": "GET",
         "timeout": 0,
       };
@@ -316,7 +316,7 @@
 
       $('#t_exePosting').on("click", "a[name='editpost']", function () {
         var presigned = {
-          "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/t-exercise/presigned",
+          "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/todaymeal/presigned",
           "method": "POST",
           "timeout": 0,
           "headers": {
@@ -348,7 +348,7 @@
 
           //--------------------[프리사인url발급성공시 서버에 게시글 upload요청--]-------------------------
           var settings = {
-            "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/t-exercise/" + para[1],
+            "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/todaymeal/" + para[1],
             "method": "PATCH",
             "timeout": 0,
             "headers": {
@@ -364,7 +364,7 @@
           $.ajax(settings).done(function (response) {
             console.log(response);
             alert(response);
-            window.location = "./T_exepostShow.html?" + para[1]
+            window.location = "./TodayMealpostShow.html?" + para[1]
           });
 
         });
