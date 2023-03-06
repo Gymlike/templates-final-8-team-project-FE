@@ -377,7 +377,7 @@ $.ajax(top3).done(function (response) {
     console.log("키워드값" + keywords)
 
     var settings = {
-      "url": "http://localhost:8080/t-exercise/allboard?page=" + para[1] + "&search=" + keywords,
+      "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/t-exercise/allboard?page=" + para[1] + "&search=" + keywords,
       "method": "GET",
       "timeout": 0,
     };
@@ -482,7 +482,7 @@ $.ajax(top3).done(function (response) {
 
 
     var settings = {
-      "url": "http://localhost:8080/t-exercise/" + postId + "/like",
+      "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/t-exercise/" + postId + "/like",
       "method": "POST",
       "timeout": 0,
       "headers": {

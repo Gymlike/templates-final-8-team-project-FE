@@ -12,7 +12,7 @@ document.querySelector('.img__btn').addEventListener('click', function () {
 // 회원가입
 function signUp() {
     var settings = {
-        "url": "http://localhost:8080/api/owner/signup",
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/owner/signup",
         "method": "POST",
         "timeout": 0,
         "headers": {
@@ -41,7 +41,7 @@ function signUp() {
 // 로그인
 function logIn() {
     var settings = {
-        "url": "http://localhost:8080/api/owner/login",
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/owner/login",
         "method": "POST",
         "timeout": 0,
         "headers": {
@@ -72,7 +72,7 @@ function logIn() {
 //로그아웃
 function logout() {
     var settings = {
-        "url": "http://localhost:8080/api/owner/logout",
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/owner/logout",
         "method": "DELETE",
         "timeout": 0,
         "headers": {
@@ -99,7 +99,7 @@ function logout() {
 // 상단 프로필
 function getOwnerMe() {
     var settings = {
-        "url": "http://localhost:8080/api/owners",
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/owners",
         "method": "GET",
         "timeout": 0,
         "headers": {
