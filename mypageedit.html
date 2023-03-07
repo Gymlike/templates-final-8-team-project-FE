@@ -5,7 +5,7 @@
     
   <meta charset="UTF-8">
   <title>Edit Profile</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
 </head>
 <body>
   <div class="container">
@@ -19,47 +19,159 @@
         <label for="nickname">Nickname:</label>
         <input type="text" id="modifyNickname" />
       </div>
-      <div class="form-group">
-        <label for="image">email:</label>
+      <!-- <div class="form-group">
+        <label for="email">email:</label>
         <input type="text" id="modifyEmail" />
-      </div>
+      </div> -->
       <div class="form-group">
         <label for="phoneNumber">Password를 입력해 주세요</label>
         <input type="password" id="password" />
       </div>
       <!-- <input type="submit" value="저장하기"> -->
-      <button type="button" calss="submit" onclick="Modify()">저장하기</button>
+      <button type="button" calss="submit" onclick="modify()">저장하기</button>
     </form>
   </div>
 </body>
 </html>
 <script>
-  function Modify() {
-    var settings = {
-  "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/profile",
-  "method": "Patch",
-  "timeout": 0,
-  "headers": {
-     "Authorization": localStorage.getItem('accessToken'),
-    "Content-Type": "application/json"
-  },
-  "data": JSON.stringify({
-    "nickname": $('#modifyNickname').val(),
-    "image": $('#modifyEmail').val(),
-    "password": $('#password').val()
-  }),
-};
 
-$.ajax(settings).done(function (response) {
-  console.log(response);
-  alert("수정완료")
-  window.location.href = "./mypage.html";
-}).fail(function(response){
-  //console.log(response.responseJSON);
-  if(response.status === 400){
-    alert("모두 작성해주세요");
-  }
-});
+
+
+// }).fail(function(response){
+//   //console.log(response.responseJSON);
+//   if(response.status === 400){
+//     alert("모두 작성해주세요");
+//   }
+
+  
+  //--------------------[글등록버튼 누를시 실행]--------------------------------
+  
+  function modify() {
+    const dtoTitle = $('#modifyNickname').val();
+
+if (!dtoTitle) {
+  return alert("닉네임을 입력해주세요")
+}
+const dtoContent = $('#password').val();
+
+if (!dtoContent) {
+  return alert("비밀번호를 입력해주세요")
+}
+// const dtoImage = $('image').val();
+// if (!dtoimage) {
+//   return alert("이미지를 입력해 주세요")
+// }
+    var presignedUrlg = "이미지.jpa"
+    console.log("이미지라고 나와야함 = " + presignedUrlg)
+ 
+  //--------------------[프리사인url발급요청---]-------------------------
+    var presigned = {
+      "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/profile/presigned",
+      "method": "POST",
+      "timeout": 0,
+      "headers": {
+        "Authorization": localStorage.getItem('accessToken'),
+        "Content-Type": "application/json"
+      },
+      "data": JSON.stringify({
+        "imageName": document.getElementById("profileImage").files[0].name
+      }),
+    };
+
+      console.log("이미지 이름이 나와야함 = "+document.getElementById("profileImage").files[0].name)
+
+    $.ajax(presigned).done(function (response) {
+      presignedUrlg = response.toString()
+
+      console.log("함수안에서" + presignedUrlg)
+//--------------------[프리사인url발급성공시 S3에 이미지 upload요청--]-------------------------
+      var upload = {
+        "url": presignedUrlg,
+        "method": "PUT",
+        "timeout": 0,
+        "processData": false,
+        "Content-Type": "binary/octet-stream",
+        "data": document.getElementById("profileImage").files[0]
+      };
+
+      $.ajax(upload).done(function (response) {
+        console.log(response);
+      });
+
+//--------------------[프리사인url발급성공시 서버에 게시글 upload요청--]-------------------------
+      var settings = {
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/profile",
+        "method": "PATCH",
+        "timeout": 0,
+        "headers": {
+          "Authorization": localStorage.getItem('accessToken'),
+          "Content-Type": "application/json"
+        },
+        "data": JSON.stringify({
+          "nickname": $('#modifyNickname').val(),
+          "password": $('#password').val()
+        }),
+      };
+
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        alert(response);
+        window.location = '/mypage.html'
+      });
+
+    });
+
+//----------------[프리사인 발급및 게시글 등록 끝]-------------------------
+    //-----------------------------------------------------------------
+    // var form = new FormData();
+    // form.append("file", $("#t_exeFile")[0].files[0]);
+    // form.append("file", $("#t_exeFile")[0].files[1]);dw
+
+    // console.log($("#t_exeFile")[0].files[0])
+    // console.log($("#t_exeFile")[0].files[1])
+
+    // const dtoTitle = $('#utitle').val();
+
+    // if (!dtoTitle) {
+    //   return alert("제목을 입력해주세요")
+    // }
+    // const dtoContent = $('#ucontent').val();
+
+    // if (!dtoContent) {
+    //   return alert("내용을 입력해주세요")
+    // }
+
+    // const json = JSON.stringify({ "title": dtoTitle, "content": dtoContent });
+
+    // const blob = new Blob([json], { type: "application/json" });
+
+
+    // form.append("BordRequestDTO", blob);
+
+    // var settings = {
+    //   "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/t-exercise",
+    //   "method": "POST",
+    //   "timeout": 0,
+    //   "processData": false,
+    //   "mimeType": "multipart/form-data",
+    //   "headers": {
+    //     "Authorization": localStorage.getItem('accessToken')
+    //   },
+    //   "contentType": false,
+    //   "data": form
+    // };
+
+    // $.ajax(settings).done(function (response) {
+    //   console.log(response);
+    //   alert(response);
+    //   window.location = '/T_exe.html'
+    // });
+
+    console.log("함수밖에서" + presignedUrlg)
+
+
+
+
   }
 </script>
 <style>

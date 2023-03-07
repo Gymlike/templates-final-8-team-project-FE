@@ -151,8 +151,10 @@ function getUserMe(){
         console.log(response.nickName);
         console.log(response.email);
         console.log(response.phoneNumber);
-       
+        
+        $('#imageUrl').empty();
         $('#loginUser').empty();
+        $('#profileImage').attr({src:response.profileImage});
         // $('#profileImage').attr("src",'images/person_1-min.jpg')
         // $('#profileImage').attr("src",response.image)
         $('#nickName').text(response.nickName)
@@ -188,7 +190,7 @@ document.getElementById("adminpage").style.display = "none";
 					<div class="row">
 						<div class="col-xs-12 col-sm-3 center">
 							<span class="profile-picture">
-								<img class="editable img-responsive" id="profileImage" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4LiYHMrtiUP3w3CA9cyrmZewD-TVm5Gnx_g&usqp=CAU">
+								<img style="height:280px; width: 280px;"class="editable img-responsive" id="profileImage" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4LiYHMrtiUP3w3CA9cyrmZewD-TVm5Gnx_g&usqp=CAU">
 							</span>
 
 							<div class="space space-4"></div>
