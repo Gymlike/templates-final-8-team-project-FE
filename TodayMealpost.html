@@ -54,7 +54,6 @@
         <a style="color:white" href="login.html"><span id="MainSignUp">회원가입</span></a>
         <a style="color:white" href="mypage.html"><span id="mypage">마이페이지</span></a>
         <a style="color:white" onclick="logout()" href="index.html"><span id="MainLogout">로그아웃</span></a>
-        <a style="color:white" href="FIndByIdAndPw.html"><span id="findbyIdandPw">아이디 및 비밀번호 찾기</span></a>
       </ul>
     </div>
     <div class="container">
@@ -108,7 +107,7 @@
             <ol class="breadcrumb text-center justify-content-center">
               <li class="breadcrumb-item"><a href="index.html">Home</a></li>
               <li class="breadcrumb-item active text-white-50" aria-current="page">
-                오.운.완
+               오늘의 식단
               </li>
             </ol>
           </nav>
@@ -243,7 +242,7 @@
       $.ajax(settings).done(function (response) {
         console.log(response);
         alert(response);
-         window.location = '/TodayMeal.html'
+         window.location = './TodayMeal.html'
       });
 
     });

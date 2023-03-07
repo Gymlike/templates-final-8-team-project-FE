@@ -54,7 +54,6 @@
         <a style="color:white" href="login.html"><span id="MainSignUp">회원가입</span></a>
         <a style="color:white" href="mypage.html"><span id="mypage">마이페이지</span></a>
         <a style="color:white" onclick="logout()" href="index.html"><span id="MainLogout">로그아웃</span></a>
-        <a style="color:white" href="FIndByIdAndPw.html"><span id="findbyIdandPw">아이디 및 비밀번호 찾기</span></a>
       </ul>
     </div>
     <div class="container">
@@ -153,7 +152,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/tiny-slider.js"></script>
   <script src="js/aos.js"></script>
-  <script src="js/navbar.js"></script>
+  <script src="js/navbar.js"></script> 
   <script src="js/counter.js"></script>
   <script src="js/custom.js"></script>
 </body>
@@ -243,7 +242,7 @@
       $.ajax(settings).done(function (response) {
         console.log(response);
         alert(response);
-        window.location = '/FreeBoard.html'
+        window.location = './FreeBoard.html'
       });
 
     });
