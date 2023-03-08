@@ -16,11 +16,7 @@
   <script src="js/auth/owner/owner.js"></script>
   <script src="js/auth/manager/manager.js"></script>
   <script src="js/auth/kakao/kakao.js"></script>
-
-  <!DOCTYPE html>
-  <html lang="en">
-
-  <head>
+ 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Untree.co" />
@@ -306,7 +302,8 @@
 
 
       <script>
-        $(document).ready(function () {
+        $(document).ready(function (xhr) { 
+		      console.log(xhr.getResponseHeader('Authorization')) 
           getGymPostMain()
         })
 
@@ -333,9 +330,4 @@
 </style>
 
 </html>
-
-
-
-</body>
-
-</html>
+ 
