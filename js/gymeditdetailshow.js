@@ -14,7 +14,7 @@ function gymPutPost() {
       imageFile = document.getElementById("gym_File").files[0]
       imageFileName =document.getElementById("gym_File").files[0].name
       var presigned = {
-        // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/presigned",
+        // "url": "http://localhost:8080/api/gym/presigned",
         "url": "http://localhost:8080/api/gym/pre-signed",
         "method": "POST",
         "timeout": 0,

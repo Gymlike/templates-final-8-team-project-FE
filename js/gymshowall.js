@@ -4,7 +4,7 @@
       function getGymPost(){ 
         var settings = {
           
-          // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym",
+          // "url": "http://localhost:8080/api/gym",
           "url": "http://localhost:8080/api/gym",
           "method": "GET",
           "timeout": 0, 
