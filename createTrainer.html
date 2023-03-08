@@ -6,11 +6,11 @@
   <meta charset="UTF-8">
 
   <title>Edit Profile</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
 </head>
 <body>
   <div class="container">
-    <h1>Edit Profile</h1>
+    <h1>트레이너 등록</h1>
     <form action="updateProfile" method="post">
       <div class="form-group">
         <label for="profileImage">Trainer Image:</label>
@@ -29,7 +29,7 @@
         <input type="text" id="modifyNumber" />
       </div>
       <!-- <input type="submit" value="저장하기"> -->
-      <button type="button" calss="submit" onclick="Modify()">저장하기</button>
+      <button type="button" calss="submit" onclick="createTrainer()">저장하기</button>
     </form>
   </div>
 </body>
@@ -41,12 +41,11 @@
   "method": "POST",
   "timeout": 0,
   "headers": {
-    "": "",
-    "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc2RhczEyMzQiLCJhdXRoIjoiT1dORVIiLCJleHAiOjE2NzY5NTkyNzUsImlhdCI6MTY3Njk1NTY3NX0._taj8CY3dlCobk-xAoIF_xVFcb2xWkvoXNbIexciIKY",
+    "Authorization": localStorage.getItem('accessToken'),
     "Content-Type": "application/json"
   },
   "data": JSON.stringify({
-    "trainername": $('#createTrainername').val(),
+    "trainername": $('#trainername').val(),
     "storeName": $('#modifyImage').val(),
     "contents": $('#modifycontents').val(),
     "image": $('#createImage').val()
@@ -59,7 +58,7 @@ $.ajax(settings).done(function (response) {
   alert("수정완료")
   window.location.href = "./mypage.html";
 }).fail(function(response){
-  console.log(response.responseJSON);
+  console.log(response);
   if(response.status === 400){
     alert("모두 작성해주세요");
   }
