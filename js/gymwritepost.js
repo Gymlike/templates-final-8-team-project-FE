@@ -128,7 +128,7 @@ $(document).ready(function () {
 
 
       //--------------------[테이블 생성 끝]-------------------------
-  function gymWritePost() { 
+  function gymwritepost() { 
     var presignedUrlg = "이미지.jpa"
      
     //--------------------[프리사인url발급요청---]-------------------------

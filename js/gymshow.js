@@ -35,7 +35,7 @@ function getGymPostMain() {
         temp_html = `                   
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
                       <div class="property-item mb-30">
-                        <a href="gym_show_post.html?${gymIid}" class="img">
+                        <a href="./gymshowpost.html?${gymIid}" class="img">
                           <img src="${image}" alt="Image" class="img-fluid" />
                         </a>
 
@@ -58,7 +58,7 @@ function getGymPostMain() {
                           </div> 
 
                             <a
-                              href="gym_show_post.html?${gymIid}"
+                              href="./gymshowpost.html?${gymIid}"
                               class="btn btn-primary py-2 px-3"
                             >상세 내용</a
                             >
@@ -69,7 +69,7 @@ function getGymPostMain() {
                   ` 
         count += 1
       }
-      $('#gym_show_post_box').append(temp_html)
+      $('#./gymshowpost_box').append(temp_html)
     }
     
     if (count ==0){
@@ -79,7 +79,7 @@ function getGymPostMain() {
                       체험해보시고 자신이 경험한 곳이 순위에 올라가게 할수있어요!</pre></h>
                     </div> 
                 ` 
-     $('#gym_show_post_box').append(temp_html)
+     $('#./gymshowpost_box').append(temp_html)
     }
   });
 }
