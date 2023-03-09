@@ -169,18 +169,40 @@ function getUserMe() {
 //이메일 보내기
 function sendEmail() {
 	var settings = {
-		"url": "http://localhost:8080/api/user/email?email=" + $('#email').val(),
+		"url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/user/email?email=" + $('#email').val(),
 		"method": "POST",
 		"timeout": 0,
 	};
 
+
 	$.ajax(settings).done(function (response) {
+		var minutes = 2;
+		var seconds = 0;
+		var interval = setInterval(function () {
+			if (seconds === 0 && minutes === 0) {
+				clearInterval(interval);
+				$('#timer').hide();
+				$('#sendEmail3').show();
+			} else if (seconds === 0) {
+				minutes--;
+				seconds = 59;
+			} else {
+				seconds--;
+			}
+			if (minutes === 0 && seconds <= 30) {
+				document.getElementById("timer").style.color = "red";
+			}
+			var timeLeft = "남은 시간: " + minutes + "분 " + seconds + "초";
+			document.getElementById("timer").innerHTML = timeLeft;
+		}, 1000);
+
 		console.log(response);
 		alert("이메일이 발송되었습니다.")
 		$('#verifyEmail').show();
 		$('#verifyEmail2').show();
 		$('#sendEmail2').hide();
-		$('#sendEmail3').show();
+		$('#sendEmail3').hide();
+
 	}).fail(function (response) {
 		console.log(response.responseJSON);
 		if (response.responseJSON.status === 404) {
@@ -192,10 +214,46 @@ function sendEmail() {
 	})
 }
 
+//이메일 재발송
+function sendEmailAgain() {
+	var settings = {
+		"url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/user/email?email=" + $('#email').val(),
+		"method": "POST",
+		"timeout": 0,
+	};
+
+	$.ajax(settings).done(function (response) {
+		$('#timer').show();
+		$('#sendEmail3').hide();
+		var minutes = 2; // 2분 타이머
+		var seconds = 0;
+		var interval = setInterval(function () {
+			if (seconds === 0 && minutes === 0) {
+				clearInterval(interval);
+				$('#timer').hide();
+				$('#sendEmail3').show();
+			} else if (seconds === 0) {
+				minutes--;
+				seconds = 59;
+			} else {
+				seconds--;
+			}
+			if (minutes === 0 && seconds <= 30) {
+				document.getElementById("timer").style.color = "red";
+			} else {
+				document.getElementById("timer").style.color = "black";
+			}
+			var timeLeft = "남은 시간: " + minutes + "분 " + seconds + "초";
+			document.getElementById("timer").innerHTML = timeLeft;
+		}, 1000);
+		alert("이메일이 발송되었습니다.")
+	})
+}
+
 //이메일 코드 인증
 function verifymail() {
 	var settings = {
-		"url": "http://localhost:8080/api/user/verifyCode?code=" + $('#EmailCode').val() + "&email=" + $('#email').val(),
+		"url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/user/verifyCode?code=" + $('#EmailCode').val() + "&email=" + $('#email').val(),
 		"method": "POST",
 		"timeout": 0,
 	};
@@ -212,7 +270,7 @@ function verifymail() {
 		} else {
 			localStorage.setItem('verifyEmailCode', 0)
 			console.log(response);
-			alert("이메일 인증 후 다시 시도해주세요.")
+			alert("이메일 인증에 실패하였습니다.")
 		}
 	}).fail(function (response) {
 		console.log(response.responseJSON);
