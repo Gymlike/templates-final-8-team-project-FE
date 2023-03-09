@@ -128,7 +128,7 @@ $(document).ready(function () {
 
 
       //--------------------[테이블 생성 끝]-------------------------
-  function gymWritePost() { 
+  function gymwritepost() { 
     var presignedUrlg = "이미지.jpa"
      
     //--------------------[프리사인url발급요청---]-------------------------
@@ -144,7 +144,7 @@ $(document).ready(function () {
     }
     var presigned = {
       // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/presigned",
-      "url": "http://localhost:8080/api/gym/pre-signed",
+      "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/pre-signed",
       "method": "POST",
       "timeout": 0,
       "headers": {
@@ -225,7 +225,7 @@ $(document).ready(function () {
     }
     var settings = {
       // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/owner/write_post",
-      "url": "http://localhost:8080/api/gym/owner/write-post",
+      "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/owner/write-post",
       "method": "POST",
       "timeout": 0,
       "headers": {

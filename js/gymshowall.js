@@ -5,7 +5,7 @@
         var settings = {
           
           // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym",
-          "url": "http://localhost:8080/api/gym",
+          "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym",
           "method": "GET",
           "timeout": 0, 
         }; 
@@ -35,7 +35,7 @@
                   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
 
                                 <div class="property-item  mb-30">
-                                    <a href="gym_show_post.html?${gymIid}" class="img">
+                                    <a href="./gymshowpost.html?${gymIid}" class="img">
                                       <img src="${image}" alt="Image" class="img-fluid" />
                                     </a>
 
@@ -57,7 +57,7 @@
                                           </span>
                                         </div> 
                                         
-                                        <a   href="gym_show_post.html?${gymIid}"
+                                        <a   href="./gymshowpost.html?${gymIid}"
                                           class="btn btn-primary py-2 px-3"
                                           >상세 내용</a>
                                       </div>
@@ -71,7 +71,7 @@
                   temp_html = `
                   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
                                 <div class="property-item mb-30">
-                                    <a href="gym_show_post.html?${gymIid}" class="img">
+                                    <a href="./gymshowpost.html?${gymIid}" class="img">
                                       <img src="${image}" alt="Image" class="img-fluid" />
                                     </a>
 
@@ -91,7 +91,7 @@
                                             <span class="caption">시설이름 : ${gymName}</span>
                                           </span>
                                         </div>
-                                        <a   href="gym_show_post.html?${gymIid}"
+                                        <a   href="./gymshowpost.html?${gymIid}"
                                           class="btn btn-primary py-2 px-3"
                                           >상세 내용</a>
                                       </div>
@@ -119,18 +119,18 @@
         console.log("현재페이지 : " + param[1])
         //이전페이지
         if (page > 1) {
-            let temp_html = `<a href="gym_search_post.html?${page - 1}">pre</a>`
+            let temp_html = `<a href="gymsearchpost.html?${page - 1}">pre</a>`
             $('#gymPaging').append(temp_html);
         }
         //한 화면에 보여지는 페이지 수만큼 반복 하여 번호로 나타냄
         for (let i = startPage; i <= endPage; i++) {
             let number = i
-            let temp_html = `<a href="gym_search_post.html?${number}">${number}</a>`
+            let temp_html = `<a href="gymsearchpost.html?${number}">${number}</a>`
             $('#gymPaging').append(temp_html);
         }
         //다음페이지 page
         if (page < totalPage) {
-            let temp_html = `<a href="gym_search_post.html?${page + 1}">next</a>`
+            let temp_html = `<a href="gymsearchpost.html?${page + 1}">next</a>`
             $('#gymPaging').append(temp_html);
         } 
         });

@@ -5,7 +5,7 @@ function getSelectGymPost() {
   console.log(para[1])
   var settings = {
     // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/" + para[1],
-    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com.ap-northeast-2.compute.amazonaws.com/api/gym/" + para[1],
+    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/" + para[1],
     "method": "GET",
     "timeout": 0,
   };
@@ -72,7 +72,7 @@ function getSelectGymPost() {
                                 </div> 
                             </div>`
     
-    $('#gym_show_post_box').append(temp_html) 
+    $('#./gymshowpost_box').append(temp_html) 
     
     let price1 = price.split("."); 
     let isFalse = true  
@@ -88,7 +88,7 @@ function getSelectGymPost() {
         </div>  
       `
       
-      $('#gym_show_post_price').append(temp_html_price) 
+      $('#./gymshowpost_price').append(temp_html_price) 
     }
     
     var discountList =""
@@ -351,7 +351,7 @@ function deleteGymPost() {
   var settings = {
     
     // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/owner/" + para[1] +"/deletepost",
-    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com.ap-northeast-2.compute.amazonaws.com/api/gym/owner/" + para[1] +"/delete-post",
+    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/owner/" + para[1] +"/delete-post",
     "method": "DELETE",
     "timeout": 0,
     "headers": {
@@ -362,7 +362,7 @@ function deleteGymPost() {
   $.ajax(settings).done(function (response) {
     console.log(response);
     alert(response);
-    window.location = "./gym_all_show_post.html"
+    window.location = "./gymallshowpost.html"
   }).fail(function (response){
     console.log(response.status);
     if(response.status === 404){
@@ -378,7 +378,7 @@ function deleteGymPost() {
 function putGymPost() {
   
   var para = document.location.href.split("?");
-   window.location = "/gym_put_detail_show_post.html?"+para[1]
+   window.location = "/gymputdetailshowpost.html?"+para[1]
 }
 // ----------------------------------[함수 끝]-----------------------------------------------------
 
@@ -401,7 +401,7 @@ $('#gym_review_write').on("click", "button[name='enrollReview']", function () {
   var settings = {
     
     // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + para[1] + "/write",
-    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + para[1] + "/write",
+    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + para[1] + "/write",
     "method": "POST",
     "timeout": 0,
     "headers": {
@@ -453,7 +453,7 @@ $('#gymReview').on("click", "button[name='delReview']", function () {
     // para[1]+"/deletereview/"+commentId
     
     // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + commentId + "/deletereview",
-    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + commentId + "/delete-review",
+    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + commentId + "/delete-review",
     "method": "DELETE",
     "timeout": 0,
     "headers": {
@@ -504,7 +504,7 @@ $('#gymReview').on("click", "button[name='saveReview']", function () {
   var settings = {
     
     // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + commentId + "/put-review",
-    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + commentId + "/put-review",
+    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + commentId + "/put-review",
     "method": "PUT",
     "timeout": 0,
     "headers": {
@@ -582,7 +582,7 @@ function discountPriceUpdate(){
   var settings = {
     
     // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + commentId + "/put-review",
-    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com.ap-northeast-2.compute.amazonaws.com/api/gym/owner/"+para[1]+"/discount",
+    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/owner/"+para[1]+"/discount",
     "method": "PUT",
     "timeout": 0,
     "headers": {

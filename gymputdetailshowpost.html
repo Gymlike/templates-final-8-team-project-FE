@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7b74dc0c556886b85431732b36435069&libraries=services"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Untree.co" />
+    <link rel="shortcut icon" href="favicon.png" />
+
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap5" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="fonts/icomoon/style.css" />
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" />
+    <link rel="stylesheet" href="css/tiny-slider.css" />
+    <link rel="stylesheet" href="css/aos.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/kakamap.css" />
+
+    <title>
+        운동시설 사이트
+    </title>
+</head>
+
+<body>
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <nav class="site-nav">
+        <div>
+            <ul><a style="color:white"><span id="loginUser"></span></a>
+                <a style="color:white" href="login.html"><span id="MainLogin">로그인</span></a>
+                <a style="color:white" href="login.html"><span id="MainSignUp">회원가입</span></a>
+                <a style="color:white" href="mypage.html"><span id="mypage">마이페이지</span></a>
+                <a style="color:white" href="ownermypage.html"><span id="ownermypage">마이페이지</span></a>
+                <a style="color:white" href="admin.html"><span id="adminpage">관리자페이지</span></a>
+                <a style="color:white" onclick="logout()" href="index.html">
+                    <span id="MainLogout">로그아웃</span>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="menu-bg-wrap">
+                <div class="site-navigation">
+                    <a href="./index.html" class="logo m-0 float-start">SearchingGYM</a>
+
+                    <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
+                        <li class="active"><a href="./gym_write_post.html">운동시설등록</a></li>
+                        <li class="has-children">
+                  
+              <a href="./totalBoard.html">게시판</a>
+              <ul class="dropdown">
+                <li><a href="./FreeBoard.html">자유게시판</a></li>
+                <li><a href="./T_exe.html">오운완게시판</a></li>
+                <li><a href="./TodayMeal.html">오먹게시판</a></li>
+              </ul>
+            </li> 
+            <li class="has-children"> 
+              <a href="#">이벤트게시판</a> 
+              <ul class="dropdown"> 
+                <li><a href="#">유저이벤트</a></li>   
+                <li><a href="#">헬스장이벤트</a></li> 
+                <li><a href="#">사이트이벤트</a></li> 
+              </ul> 
+            </li> 
+            <li class="has-children"> 
+              <a href="./contactIndex.html">고객센터</a> 
+                <ul class="dropdown"> 
+
+                    <li>
+                  <a href="contactPageIndex-notice.html">공지사항</a>
+                </li>
+                <li>
+                    <a href="contactPageIndex-faq.html">FAQ</a>
+                </li>
+                <li>
+                    <a href="contactPageIndex-inquiry.html" >1:1문의</a> 
+                  </ul>
+              </li>
+              <li><a href="./gymallshowpost.html">운동시설</a></li>
+                    </ul>
+
+                    <a href="#"
+                        class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+                        data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+
+
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="hero page-inner overlay" style="background-image: url('images/hero_bg_1.jpg')">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-9 text-center mt-5">
+                    <h1 class="heading" data-aos="fade-up">등록된 운동 시설 편집</h1>
+
+                    <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
+                        <ol class="breadcrumb text-center justify-content-center">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active text-white-50" aria-current="page">
+                                편집중
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <center>
+        <div id="gym_in_title">
+            <p>제목</p>
+            <textarea name="title" id="puttitle" rows="1" cols="55" placeholder="제목" maxlength="100" required></textarea>
+        </div>
+
+        <div id="gym_in_gymName">
+            <p>시설이름</p>
+            <textarea name="gymName" id="putgymName" placeholder="시설이름" required></textarea>
+        </div>
+
+        <div id="gym_in_content">
+            <p>시설소개</p>
+            <textarea name="content" id="putcontent" placeholder="시설 소개글" required></textarea>
+        </div>
+        <div>
+            <p>편의시설 존재 여부 확인</p>
+            <!-- <image src="/images/icon_a.png"></image> -->
+            <!-- <input type="checkbox" name="con_6" value="6" id ="cb6" checked> 
+           checked를 넣으면 디콜드 값이 체크된 상태
+         -->
+            <label><input type="checkbox" name="amenities" value="1" id="pcb1">수건</label>
+            <label><input type="checkbox" name="amenities" value="2" id="pcb2">주차장</label>
+            <label><input type="checkbox" name="amenities" value="3" id="pcb3">WI-FI</label>
+            <label><input type="checkbox" name="amenities" value="4" id="pcb4">샤워시설</label>
+            <label><input type="checkbox" name="amenities" value="5" id="pcb5">운동복</label>
+            <label><input type="checkbox" name="amenities" value="6" id="pcb6">라커</label>
+        </div>
+        <br>
+        <div id="gym_in_time">
+            <p>영업 시간 작성</p>
+            <textarea style="width: 300px;  height:300px;" name="opentime" id="putopentime" placeholder="영업시간
+        [평  일] 09:00 ~ 23:00            
+        [토요일] 09:00 ~ 18:00            
+        [일요일] 매장 휴업            
+        [휴무일] 공휴일,매주 일요일" required></textarea>
+        </div>
+        <div id="gym_in_amenities_detail">
+            <p>편의시설 이용 정보</p>
+            <textarea style="width: 300px;  height:300px;" name="amenities_detail" id="putamenities" placeholder="편의시설 이용 정보
+        무료
+        주차 3시간 / 수건 / 운동복            
+        유료
+        라커 : 월 10,000원" required></textarea>
+        </div>
+        <div id="gym_in_region">
+            <p>주소</p>
+            <input type="text" id="put_sample3_postcode" placeholder="우편번호">
+            <input type="button" onclick="sample5_execDaumPostcode()" value="우편번호 찾기"><br>
+            <input type="text" style="width: 350px; max-width: 80%;" id="sample3_address" placeholder="주소"><br>
+            <input type="text" id="put_sample3_detailAddress" placeholder="상세주소">
+            <input type="text" id="put_sample3_extraAddress" placeholder="참고항목">
+            <div id="wrap"
+                style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative; max-width: 90%;">
+                <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap"
+                    style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()"
+                    alt="접기 버튼">
+            </div>
+        </div>
+        <br>
+        <input type="file" id="put_gym_File" name="GymSelectFile" accept="image/*" multiple>
+        <div class="bt_se">
+            <br>
+            <button type="submit" onclick="gymPutPost()">글 작성</button>
+        </div>
+        <br>
+        <br>
+    </center>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/tiny-slider.js"></script>
+    <script src="./js/aos.js"></script>
+    <script src="./js/navbar.js"></script>
+    <script src="./js/counter.js"></script>
+    <script src="./js/custom.js"></script>
+    <script src="./js/kakaomap.js"></script>
+    <script src="./js/gymeditdetailshow.js"></script>
+    <script src="./js/regenerateToekn.js"></script>
+   
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+</body>
+<script> 
+    $(document).ready(function () {  
+    });
+</script>

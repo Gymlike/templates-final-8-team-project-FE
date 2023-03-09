@@ -15,7 +15,7 @@ function gymPutPost() {
       imageFileName =document.getElementById("gym_File").files[0].name
       var presigned = {
         // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/presigned",
-        "url": "http://localhost:8080/api/gym/pre-signed",
+        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/pre-signed",
         "method": "POST",
         "timeout": 0,
         "headers": {
@@ -67,7 +67,7 @@ function gymPutPost() {
     });
     let amenitiesDetail = $("#uamenities").val()
     var settings = {
-    "url": "http://localhost:8080/api/gym/owner/" + para[1] +"/putpost",
+    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/owner/" + para[1] +"/putpost",
     "method": "PUT",
     "timeout": 0,
     "headers": {
@@ -89,7 +89,7 @@ function gymPutPost() {
     $.ajax(settings).done(function (response) {
         console.log(response);
         alert(response);
-        window.location = "gym_show_post.html?"+para[1]
+        window.location = "./gymshowpost.html?"+para[1]
     }).fail(function (response) {
         console.log(response.status);
         if (response.status === 403) {
