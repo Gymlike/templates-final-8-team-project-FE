@@ -1,7 +1,9 @@
 <head>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    
-    <link rel="stylesheet" href="css/login.css"/>
+    <meta charset="utf-8" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="css/login.css" />
     <title>운동시설 사이트</title>
 </head>
 
@@ -11,14 +13,16 @@
         <h2>관리자 로그인</h2>
         <label>
             <span>ID</span>
-            <input type="text" id="logInID"/>
+            <input type="text" id="logInID" />
         </label>
         <label>
             <span>비밀번호</span>
-            <input type="password" id="logInpassword"/>
+            <input type="password" id="logInpassword" />
         </label>
-        <p class="forgot-pass">비밀번호 찾기</p>
         <button type="button" class="submit" onclick="logIn()">로그인</button>
+        <div>
+            <button class="forgot-pass" onclick="location.href='FIndByIdAndPw.html'">아이디/비밀번호를 잊으셨나요?</button>
+        </div>
     </div>
     <div class="sub-cont">
         <div class="img">
@@ -39,27 +43,28 @@
             <h2>관리자 회원가입</h2>
             <label>
                 <span>ID</span>
-                <input type="text" id="username"/>
+                <input type="text" id="username" />
             </label>
             <label>
                 <span>비밀번호</span>
-                <input type="password" id="password"/>
+                <input type="password" id="password" />
             </label>
             <label>
                 <span>비밀번호 확인 </span>
-                <input type="password" id="password2"/>
+                <input type="password" id="password2" />
             </label>
             <label>
                 <span>닉네임</span>
-                <input type="text" id="nickName"/>
+                <input type="text" id="nickName" />
             </label>
             <label>
                 <span>핸드폰번호</span>
-                <input type="text" id="phoneNumber"/>
+                <input type="text" id="phoneNumber" />
             </label>
             <button type="button" id="sendEmail2" class="send-email" onclick="sendEmail()">인증번호 발송</button>
             <button type="button" id="sendEmail3" class="send-email2" onclick="sendEmail()">인증번호 재발송</button>
             <span id="emailOk" class="emailOk">이메일 인증 완료</span>
+            <div class="timer" id="timer"></div>
             <label class="line">
                 <span>이메일</span>
                 <input type="email" id="email" />
@@ -67,7 +72,7 @@
             <button type="button" id="verifyEmail2" class="verifyEmail" onclick="verifymail()">인증번호 확인</button>
             <label class="line" id="verifyEmail">
                 <span id="verifyEmail">인증번호</span>
-                <input type="text" id="EmailCode"/>
+                <input type="text" id="EmailCode" />
             </label>
             <button type="button" class="submit" onclick="signUp()">가입하기</button>
         </div>

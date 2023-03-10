@@ -61,6 +61,7 @@
         <a style="color:white" href="mypage.html"><span id="mypage">마이페이지</span></a>
         <a style="color:white" href="admin.html"><span id="adminpage">관리자페이지</span></a>
         <a style="color:white" onclick="logout()" href="index.html"><span id="MainLogout">로그아웃</span></a>
+        <a style="color:white" href="ownermypage.html"><span id="ownermypage">마이페이지</span></a>
       </ul>
     </div>
     <div class="container">
@@ -79,22 +80,25 @@
               </ul>
             </li>
             <li class="has-children">
-              <a href="services.html">이벤트게시판</a>
+              <a href=""onClick="alert('작업중입니다')">이벤트게시판</a>
               <ul class="dropdown">
-                <li><a href="#">유저이벤트</a></li>
-                <li><a href="#">헬스장이벤트</a></li>
-                <li><a href="#">사이트이벤트</a></li>
+                <li><a href="#"onClick="alert('작업중입니다')">유저이벤트</a></li>
+                <li><a href="#"onClick="alert('작업중입니다')">헬스장이벤트</a></li>
+                <li><a href="#"onClick="alert('작업중입니다')">사이트이벤트</a></li>
               </ul>
             </li>
             <li class="has-children">
-              <a href="contactIndex.html">고객센터</a>
+              <a href="contactPageIndex-inquiry.html">고객센터</a>
               <ul class="dropdown">
-                <li><a href="#">공지사항</a></li>
-                <li><a href="#">FAQ</a></li>
+                <li><a href="contactPageIndex-notice.html">공지사항</a></li>
+                <li><a href="contactPageIndex-faq.html">FAQ</a></li>
                 <li><a href="contactPageIndex-inquiry.html">1:1문의</a></li>
 
 
               </ul>
+ </li>
+ <li><a href="./gymallshowpost.html">운동시설</a></li>
+            </ul>
               <a href="#"
                 class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
                 data-toggle="collapse" data-target="#main-navbar">
@@ -304,10 +308,12 @@
     localStorage.removeItem('postWriter');
     localStorage.removeItem('searching');
 
+    
     document.getElementById("mypage").style.display = "none";
     document.getElementById("MainLogout").style.display = "none";
-
+    document.getElementById("ownermypage").style.display = "none";
     document.getElementById("adminpage").style.display = "none";
+
 
     if (localStorage.getItem('accessToken') === null) {
       $('#findbyIdandPw').show()
