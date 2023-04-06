@@ -6,7 +6,7 @@ window.addEventListener('beforeunload', function(event){
             "method": "DELETE",
             "timeout": 0,
             "headers": {
-                "Authorization": localStorage.clear('accessToken')
+                "Authorization": localStorage.getItem('accessToken')
             },
         };
         $.ajax(settings).done(function (response, status, xhr) {
@@ -16,6 +16,7 @@ window.addEventListener('beforeunload', function(event){
                 window.location = "/index.html"
             }
             console.log(response.nickName);
+            localStorage.clear('accessToken')
             $('#loginUser').hide();
             $('#mypage').hide();
             $('#MainLogout').hide();
