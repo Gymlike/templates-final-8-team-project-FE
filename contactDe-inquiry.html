@@ -336,7 +336,7 @@
                                     console.log("해당 게시글 번호 : " + param[1])
 
                                     var settings = {
-                                        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/contact/inquiries/" + param[1],
+                                        "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/contact/inquiries/" + param[1],
                                         "method": "GET",
                                         "headers": {
                                             "Authorization": localStorage.getItem("accessToken"),
@@ -471,7 +471,7 @@
                                 $('#t-inquiry').on("click", "button[name='b-commentSave']", function () {
                                     var param = document.location.href.split("?");
                                     var settings = {
-                                        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/comments/inquiry/" + param[1],
+                                        "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/comments/inquiry/" + param[1],
                                         "method": "POST",
                                         "timeout": 0,
                                         "headers": {
@@ -507,7 +507,7 @@
                                     var commentId = id_by_name.split("_")[1]
                                     console.log(commentId)
                                     var settings = {
-                                        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/comments/" + commentId + "/inquiry",
+                                        "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/comments/" + commentId + "/inquiry",
                                         "method": "DELETE",
                                         "timeout": 0,
                                         "headers": {
@@ -544,7 +544,7 @@
                                     var id_by_name = $(this).attr('id')
                                     var commentId = id_by_name.split("_")[1]
                                     var settings = {
-                                        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/comments/" + commentId + "/inquiry",
+                                        "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/comments/" + commentId + "/inquiry",
                                         "method": "PUT",
                                         "timeout": 0,
                                         "headers": {
@@ -595,7 +595,7 @@
                                     var commentId = id_by_name.split("_")[1]
                                     console.log("☆" + commentId)
                                     var settings = {
-                                        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/comments/inquiry/" + param[1],
+                                        "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/comments/inquiry/" + param[1],
                                         "method": "POST",
                                         "timeout": 0,
                                         "headers": {
@@ -632,7 +632,7 @@
                                     var param = document.location.href.split("?");
                                     console.log("게사글 삭제글 번호" + param[1])
                                     var settings = {
-                                        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/users/contact/inquiries/" + param[1],
+                                        "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/users/contact/inquiries/" + param[1],
                                         "method": "DELETE",
                                         "timeout": 0,
                                         "headers": {
