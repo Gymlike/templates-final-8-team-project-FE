@@ -277,7 +277,7 @@
       console.log(para[1])
 
       var settings = {
-        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/freeboard/selectboard/" + para[1],
+        "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/freeboard/selectboard/" + para[1],
         "method": "GET",
         "timeout": 0,
       };
@@ -336,7 +336,7 @@
           }
 
         var presigned = {
-          "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/freeboard/presigned",
+          "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/freeboard/presigned",
           "method": "POST",
           "timeout": 0,
           "headers": {
@@ -371,7 +371,7 @@
 
           //--------------------[프리사인url발급성공시 서버에 게시글 upload요청--]-------------------------
           var settings = {
-            "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/freeboard/" + para[1],
+            "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/freeboard/" + para[1],
             "method": "PATCH",
             "timeout": 0,
             "headers": {

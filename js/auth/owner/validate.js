@@ -2,7 +2,7 @@ $('form').submit(function (e) {
   e.preventDefault();
 
   var settings = {
-    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/validate",
+    "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/validate",
     "method": "POST",
     "timeout": 0,
     "headers": {

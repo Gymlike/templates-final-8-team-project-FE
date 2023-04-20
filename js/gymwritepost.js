@@ -143,8 +143,8 @@ $(document).ready(function () {
       imageFileName =document.getElementById("gym_File").files[0].name
     }
     var presigned = {
-      // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/presigned",
-      "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/pre-signed",
+      // "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/gym/presigned",
+      "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/gym/pre-signed",
       "method": "POST",
       "timeout": 0,
       "headers": {
@@ -224,8 +224,8 @@ $(document).ready(function () {
       return
     }
     var settings = {
-      // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/owner/write_post",
-      "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/owner/write-post",
+      // "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/gym/owner/write_post",
+      "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/gym/owner/write-post",
       "method": "POST",
       "timeout": 0,
       "headers": {

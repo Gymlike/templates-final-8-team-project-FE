@@ -4,8 +4,8 @@ function getSelectGymPost() {
   var para = document.location.href.split("?");
   console.log(para[1])
   var settings = {
-    // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/" + para[1],
-    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/" + para[1],
+    // "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/gym/" + para[1],
+    "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/gym/" + para[1],
     "method": "GET",
     "timeout": 0,
   };
@@ -350,8 +350,8 @@ function deleteGymPost() {
   console.log(para[1])
   var settings = {
     
-    // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/owner/" + para[1] +"/deletepost",
-    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/owner/" + para[1] +"/delete-post",
+    // "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/gym/owner/" + para[1] +"/deletepost",
+    "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/gym/owner/" + para[1] +"/delete-post",
     "method": "DELETE",
     "timeout": 0,
     "headers": {
@@ -400,8 +400,8 @@ $('#gym_review_write').on("click", "button[name='enrollReview']", function () {
   }
   var settings = {
     
-    // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + para[1] + "/write",
-    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + para[1] + "/write",
+    // "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + para[1] + "/write",
+    "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + para[1] + "/write",
     "method": "POST",
     "timeout": 0,
     "headers": {
@@ -452,8 +452,8 @@ $('#gymReview').on("click", "button[name='delReview']", function () {
   var settings = {
     // para[1]+"/deletereview/"+commentId
     
-    // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + commentId + "/deletereview",
-    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + commentId + "/delete-review",
+    // "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + commentId + "/deletereview",
+    "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + commentId + "/delete-review",
     "method": "DELETE",
     "timeout": 0,
     "headers": {
@@ -503,8 +503,8 @@ $('#gymReview').on("click", "button[name='saveReview']", function () {
   console.log(commentId)
   var settings = {
     
-    // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + commentId + "/put-review",
-    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + commentId + "/put-review",
+    // "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + commentId + "/put-review",
+    "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + commentId + "/put-review",
     "method": "PUT",
     "timeout": 0,
     "headers": {
@@ -581,8 +581,8 @@ function discountPriceUpdate(){
             "." + date_milliseconds.getTime() 
   var settings = {
     
-    // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + commentId + "/put-review",
-    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/owner/"+para[1]+"/discount",
+    // "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/gymreview/" + commentId + "/put-review",
+    "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/gym/owner/"+para[1]+"/discount",
     "method": "PUT",
     "timeout": 0,
     "headers": {

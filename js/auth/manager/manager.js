@@ -37,7 +37,7 @@ function signUp() {
 
     if (localStorage.getItem('verifyEmailCode') == 1) {
         var settings = {
-            "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/manager/signup",
+            "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/manager/signup",
             "method": "POST",
             "timeout": 0,
             "headers": {
@@ -83,7 +83,7 @@ function signUp() {
 //로그인
 function logIn() {
     var settings = {
-        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/manager/login",
+        "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/manager/login",
         "method": "POST",
         "timeout": 0,
         "headers": {
@@ -114,7 +114,7 @@ function logIn() {
 //로그아웃
 function logout() {
     var settings = {
-        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/manager/logout",
+        "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/manager/logout",
         "method": "DELETE",
         "timeout": 0,
         "headers": {
@@ -141,7 +141,7 @@ function logout() {
 //상단 프로필
 function getManagerMe() {
     var settings = {
-        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/profile",
+        "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/profile",
         "method": "GET",
         "timeout": 0,
         "headers": {
@@ -169,7 +169,7 @@ function getManagerMe() {
 //이메일 보내기
 function sendEmail() {
 	var settings = {
-		"url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/user/email?email=" + $('#email').val(),
+		"url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/user/email?email=" + $('#email').val(),
 		"method": "POST",
 		"timeout": 0,
 	};
@@ -217,7 +217,7 @@ function sendEmail() {
 //이메일 재발송
 function sendEmailAgain() {
 	var settings = {
-		"url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/user/email?email=" + $('#email').val(),
+		"url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/user/email?email=" + $('#email').val(),
 		"method": "POST",
 		"timeout": 0,
 	};
@@ -253,7 +253,7 @@ function sendEmailAgain() {
 //이메일 코드 인증
 function verifymail() {
 	var settings = {
-		"url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/user/verifyCode?code=" + $('#EmailCode').val() + "&email=" + $('#email').val(),
+		"url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/user/verifyCode?code=" + $('#EmailCode').val() + "&email=" + $('#email').val(),
 		"method": "POST",
 		"timeout": 0,
 	};

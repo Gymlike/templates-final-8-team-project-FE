@@ -69,7 +69,7 @@
     }
 
     function connect() {
-        let socket = new SockJS('http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/chat');
+        let socket = new SockJS('http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/chat');
         stompClient = Stomp.over(socket);
         stompClient.connect({"token" : "발급받은 토큰"}, function (frame) {
             setConnected(true);

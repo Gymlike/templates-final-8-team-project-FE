@@ -14,8 +14,8 @@ function gymPutPost() {
       imageFile = document.getElementById("gym_File").files[0]
       imageFileName =document.getElementById("gym_File").files[0].name
       var presigned = {
-        // "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/presigned",
-        "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/pre-signed",
+        // "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/gym/presigned",
+        "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/gym/pre-signed",
         "method": "POST",
         "timeout": 0,
         "headers": {
@@ -67,7 +67,7 @@ function gymPutPost() {
     });
     let amenitiesDetail = $("#uamenities").val()
     var settings = {
-    "url": "http://ec2-3-36-89-51.ap-northeast-2.compute.amazonaws.com/api/gym/owner/" + para[1] +"/putpost",
+    "url": "http://ec2-43-200-226-255.ap-northeast-2.compute.amazonaws.com/api/gym/owner/" + para[1] +"/putpost",
     "method": "PUT",
     "timeout": 0,
     "headers": {
